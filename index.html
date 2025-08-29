@@ -4,195 +4,482 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lifewise Capital — Soluciones Financieras</title>
-  <meta name="description" content="Lifewise Capital: préstamos transparentes y ágiles para impulsar tus metas." />
+  <meta name="description" content="Préstamos accesibles y soluciones financieras para profesionales, emprendedores y empresas. Atención clara, humana y transparente." />
 
-  <!-- Fallbacks a Google Fonts (mientras no tengas Gilroy) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Tipografía solicitada: MONTSERRAT (fallback mientras no se use Gilroy) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- Colores de marca -->
+  <meta name="theme-color" content="#003049" />
+
+  <!-- Carga de estilos y JS (te los entrego después) -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23003049'/%3E%3Cpath d='M16 33c8 0 10-13 18-13 6 0 9 7 14 7 4 0 6-3 6-3-2 12-8 22-22 22C21 46 16 40 16 33Z' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <script defer src="script.js"></script>
 </head>
-<body>
-  <!-- Barra superior aviso -->
+
+<body class="theme-light">
+
+  <!-- Barra superior opcional -->
   <div class="topbar">
     ¡Aprovecha nuestras facilidades de préstamos por apertura!
   </div>
 
-  <!-- NAV -->
+  <!-- ========================= HEADER / MENÚ ========================= -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#home" aria-label="Lifewise Capital - inicio">
-        <!-- Logotipo simple en SVG -->
-        <svg class="logo" viewBox="0 0 120 40" aria-hidden="true">
-          <text x="40" y="26" class="logo-text">Lifewise Capital</text>
-          <path class="logo-mark" d="M8 8 L22 20 L8 32 Z M22 8 L36 20 L22 32 Z" />
-        </svg>
+      <!-- LOGO -->
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img" />
       </a>
-      <nav class="nav-links" aria-label="Principal">
-        <a href="#home">Home</a>
+
+      <!-- MENÚ -->
+      <nav class="nav-links" aria-label="Menú principal">
+        <a href="#inicio">Inicio</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#productos">Productos</a>
         <a href="#requisitos">Requisitos</a>
         <a href="#faq">Preguntas frecuentes</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a class="btn cta" href="#contacto">¡Charlemos de tus metas!</a>
+
+      <!-- CTA WhatsApp (no hace scroll; abre enlace externo) -->
+      <a class="btn cta" target="_blank"
+         href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">
+        ¡Hablemos de tus metas!
+      </a>
+
+      <!-- Botón hamburguesa (móvil) -->
       <button class="nav-toggle" aria-label="Abrir menú">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1>Soluciones financieras <span class="grad">claras y humanas</span></h1>
-        <p>Préstamos ágiles, tasas competitivas y acompañamiento experto para que avances con seguridad.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#productos">Ver productos</a>
-          <a class="btn ghost" href="#contacto">Habla con un asesor</a>
-        </div>
-        <ul class="bullets">
-          <li>⚡ Aprobación rápida</li>
-          <li>🔒 Procesos transparentes</li>
-          <li>🤝 Atención personalizada</li>
-        </ul>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="blob"></div>
-        <div class="card card-a">
-          <h3>Aprobado</h3><p>Tu solicitud ha sido aprobada</p>
-        </div>
-        <div class="card card-b">
-          <h3>$ 150,000</h3><p>Crédito liberado</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOSOTROS -->
-  <section id="nosotros" class="section">
-    <div class="container two-col">
-      <div>
-        <h2>Nos mueve tu crecimiento</h2>
-        <p>Somos un equipo con más de 10 años en soluciones de crédito. Creemos en la claridad, la ética y en construir relaciones a largo plazo con cada cliente.</p>
-        <div class="stats">
-          <div><strong>10+</strong><span>Años de experiencia</span></div>
-          <div><strong>8.9/10</strong><span>Satisfacción</span></div>
-          <div><strong>5K+</strong><span>Solicitudes atendidas</span></div>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>Nuestros principios</h3>
-        <ul class="checklist">
-          <li>Información simple y transparente</li>
-          <li>Procesos digitales seguros</li>
-          <li>Acompañamiento real de persona a persona</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section id="productos" class="section alt">
+  <!-- ========================= HERO: CARRUSEL PRINCIPAL ========================= -->
+  <section id="inicio" class="section-hero">
     <div class="container">
-      <h2>Productos</h2>
-      <div class="cards">
-        <article class="p-card">
-          <h3>Crédito personal</h3>
-          <p>Ideal para emergencias, educación o consolidar deudas.</p>
-          <ul><li>Monto desde $10,000</li><li>Plazos flexibles</li><li>Sin penalización por prepago</li></ul>
-          <a href="#contacto" class="btn small">Solicitar</a>
-        </article>
-        <article class="p-card">
-          <h3>Crédito PyME</h3>
-          <p>Capital para inventario, equipo y crecimiento.</p>
-          <ul><li>Análisis ágil</li><li>Tasa competitiva</li><li>Asesoría experta</li></ul>
-          <a href="#contacto" class="btn small">Solicitar</a>
-        </article>
-        <article class="p-card">
-          <h3>Crédito automotriz</h3>
-          <p>Estrena vehículo con pagos que sí te acomodan.</p>
-          <ul><li>Enganche accesible</li><li>Seguro opcional</li><li>Proceso 100% digital</li></ul>
-          <a href="#contacto" class="btn small">Solicitar</a>
-        </article>
+      <div class="slider" data-slider="hero" aria-label="Carrusel principal" aria-live="polite">
+        <button class="slider-btn prev" data-prev aria-label="Slide anterior">‹</button>
+        <button class="slider-btn next" data-next aria-label="Slide siguiente">›</button>
+
+        <div class="slides">
+          <!-- Slide 1 – Inicio -->
+          <article class="slide is-active">
+            <figure class="slide-media">
+              <img src="imagenes/carrusel-1.webp" alt="Persona recibiendo su préstamo" />
+            </figure>
+            <div class="slide-copy">
+              <h1>Tu futuro comienza. <span class="accent">¡Obtén tu préstamo!</span></h1>
+              <p>Préstamos rápidos para empezar tu camino hacia el éxito.</p>
+              <div class="actions">
+                <a class="btn primary" href="#productos">Ver productos</a>
+                <a class="btn ghost" href="#contacto">Contactar asesor</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2 – Emprendedores -->
+          <article class="slide">
+            <figure class="slide-media">
+              <img src="imagenes/carrusel-2.webp" alt="Emprendedora trabajando en su negocio" />
+            </figure>
+            <div class="slide-copy">
+              <h1>Convierte tu pasión en un negocio</h1>
+              <p>Haz realidad tus metas con el impulso financiero que necesitas.</p>
+              <div class="actions">
+                <a class="btn primary" href="#productos">Impulsar mi proyecto</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3 – Crecimiento -->
+          <article class="slide">
+            <figure class="slide-media">
+              <img src="imagenes/carrusel-3.webp" alt="Profesional haciendo crecer su proyecto" />
+            </figure>
+            <div class="slide-copy">
+              <h1>Haz crecer tu idea, <span class="accent">nosotros creemos en ti.</span></h1>
+              <p>Préstamos accesibles para profesionales, emprendedores y empresas.</p>
+              <div class="actions">
+                <a class="btn primary" href="#contacto">Solicitar información</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots" data-dots></div>
       </div>
     </div>
   </section>
 
-  <!-- REQUISITOS -->
-  <section id="requisitos" class="section">
-    <div class="container two-col">
-      <div>
-        <h2>Requisitos básicos</h2>
-        <ul class="steps">
-          <li><span>1</span> Identificación oficial vigente</li>
-          <li><span>2</span> Comprobante de domicilio</li>
-          <li><span>3</span> Comprobantes de ingresos</li>
-          <li><span>4</span> Solicitud en línea</li>
-        </ul>
+  <!-- ========================= NOSOTROS ========================= -->
+  <section id="nosotros" class="section about">
+    <div class="container about-grid">
+      <div class="about-copy">
+        <p class="eyebrow">Ofrecemos</p>
+        <h2><span class="accent">Soluciones flexibles</span></h2>
+        <p>
+          Nuestro enfoque va dirigido hacia la atención al detalle para brindar soluciones flexibles y adaptables
+          a cada situación, garantizando el éxito de nuestros clientes en sus proyectos.
+        </p>
       </div>
-      <div class="panel">
-        <h3>Tiempo estimado</h3>
-        <p>Pre-aprobación en 24–48 hrs hábiles tras recibir tu documentación.</p>
-        <a href="#contacto" class="btn primary">Iniciar solicitud</a>
+
+      <!-- Carrusel de iconos/mensajes -->
+      <div class="slider small" data-slider="about" aria-label="Carrusel Nosotros" aria-live="polite">
+        <button class="slider-btn prev" data-prev aria-label="Slide anterior">‹</button>
+        <button class="slider-btn next" data-next aria-label="Slide siguiente">›</button>
+
+        <div class="slides">
+          <article class="slide is-active">
+            <img class="icon" src="imagenes/icono-aliadofinanciero.webp" alt="Aliado financiero" />
+            <div class="slide-text">
+              <h3>Tu mejor aliado financiero</h3>
+              <p>¡Solicita tu préstamo ya!</p>
+            </div>
+          </article>
+          <article class="slide">
+            <img class="icon" src="imagenes/icono-soluciones.webp" alt="Soluciones a medida" />
+            <div class="slide-text">
+              <h3>Soluciones a medida</h3>
+              <p>Para necesidades empresariales y personales.</p>
+            </div>
+          </article>
+          <article class="slide">
+            <img class="icon" src="imagenes/icono-financiamientofacil.webp" alt="Financiamiento fácil" />
+            <div class="slide-text">
+              <h3>Financiamiento fácil y rápido</h3>
+              <p>Para que alcances tus metas sin complicaciones.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots" data-dots></div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section alt">
+  <!-- ========================= PRODUCTOS ========================= -->
+  <section id="productos" class="section products">
     <div class="container">
-      <h2>Preguntas frecuentes</h2>
-      <div class="accordion" role="tablist">
-        <details>
-          <summary>¿La consulta afecta mi buró?</summary>
-          <div class="answer">La pre-evaluación no afecta tu historial. Solo con tu autorización realizamos consultas formales.</div>
-        </details>
-        <details>
-          <summary>¿Puedo liquidar antes?</summary>
-          <div class="answer">Sí, puedes liquidar en cualquier momento sin penalización por prepago.</div>
-        </details>
-        <details>
-          <summary>¿Atienden a todo México?</summary>
-          <div class="answer">Sí, el proceso es 100% digital y damos seguimiento por los canales que prefieras.</div>
-        </details>
+      <header class="section-head">
+        <p class="eyebrow">Conoce nuestros</p>
+        <h2><span class="accent">Productos Financieros</span></h2>
+        <p>Aquí te mostramos las soluciones financieras que tenemos para ti.</p>
+      </header>
+
+      <div class="product-layout">
+        <!-- Lista izquierda -->
+        <ol class="product-list" role="tablist" aria-label="Lista de productos">
+          <li><button class="product-tab is-active" data-target="p-nomina" role="tab" aria-controls="p-nomina">01. Crédito de nómina</button></li>
+          <li><button class="product-tab" data-target="p-revolvente" role="tab" aria-controls="p-revolvente">02. Crédito revolvente</button></li>
+          <li><button class="product-tab" data-target="p-puro" role="tab" aria-controls="p-puro">03. Arrendamiento Puro</button></li>
+          <li><button class="product-tab" data-target="p-financiero" role="tab" aria-controls="p-financiero">04. Arrendamiento Financiero</button></li>
+          <li><button class="product-tab" data-target="p-factoraje" role="tab" aria-controls="p-factoraje">05. Factoraje</button></li>
+          <li><button class="product-tab" data-target="p-personal" role="tab" aria-controls="p-personal">06. Crédito Personal</button></li>
+        </ol>
+
+        <!-- Panel derecho (detalles) -->
+        <div class="product-panels">
+          <!-- Nómina -->
+          <article id="p-nomina" class="product-panel is-active" role="tabpanel">
+            <h3>Crédito de Nómina</h3>
+            <p>
+              Un crédito de nómina es un préstamo personal que se concede a empleados con base en su salario regular.
+              La principal ventaja es que los pagos se descuentan automáticamente de la nómina, facilitando la gestión
+              y reduciendo el riesgo de impagos. Es ideal para empleados que necesitan financiamiento rápido y conveniente.
+            </p>
+            <p class="disclaimer">
+              Contratar créditos que excedan su capacidad de pago afecta su historial crediticio. Incumplir sus
+              obligaciones le puede generar comisiones e intereses moratorios.
+            </p>
+            <p class="links">
+              <a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> ·
+              <a href="avisoprivacidad.html" target="_blank">Más información</a>
+            </p>
+          </article>
+
+          <!-- Revolvente -->
+          <article id="p-revolvente" class="product-panel" role="tabpanel" hidden>
+            <h3>Crédito Revolvente</h3>
+            <p>
+              Es una línea de crédito flexible que permite disponer de fondos de manera continua hasta un límite
+              preestablecido. A medida que la empresa paga el crédito utilizado, los fondos vuelven a estar disponibles.
+              Ideal para liquidez a corto plazo; se pagan intereses solo sobre el monto usado.
+            </p>
+            <p class="disclaimer">Contratar créditos que excedan su capacidad de pago afecta su historial crediticio…</p>
+            <p class="links"><a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> · <a href="avisoprivacidad.html" target="_blank">Más información</a></p>
+          </article>
+
+          <!-- Arrendamiento Puro -->
+          <article id="p-puro" class="product-panel" role="tabpanel" hidden>
+            <h3>Arrendamiento Puro</h3>
+            <p>
+              Contrato de arrendamiento donde la empresa usa bienes (equipo/maquinaria) sin adquirir la propiedad.
+              Pagas una renta fija por un plazo; al final no hay opción de compra. Evita obsolescencia y grandes inversiones.
+            </p>
+            <p class="disclaimer">Contratar créditos que excedan su capacidad de pago afecta su historial crediticio…</p>
+            <p class="links"><a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> · <a href="avisoprivacidad.html" target="_blank">Más información</a></p>
+          </article>
+
+          <!-- Arrendamiento Financiero -->
+          <article id="p-financiero" class="product-panel" role="tabpanel" hidden>
+            <h3>Arrendamiento Financiero</h3>
+            <p>
+              Usa bienes pagando una renta periódica con opción de compra al finalizar. Combina financiamiento con
+              posibilidad de propiedad, distribuyendo el costo en el tiempo.
+            </p>
+            <p class="disclaimer">Contratar créditos que excedan su capacidad de pago afecta su historial crediticio…</p>
+            <p class="links"><a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> · <a href="avisoprivacidad.html" target="_blank">Más información</a></p>
+          </article>
+
+          <!-- Factoraje -->
+          <article id="p-factoraje" class="product-panel" role="tabpanel" hidden>
+            <h3>Factoraje</h3>
+            <p>
+              Servicio financiero mediante el cual una empresa vende sus cuentas por cobrar a un tercero (factor)
+              a un precio con descuento. Obtén liquidez inmediata sin esperar el pago de tus clientes; útil para
+              mejorar flujo de caja y reducir riesgo de crédito.
+            </p>
+            <p class="disclaimer">Contratar créditos que excedan su capacidad de pago afecta su historial crediticio…</p>
+            <p class="links"><a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> · <a href="avisoprivacidad.html" target="_blank">Más información</a></p>
+          </article>
+
+          <!-- Crédito Personal -->
+          <article id="p-personal" class="product-panel" role="tabpanel" hidden>
+            <h3>Crédito Personal</h3>
+            <p>
+              Préstamo financiero que permite disponer de una suma para el propósito personal que decidas:
+              educación, salud, viajes o consolidación de deudas. Tú eliges cómo utilizarlo.
+            </p>
+            <p class="links"><a href="avisoprivacidad.html" target="_blank">Tasas, Comisiones y CAT</a> · <a href="avisoprivacidad.html" target="_blank">Más información</a></p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="section">
-    <div class="container two-col">
-      <div>
-        <h2>¡Conversemos!</h2>
-        <p>Cuéntanos tus metas y un asesor te contactará.</p>
-        <ul class="social">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
-          <li><a href="#" aria-label="Instagram">Instagram</a></li>
-          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+  <!-- ========================= REQUISITOS & PROCESOS ========================= -->
+  <section id="requisitos" class="section requirements">
+    <div class="container req-grid">
+      <header class="section-head">
+        <p class="eyebrow">Conoce nuestros</p>
+        <h2><span class="accent">Requisitos y Procesos</span></h2>
+        <p>Aquí te brindamos toda la información que necesitas saber.</p>
+      </header>
+
+      <!-- Requisitos -->
+      <div class="req-box">
+        <h3>Requisitos</h3>
+        <ul class="req-list">
+          <li>
+            <img src="imagenes/identificacionoficial.webp" alt="Identificación oficial" />
+            <div><strong>Identificación oficial</strong> (INE o pasaporte vigente).</div>
+          </li>
+          <li>
+            <img src="imagenes/comprobantedomicilio.webp" alt="Comprobante de domicilio" />
+            <div><strong>Comprobante de domicilio</strong> (no mayor a 3 meses).</div>
+          </li>
+          <li>
+            <img src="imagenes/comprobanteingresos.webp" alt="Comprobante de ingresos" />
+            <div><strong>Comprobante de ingresos</strong> (recibos o estados de cuenta).</div>
+          </li>
+          <li>
+            <img src="imagenes/estadodecuenta.webp" alt="Estado de cuenta" />
+            <div><strong>Estado de cuenta</strong> bancario reciente.</div>
+          </li>
+          <li>
+            <img src="imagenes/cartaautorizacion.webp" alt="Carta de autorización" />
+            <div><strong>Carta de autorización</strong> para consulta en Buró de Crédito.</div>
+          </li>
+          <li>
+            <img src="imagenes/solicitudcredito.webp" alt="Solicitud de crédito" />
+            <div><strong>Solicitud de crédito</strong> completada.</div>
+          </li>
         </ul>
       </div>
-      <!-- Compatible con Netlify Forms -->
-      <form name="contacto" method="POST" data-netlify="true" class="form">
-        <input type="hidden" name="form-name" value="contacto" />
-        <label>Nombre<input name="nombre" required></label>
-        <label>Correo<input type="email" name="correo" required></label>
-        <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
-        <button class="btn primary" type="submit">Enviar</button>
+
+      <!-- Proceso -->
+      <div class="req-box">
+        <h3>Proceso</h3>
+        <ol class="proc-list">
+          <li>
+            <img src="imagenes/proceso01.webp" alt="Solicitud de préstamo" />
+            <div><strong>01.</strong> Llena nuestra solicitud de préstamo.</div>
+          </li>
+          <li>
+            <img src="imagenes/proceso02.webp" alt="Reúne la documentación" />
+            <div><strong>02.</strong> Reúne la documentación.</div>
+          </li>
+          <li>
+            <img src="imagenes/proceso03.webp" alt="Cita y firma" />
+            <div><strong>03.</strong> Acude a tu cita y firma tu préstamo.</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PREGUNTAS FRECUENTES ========================= -->
+  <section id="faq" class="section faq">
+    <div class="container faq-grid">
+      <div class="faq-left">
+        <h2>Que no te quede ninguna <span class="accent">duda</span> sobre nuestros servicios</h2>
+        <p>Queremos crear un ambiente transparente para todos nuestros usuarios.</p>
+        <img class="faq-img" src="imagenes/dudas-servicios.webp" alt="Dudas y servicios" />
+      </div>
+
+      <div class="faq-right">
+        <details>
+          <summary>1. ¿Qué tipos de servicios financieros ofrece LIFEWISE CAPITAL?</summary>
+          <div class="answer">
+            LIFEWISE CAPITAL ofrece una amplia gama de servicios financieros para empresas y particulares:
+            <ul>
+              <li>Préstamos vía nómina: solución rápida con descuento directo de nómina.</li>
+              <li>Préstamos personales: flexibles para gastos personales o consolidación.</li>
+              <li>Factoraje: adelanto de efectivo mediante la venta de cuentas por cobrar.</li>
+              <li>Fideicomiso de garantía: asegura el cumplimiento de obligaciones financieras.</li>
+            </ul>
+            <p class="links mini"><a href="avisoprivacidad.html" target="_blank">Tasas, Condiciones y CAT</a></p>
+          </div>
+        </details>
+
+        <details>
+          <summary>2. ¿Cuáles son los requisitos para tener mi préstamo?</summary>
+          <div class="answer">
+            Identificación oficial, comprobante de domicilio, comprobante de ingresos, historial crediticio,
+            y solicitud de préstamo completa.
+          </div>
+        </details>
+
+        <details>
+          <summary>3. ¿Cómo funciona el servicio de factoraje con LIFEWISE CAPITAL?</summary>
+          <div class="answer">
+            Venta de cuentas por cobrar a cambio de adelanto de efectivo; evaluación de facturas y clientes;
+            desembolso (70–90%); cobro de facturas por LIFEWISE CAPITAL y entrega del saldo menos comisión.
+          </div>
+        </details>
+
+        <details>
+          <summary>4. ¿Cómo puedo gestionar mi cuenta?</summary>
+          <div class="answer">
+            Portal en línea, atención telefónica y atención en oficinas.
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Vínculos regulatorios -->
+    <div class="container regulators">
+      <div class="reg-items">
+        <a href="https://www.condusef.gob.mx/" target="_blank" class="reg-link" aria-label="Ir a CONDUSEF">
+          <img src="imagenes/icono-condusef.webp" alt="CONDUSEF" />
+        </a>
+        <a href="https://www.gob.mx/cnbv" target="_blank" class="reg-link" aria-label="Ir a CNBV">
+          <img src="imagenes/icono-CNBV.webp" alt="CNBV" />
+        </a>
+      </div>
+      <p class="reg-note">
+        La inspección y vigilancia de las sociedades financieras de objeto múltiple no reguladas queda confiada a la
+        Comisión Nacional Bancaria y de Valores, exclusivamente para verificar el cumplimiento de los preceptos a que se
+        refiere el artículo 95 Bis de la Ley General de Organizaciones y Actividades Auxiliares del Crédito y las
+        disposiciones de carácter general que de éste deriven, referente a Prevención de Operaciones con Recursos de
+        Procedencia Ilícita y Financiamiento al Terrorismo. Para su constitución y operación como SOFOM, E.N.R., no
+        requiere de autorización de la SHCP.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================= CTA SUEÑOS ========================= -->
+  <section class="section dreams">
+    <div class="container dreams-grid">
+      <img src="imagenes/cumplir-sueños-cerdito.webp" alt="Cerdito ahorrando" class="dream-img left" />
+      <div class="dreams-copy">
+        <h2>Te ayudamos a cumplir tus <span class="hashtag">#sueños</span></h2>
+        <p>Contáctanos y comienza a lograr tus metas.</p>
+        <a class="btn primary" target="_blank"
+           href="https://wa.me/528131225920?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">
+          Contáctanos
+        </a>
+      </div>
+      <img src="imagenes/cumplir-sueños-casa.webp" alt="Metas de hogar" class="dream-img right" />
+    </div>
+  </section>
+
+  <!-- ========================= MAPA ========================= -->
+  <section class="section map">
+    <div class="container">
+      <div class="map-embed" role="region" aria-label="Mapa de ubicación">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Av.+San+Francisco+120,+Des+21,+Colonia+Lomas+de+San+Francisco,+Monterrey,+Nuevo+Le%C3%B3n&output=embed">
+        </iframe>
+      </div>
+      <p class="map-address">
+        Nuestra dirección es: <strong>Av. San Francisco 120, Des 21, Colonia Lomas de San Francisco, Monterrey, Nuevo León.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACTO (form Supabase) ========================= -->
+  <section id="contacto" class="section contact">
+    <div class="container contact-grid">
+      <div class="contact-left">
+        <img src="imagenes/alcanza-tus-metas.webp" alt="Alcanza tus metas con nosotros" />
+        <p class="lead">Alcanza tus metas con nosotros, envíanos un mensaje →</p>
+      </div>
+
+      <form id="contacto-form" class="form" autocomplete="on">
+        <h2>Contáctanos</h2>
+
+        <label>Nombre* <input name="nombre" required /></label>
+        <label>Apellidos <input name="apellidos" /></label>
+        <label>Teléfono <input name="telefono" inputmode="tel" /></label>
+        <label>Email* <input type="email" name="email" required /></label>
+        <label>Mensaje* <textarea name="mensaje" rows="5" required></textarea></label>
+
+        <!-- A futuro el JS enviará a SUPABASE -->
+        <button type="submit" class="btn primary">Enviar información</button>
+        <p class="form-status" aria-live="polite"></p>
       </form>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="y"></span> Lifewise Capital — Soluciones Financieras</p>
-      <a href="#home" class="to-top">Volver arriba ↑</a>
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="footer-logo" />
+      </div>
+
+      <div class="footer-col">
+        <h4>Teléfono</h4>
+        <p>
+          T. <a href="tel:+528131431192">81 31.43.11.92</a><br/>
+          T. <a href="tel:+528131431193">81 31.43.11.93</a><br/>
+          C. <a href="tel:+528131225920">81 31.22.59.20</a>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Dirección</h4>
+        <p>
+          Av. San Francisco 120, Des 21, Colonia Lomas de San Francisco, Monterrey, Nuevo León.
+        </p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Lifewise Capital | Todos los derechos reservados | Página hecha por Giro Agency</p>
+      <nav class="legal-links" aria-label="Enlaces legales">
+        <a href="avisoprivacidad.html" target="_blank">Consulta nuestro Aviso de Privacidad</a>
+        <a href="ueau.pdf" target="_blank">Unidad Especializada de Atención a Usuarios</a>
+        <a href="derechos-arco.pdf" target="_blank">Derechos ARCO</a>
+        <a href="solicitud-derechos-arco.pdf" target="_blank">Solicitud Derechos ARCO</a>
+      </nav>
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
