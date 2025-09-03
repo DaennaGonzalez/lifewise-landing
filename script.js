@@ -4,7 +4,7 @@
    - Carruseles (Hero y Nosotros)
    - Tabs de Productos
    - Footer: año actual
-   - Formulario: envío a SUPABASE (plantilla lista)
+   - Formulario → SUPABASE (activo)
    ========================================================= */
 
 /* ------------------ Utilidades ------------------ */
@@ -20,7 +20,7 @@ function enableSmoothAnchors() {
     const href = a.getAttribute("href");
     if (!href || href === "#") return;
 
-    // ignores si es botón de WhatsApp u otro externo (tienen target _blank o URL absoluta)
+    // ignora externos (target _blank o URL absoluta)
     if (a.target === "_blank" || /^https?:\/\//i.test(href)) return;
 
     const target = document.getElementById(href.slice(1));
@@ -90,12 +90,8 @@ function initSlider(root, { autoplay = true, interval = 6000 } = {}) {
     update();
   }
 
-  function next() {
-    goTo(index + 1);
-  }
-  function prev() {
-    goTo(index - 1);
-  }
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
 
   btnNext && btnNext.addEventListener("click", next);
   btnPrev && btnPrev.addEventListener("click", prev);
@@ -109,10 +105,7 @@ function initSlider(root, { autoplay = true, interval = 6000 } = {}) {
     stop();
     timer = setInterval(next, interval);
   }
-  function stop() {
-    if (timer) clearInterval(timer);
-    timer = null;
-  }
+  function stop() { if (timer) clearInterval(timer); timer = null; }
 
   root.addEventListener("mouseenter", stop);
   root.addEventListener("mouseleave", start);
@@ -122,8 +115,6 @@ function initSlider(root, { autoplay = true, interval = 6000 } = {}) {
   });
 
   start();
-
-  // Devuelve API por si se quiere manipular
   return { next, prev, goTo, stop, start };
 }
 
@@ -161,7 +152,6 @@ function initProductTabs() {
     });
   });
 
-  // Activar primero marcado
   const firstActive = tabs.find((t) => t.classList.contains("is-active")) || tabs[0];
   activate(firstActive.dataset.target);
 }
@@ -174,37 +164,36 @@ function setYear() {
 
 /* ------------------ Formulario → SUPABASE ------------------ */
 /*
-  Para activar el envío:
-  1) Crea una tabla en Supabase (por ejemplo "contactos") con columnas:
-     nombre (text), apellidos (text), telefono (text), email (text), mensaje (text), created_at (timestamp default now()).
-  2) Rellena SUPABASE_URL y SUPABASE_ANON_KEY.
-  3) Asegúrate de que la Política RLS permita inserts anónimos o usa una Edge Function.
+  Requisitos en Supabase:
+  - Tabla: public.tabla_lifewise_contactos
+    columnas: id (identity), created_at default now(), nombre text not null,
+              apellidos text, telefono text, email text not null,
+              mensaje text not null, user_agent text, page_url text
+  - RLS habilitado + policy:
+      INSERT → rol anon → WITH CHECK: true
 */
-const SUPABASE_URL = "";        // <-- EJ: "https://xxxx.supabase.co"
-const SUPABASE_ANON_KEY = "";   // <-- TU clave pública anon
-const SUPABASE_TABLE = "contactos";
 
+const SUPABASE_URL = "https://uqgioswtmkjdjuadonnc.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZ2lvc3d0bWtqZGp1YWRvbmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwOTYzMTcsImV4cCI6MjA2NTY3MjMxN30.vCLNRGVseLkR1RclsFanDUWYJXkib_X9Xx4kMNSBudM";
+const SUPABASE_TABLE = "tabla_lifewise_contactos";
+
+/** Inserta vía REST (sin SDK). Usa return=minimal para no requerir SELECT. */
 async function submitToSupabase(payload) {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    // Modo demo: simula éxito para que el flujo de UI funcione
-    await new Promise((r) => setTimeout(r, 700));
-    return { ok: true, demo: true };
-  }
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
     method: "POST",
     headers: {
       apikey: SUPABASE_ANON_KEY,
       Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       "Content-Type": "application/json",
-      Prefer: "return=representation"
+      Prefer: "return=minimal"
     },
     body: JSON.stringify(payload)
   });
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(err || "Error al enviar datos");
+    const err = await res.text().catch(() => "");
+    throw new Error(err || `HTTP ${res.status}`);
   }
-  return { ok: true, data: await res.json() };
+  return { ok: true };
 }
 
 function initContactForm() {
@@ -219,11 +208,21 @@ function initContactForm() {
     const fd = new FormData(form);
     const payload = {
       nombre: (fd.get("nombre") || "").toString().trim(),
-      apellidos: (fd.get("apellidos") || "").toString().trim(),
-      telefono: (fd.get("telefono") || "").toString().trim(),
+      apellidos: (fd.get("apellidos") || "").toString().trim() || null,
+      telefono: (fd.get("telefono") || "").toString().trim() || null,
       email: (fd.get("email") || "").toString().trim(),
-      mensaje: (fd.get("mensaje") || "").toString().trim()
+      mensaje: (fd.get("mensaje") || "").toString().trim(),
+      user_agent: navigator.userAgent,
+      page_url: location.href
     };
+
+    // Honeypot opcional (si exists <input name="website"> oculto)
+    const hp = form.querySelector('input[name="website"]');
+    if (hp && hp.value) {
+      status.textContent = "Gracias.";
+      form.reset();
+      return;
+    }
 
     // Validaciones mínimas
     if (!payload.nombre || !payload.email || !payload.mensaje) {
@@ -231,13 +230,27 @@ function initContactForm() {
       return;
     }
 
+    // Anti-spam simple: 1 envío cada 30s
+    const last = Number(localStorage.getItem("contact_last_ts") || 0);
+    if (Date.now() - last < 30_000) {
+      status.textContent = "Espera unos segundos antes de enviar de nuevo.";
+      return;
+    }
+
+    // Lock UI
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.style.opacity = .7;
+
     try {
-      const result = await submitToSupabase(payload);
+      await submitToSupabase(payload);
       status.textContent = "¡Gracias! Hemos recibido tu información.";
       form.reset();
+      localStorage.setItem("contact_last_ts", String(Date.now()));
     } catch (err) {
       console.error(err);
       status.textContent = "Ocurrió un error al enviar. Intenta de nuevo.";
+    } finally {
+      btn.disabled = false; btn.style.opacity = 1;
     }
   });
 }

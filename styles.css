@@ -19,7 +19,7 @@
   --bg:     #ffffff;      /* fondo predominante */
   --soft:   #f5f8fb;      /* secciones claras */
 
-  --radius: 18px;
+  --radius: 0px;
   --shadow: 0 10px 28px rgba(16,42,67,.12);
   --shadow-sm: 0 6px 18px rgba(16,42,67,.10);
 
@@ -53,20 +53,20 @@ body{
   letter-spacing:.08em;
   text-transform:uppercase;
   font-weight:700;
-  color:var(--calm);
+  color:var(--soft);
   margin:0 0 .25rem;
   font-size:.9rem;
 }
 
 h1,h2,h3,h4{margin:0 0 .6rem}
-h1{font-weight:800;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.15}
+h1{font-weight:800;color:var(--white);font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.15}
 h2{font-weight:800;font-size:clamp(1.4rem,2.6vw,2.2rem)}
 h3{font-weight:700;font-size:1.25rem}
-p{margin:.35rem 0 1rem;color:var(--muted)}
+p{margin:.35rem 0 1rem;color:var(--white)} /*textos pequeños abajo del slide*/
 
-.accent{color:var(--calm)}
+.accent{color:var(--white)}
 .hashtag{
-  background:var(--calm);
+  background:var(--deep);
   color:#fff;
   padding:.15em .45em;
   border-radius:12px;
@@ -87,13 +87,13 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
 .btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
 .btn:active{transform:translateY(0)}
 .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow)}
-.btn.ghost{background:transparent;border-color:var(--calm);color:var(--calm)}
-.btn.cta{background:#1fb5ff;color:#00263b;box-shadow:var(--shadow-sm)}
+.btn.ghost{background:transparent;border-color:var(--white);color:var(--white)}
+.btn.cta{background:#83caed;color:#00263b;box-shadow:var(--shadow-sm)}
 
 /* ========= Topbar ========= */
 .topbar{
   text-align:center;
-  background:#19a7ff;
+  background:#83caed;
   color:#00263b;
   padding:.55rem .75rem;
   font-weight:700;
@@ -111,7 +111,32 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
   display:flex; align-items:center; gap:18px;
   padding:.85rem 0;
 }
-.logo-img{height:38px;width:auto}
+
+/* Logo adaptable */
+.logo-img {
+  height: clamp(36px, 5vw, 64px); /* min 36px, escala hasta 64px */
+  width: auto;
+  max-width: 100%; /* evita desbordes */
+}
+
+/* En pantallas muy pequeñas (móvil), un poquito más chico */
+@media (max-width: 480px) {
+  .logo-img {
+    height: clamp(28px, 8vw, 44px);
+  }
+}
+
+/* Estilo normal (desktop/tablet) ya lo tienes con .btn.cta */
+
+/* Ajustes solo en móvil */
+@media (max-width: 680px) {
+  .btn.cta {
+    font-size: 0.85rem;     /* texto más pequeño */
+    padding: 0.6rem 0.9rem; /* reduce el tamaño del botón */
+    border-radius: 999px;   /* mantiene el pill redondeado */
+  }
+}
+
 
 .nav-links{display:flex; gap:22px; margin-left:auto}
 .nav-links a{
@@ -142,11 +167,38 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
 }
 
 /* ========= Hero / Slider ========= */
-.section-hero{background:#fff; padding:42px 0 24px}
+.section-hero{
+  padding: 0;                 /* sin márgenes */
+  background: transparent;
+}
+
+/* El container no limita el ancho en el hero */
+.section-hero .container{
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+/* Padding interno solo para el bloque de texto del hero */
+.section-hero .slide-copy{
+  padding-bottom: 48px; /* agrega aire debajo del texto/botones */
+}
+.btn.primary{
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25); /* sombra más marcada */
+}
+.slide-copy .actions .btn{
+  margin-bottom: 12px; /* aire debajo del botón */
+}
+
+
 .slider{
   position:relative; border-radius:var(--radius);
   box-shadow:var(--shadow); overflow:hidden;
-  background:linear-gradient(180deg,#ffffff 0%, #f6fbff 100%);
+   background:
+    radial-gradient(1200px 600px at 85% 15%, rgba(43,122,165,.28) 0%, rgba(43,122,165,0) 60%),
+    radial-gradient(900px 480px at 10% 90%, rgba(0,48,73,.30) 0%, rgba(0,48,73,0) 65%),
+    linear-gradient(145deg, #2b7aa5 0%, #1d628a 45%, #003049 100%);
 }
 .slider.small{box-shadow:none;background:transparent}
 
@@ -173,7 +225,7 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
   box-shadow:var(--shadow-sm); cursor:pointer; z-index:2;
 }
 .slider-btn.prev{left:12px}
-.slider-btn.next{right:12px}
+.slider-btn.next{right:12px}  /* aqui se hacen a los lados los botones del carrusel*/
 .slider-btn:hover{filter:brightness(1.05)}
 
 .dots{display:flex; gap:8px; justify-content:center; padding:10px 0 16px}
@@ -193,6 +245,7 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
 .section{padding:70px 0}
 .about{background:var(--soft)}
 .about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:26px; align-items:center}
+
 
 /* ========= Productos ========= */
 .products{background:#fff}
@@ -356,3 +409,955 @@ p{margin:.35rem 0 1rem;color:var(--muted)}
   .product-tab{padding:12px 14px}
   .map-embed iframe{height:300px}
 }
+
+
+
+
+/* HERO – dots centrados, arriba y circulares */
+.section-hero .dots{
+  position: absolute;          /* saca los dots del flujo */
+  left: 50%;
+  bottom: 26px;                /* espacio que hay debajo de las bolitas en desktop*/
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  padding: 0;                  /* sin padding extra que los empuje */
+  margin: 0;
+  z-index: 2;                  /* por encima de imágenes */
+}
+
+.section-hero .dots button{
+  width: 10px;                 /* círculos "normales" */
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  background: #d7e0ea;         /* inactivo */
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.35) inset; /* mejora contraste sobre fondos oscuros */
+}
+
+/* Activo también circular (evita deformación tipo pastilla) */
+.section-hero .dots button[aria-current="true"]{
+  width: 9.1px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--calm);
+  box-shadow: 0 0 0 1.8px rgba(255,255,255,.55) inset;
+}
+
+/* Ajuste en móvil para que no estorben */
+@media (max-width: 680px){
+  .section-hero .dots{ bottom: 26px; gap: 8px; }
+}
+
+
+
+/* SOMBRA DE LOS BOTONES DEL CARRUSEL PRINCIPAL */
+.section-hero .slide-copy .btn.primary{
+  /* antes: var(--shadow) => 0 10px 28px rgba(16,42,67,.12) */
+  box-shadow: 10px 12px 10px rgba(0,0,0,.22);   /* menos spread, más contraste */
+  border: 0.2px solid rgba(255,255,255,.16);  /* filo suave para separar del fondo */
+}
+
+
+/* Ajuste de espacio a la izquierda solo en escritorio */
+@media (min-width: 1025px){
+  .section-hero .slide-copy {
+    padding-left: 90px; /* puedes probar 40px, 60px o 80px */
+  }
+}
+
+
+
+/* =========================
+   NOSOTROS – slider pequeño con estilo "tarjeta" oscura
+   ========================= */
+
+/* Fondo claro de la sección y respiro */
+.about{
+  background: #cae1ee;           /* fondo color de soluciones flexibles */
+}
+
+/* La tarjeta/slider */
+.about .slider.small{
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 14px 38px rgba(0,0,0,.18);
+  background:
+    radial-gradient(800px 420px at 85% 20%, rgba(64,144,196,.25) 0%, rgba(64,144,196,0) 60%),
+    radial-gradient(700px 360px at 10% 85%, rgba(0,48,73,.28) 0%, rgba(0,48,73,0) 60%),
+    linear-gradient(140deg, #0b2a3e 0%, #0a3a57 45%, #062838 100%);
+  position: relative;
+}
+
+/* Cada slide: texto a la izquierda, ilustración/icono a la derecha */
+.about .slider .slide{
+  display: grid !important;
+  grid-template-columns: 1.35fr .65fr;   /* más espacio al texto */
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  min-height: 260px;                     /* altura agradable como el mock */
+}
+
+/* Icono/ilustración grande a la derecha */
+.about .slider .icon{
+  width: clamp(120px, 18vw, 220px);
+  height: auto;
+  justify-self: end;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+}
+
+/* Tipografía del texto dentro del slide */
+.about .slider .slide-text h3{
+  margin: 0 0 .35rem;
+  font-weight: 800;
+  line-height: 1.08;
+  font-size: clamp(1.25rem, 3.2vw, 2.35rem);   /* grande como en la imagen */
+  /* Degradado azul brillante sutil sobre título */
+  background: linear-gradient(135deg, #dff4ff 0%, #76b7e8 35%, #45a0df 60%, #dff4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(69,160,223,.28);
+}
+.about .slider .slide-text p{
+  margin: 0;
+  color: #cfe8f7;                         /* copy claro */
+  font-weight: 600;
+}
+
+/* Flechas minimalistas (círculos semitransparentes) */
+.about .slider .slider-btn{
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 10px 20px rgba(0,0,0,.22);
+}
+.about .slider .slider-btn:hover{ filter: brightness(1.08); }
+.about .slider .slider-btn.prev{ left: 16px; }
+.about .slider .slider-btn.next{ right: 16px; }
+
+/* Bolitas centradas y legibles sobre fondo oscuro */
+.about .slider .dots{
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex; gap: 8px;
+  padding: 0; margin: 0;
+  z-index: 2;
+}
+.about .slider .dots button{
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 0;
+  background: #cfd9e3;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.35) inset;
+  opacity: .9;
+  cursor: pointer;
+}
+.about .slider .dots button[aria-current="true"]{
+  background: #6cc1ff;                    /* activo */
+  box-shadow: 0 0 0 2px rgba(255,255,255,.6) inset;
+}
+
+/* Espaciado superior e inferior del bloque de intro */
+.about .about-copy{
+  text-align: center;
+}
+.about .about-copy .eyebrow{
+  color: #0b2a3e;
+}
+.about .about-copy h2{
+  color: #12a3ff;
+  font-weight: 800;
+}
+.about .about-copy p{
+  color: #5b6b7a;
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+/* Responsive: una columna en móvil y flechas fuera */
+@media (max-width: 1024px){
+  .about .slider .slide{
+    grid-template-columns: 1fr; 
+    text-align: left;
+    min-height: 220px;
+    padding: 24px;
+  }
+  .about .slider .icon{
+    justify-self: start;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 680px){
+  .about .slider .slider-btn{ display:none; } /* como en tu hero */
+  .about .slider .dots{ bottom: 10px; }
+  .about .slider .slide-text h3{
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+}
+
+/* ================================
+   NOSOTROS — mostrar 3 tarjetas (no slider)
+   ================================ */
+
+/* 0) Oculta navegación del carrusel */
+.about .slider.small .slider-btn,
+.about .slider.small .dots{
+  display: none !important;
+}
+
+/* 1) El contenedor ya no es una sola tarjeta */
+.about .slider.small{
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* 2) Muestra TODOS los slides y apílalos con separación */
+.about .slider.small .slides{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;                         /* espacio entre tarjetas */
+}
+
+/* 3) Cada slide se convierte en una TARJETA con el estilo oscuro */
+.about .slider.small .slides .slide{
+  display: grid !important;          /* anula el "solo first-child" anterior */
+  grid-template-columns: 1.35fr .65fr;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  min-height: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 14px 38px rgba(0,0,0,.18);
+  background:
+    radial-gradient(800px 420px at 85% 20%, rgba(64,144,196,.25) 0%, rgba(64,144,196,0) 60%),
+    radial-gradient(700px 360px at 10% 85%, rgba(0,48,73,.28) 0%, rgba(0,48,73,0) 60%),
+    linear-gradient(140deg, #0b2a3e 0%, #0a3a57 45%, #062838 100%);
+}
+
+/* 4) Imagen/icono a la derecha con sombra */
+.about .slider.small .icon{
+  width: clamp(120px, 18vw, 220px);
+  height: auto;
+  justify-self: end;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+}
+
+/* 5) Tipografía del contenido */
+.about .slider.small .slide-text h3{
+  margin: 0 0 .35rem;
+  font-weight: 800;
+  line-height: 1.08;
+  font-size: clamp(1.25rem, 3.2vw, 2.35rem);
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0,0,0,.22);
+}
+.about .slider.small .slide-text p{
+  margin: 0;
+  color: #cfe8f7;
+  font-weight: 600;
+}
+
+/* 6) Color del título "Soluciones flexibles" (arriba de las tarjetas) */
+.about .about-copy .accent{
+  color: #2583bd; /* cambia aquí si quieres otro tono */
+}
+
+/* 7) Centrar textos en móvil y apilar contenido */
+@media (max-width: 1024px){
+  .about .about-copy{ text-align: center; }
+  .about .slider.small .slides .slide{
+    grid-template-columns: 1fr;
+    text-align: center;
+    min-height: 220px;
+    padding: 24px;
+  }
+  .about .slider.small .icon{
+    justify-self: center;
+    margin-top: 10px;
+  }
+}
+
+
+
+.about-illustration{
+  margin-top: 20px;
+  text-align: center;
+}
+.about-illustration img{
+  width: 100%;
+  max-width: 1100px;   /* evita que se haga gigante en monitores grandes */
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* Móvil: que quede centrado y con respiro lateral si lo necesitas */
+@media (max-width: 680px){
+  .about-illustration{ margin-top: 16px; }
+  .about-illustration img{ border-radius: 14px; }
+}
+
+
+/* La sección será el ancla del sello/overlay */
+.about{
+  position: relative;
+  /* tenías .section{padding:70px 0}; sumamos ~100px extra abajo */
+  padding-bottom: 170px; /* 70 base + 100 extra de respiro */
+}
+
+/* Imagen transparente “encima de todo”, pegada al fondo de la sección */
+.about .about-stamp{
+  position: absolute;
+  left: 14%;
+  bottom: 0;                    /* pegada al final de la sección */
+  transform: translateX(20%);
+  width: min(1100px, 35%);      /* escala responsiva y centrada */
+  height: auto;
+  z-index: 5;                   /* por encima del contenido */
+  pointer-events: none;         /* no bloquea clics del contenido */
+  /* si tu PNG es muy fuerte, puedes bajar opacidad: */
+  /* opacity: .95; */
+}
+
+
+
+
+
+
+
+/* 1) Botones a 100% SOLO en contenidos, NO en el header  */
+@media (max-width: 680px){
+  /* Reglas específicas donde sí quieres botones “block” */
+  .section-hero .slide-copy .btn,
+  .form .btn,
+  .product-panel .btn {
+    width: 100%;
+  }
+
+  /* En el header, que el CTA NO sea 100% */
+  .site-header .btn,
+  .nav .btn {
+    width: auto;
+    max-width: 70vw;     /* opcional: límite razonable */
+  }
+
+  /* (opcional) un poco menos de gap en el header */
+  .nav { gap: 10px; }
+}
+
+/* 2) Corrige el overlay de Nosotros en móvil para que no desborde */
+@media (max-width: 680px){
+  .about{
+    /* Ajustes en un solo lugar */
+    --base-space: 30vh;     /* respiro base de la sección */
+    --stamp-offset: 28px;   /* lo que mueves con translateY */
+    --stamp-drop: 15vh;     /* lo que bajas con bottom negativo */
+
+    /* La sección crece lo mismo que bajas la imagen */
+    padding-bottom: calc(var(--base-space) + var(--stamp-offset) + var(--stamp-drop));
+  }
+
+  .about .about-stamp{
+    left: 50%;
+    right: auto;
+    width: 97%;
+    transform: translate(-50%, var(--stamp-offset));
+    bottom: calc(var(--stamp-drop) * -15vh); /* == -17vh */
+  }
+}
+/* 480–599 px (phablets Android en vertical) */
+
+
+/* 3) Cinturón de seguridad general (por si algo más se escapa) */
+html, body { overflow-x: hidden; }
+
+/* 2) Corrige el overlay de Nosotros en móvil para que no desborde */
+@media (max-width: 680px){
+  .about{
+    overflow: hidden;                /* ← recorta lo que se salga */
+    --base-space: 30dvh;
+    --stamp-offset: -40px;
+    --stamp-drop: 15dvh;
+
+    padding-bottom: calc(
+      var(--base-space) + var(--stamp-offset) + var(--stamp-drop)
+    );
+  }
+
+  .about .about-stamp{
+    left: 50%;
+    right: auto;
+    width: 97%;
+    transform: translate(-50%, var(--stamp-offset));
+    bottom: calc(var(--stamp-drop) * -1);
+  }
+}
+
+
+
+
+
+
+
+
+/*DISEÑO DE SECCION PRODUCTOS FINANCIEROS */
+
+/* =========================
+   PRODUCTOS — mejoras visuales, contraste y micro-interacciones
+   ========================= */
+
+/* 0) Tokens específicos para "Productos" (usa tu paleta) */
+:root{
+  --prod-bg: #ffffff;
+  --prod-line: #e6edf4;
+  --prod-tint: #eef6ff;
+  --prod-hover: #f7fbff;
+  --prod-accent: #2b7aa5;    /* calm */
+  --prod-accent-2: #003049;  /* deep */
+  --prod-on-dark: #e6f2ff;   /* texto sobre panel oscuro */
+  --prod-on-dark-weak: #cfe3f7;
+}
+
+/* 1) Header de sección: mejor legibilidad de subtítulo y ritmo vertical */
+.products{ background: var(--prod-bg); }
+.products .section-head p{ color:#365166; } /* texto guía */
+.products .section-head .accent{
+  background: linear-gradient(135deg,#6bb6e5 0%,#2b7aa5 45%,#003049 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* 2) Layout: margen respirable y ancho coherente */
+.product-layout{ gap: 28px; align-items: stretch; }
+
+/* 3) Lista izquierda (tabs) — contraste + estados + micro UI */
+.product-list{
+  border-top: 0; margin-top: 6px;
+  display: grid; gap: 12px;
+}
+.product-list li{ border:0; }
+
+.product-tab{
+  display:flex; align-items:center; gap:14px;
+  background: #fff;
+  border: 1.5px solid var(--prod-line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-weight: 800;
+  color: var(--prod-accent-2);
+  letter-spacing:.2px;
+  transition:
+    transform .18s ease,
+    background .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    color .22s ease;
+  position: relative; isolation:isolate;
+}
+.product-tab:hover{
+  background: var(--prod-hover);
+  border-color: #d7e6f4;
+  box-shadow: 0 10px 24px rgba(16,42,67,.08);
+  transform: translateY(-1px);
+}
+.product-tab:active{
+  animation: tab-tap-bounce .32s ease;
+}
+.product-tab.is-active{
+  color: var(--prod-accent);
+  background: linear-gradient(0deg,#f1f8ff 0%,#ffffff 60%);
+  border-color: #c7deef;
+  box-shadow: 0 12px 28px rgba(16,42,67,.10);
+}
+
+/* “flecha” e indicador activo */
+.product-tab::after{
+  content:"";
+  margin-left:auto;
+  inline-size: 18px; block-size: 18px;
+  mask: linear-gradient(#000 0 0);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='%23000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;
+  background: currentColor;
+  opacity:.55; transition:opacity .2s ease, transform .2s ease;
+}
+.product-tab:is(:hover,.is-active)::after{
+  opacity:.95; transform: translateX(2px);
+}
+
+/* barra de acento a la izquierda cuando está activo */
+.product-tab.is-active::before{
+  content:"";
+  position:absolute; inset:0 auto 0 0; width:6px; border-radius:14px 0 0 14px;
+  background: linear-gradient(180deg, var(--prod-accent) 0%, var(--prod-accent-2) 100%);
+}
+
+/* foco accesible */
+.product-tab:focus-visible{
+  outline: 3px solid #9fd4ff;
+  outline-offset: 2px;
+}
+
+/* 4) Panel derecho — card oscuro con mejor contraste y animación de entrada */
+.product-panels{ position: relative; min-height: 340px; }
+
+.product-panel{
+  background:
+    radial-gradient(900px 520px at 85% 18%, rgba(64,144,196,.22) 0%, rgba(64,144,196,0) 60%),
+    radial-gradient(700px 360px at 8% 90%, rgba(0,48,73,.30) 0%, rgba(0,48,73,0) 65%),
+    linear-gradient(140deg, #0b2a3e 0%, #0a3a57 45%, #062838 100%);
+  color: var(--prod-on-dark);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.08);
+  opacity: 0; transform: translateY(8px) scale(.98);
+  transition: opacity .35s ease, transform .35s ease, filter .35s ease;
+  position:absolute; inset:0; /* superponer para animar swap */
+}
+.product-panel:not([hidden]){
+  opacity: 1; transform: translateY(0) scale(1);
+  position: relative;
+}
+.product-panel h3{
+  color:#fff; margin-bottom:.45rem; letter-spacing:.2px;
+}
+.product-panel p{ color: var(--prod-on-dark-weak); }
+.product-panel .links a{
+  color:#aee0ff; text-decoration:underline; text-underline-offset: 3px;
+}
+.product-panel .links a:hover{ filter: brightness(1.1); }
+
+/* micro “pulse” al hacer hover sobre todo el panel */
+.product-panel:hover{ filter: saturate(1.02) brightness(1.02); }
+
+/* 5) Botón dentro del panel (si agregas en el futuro) */
+.product-panel .btn{ box-shadow: var(--shadow-sm); }
+
+/* 6) Animación de “rebote” al tocar un tab */
+@keyframes tab-tap-bounce{
+  0%{ transform: translateY(0) scale(1); }
+  45%{ transform: translateY(1px) scale(.98); }
+  100%{ transform: translateY(0) scale(1); }
+}
+
+/* 7) Mejoras responsive */
+@media (max-width:1024px){
+  .product-panels{ min-height: unset; }
+  .product-panel{ position: relative; }
+}
+@media (max-width:680px){
+  .product-tab{ padding: 14px 16px; border-radius: 12px; }
+}
+
+/* 8) Respeto a usuarios con “reducir movimiento” */
+@media (prefers-reduced-motion: reduce){
+  .product-tab,
+  .product-panel{
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* DISEÑO SECCION DE REQUISITOS Y PROCESOS*/
+
+/* =========================
+   REQUISITOS & PROCESO — diseño mejorado
+   Usa tu paleta: --deep, --calm, --gray, --white, --soft
+   ========================= */
+
+/* 0) Ajustes generales de la sección */
+.requirements{
+  background: #cae1ee;
+}
+.requirements .section-head p{ color:#365166; }        /* subtítulo legible */
+.requirements .section-head .accent{
+  background: linear-gradient(135deg,#6bb6e5 0%, var(--calm) 45%, var(--deep) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* 1) Tarjetas contenedoras */
+.req-grid{ gap: 28px; align-items: stretch; }
+.req-box{
+  background: linear-gradient(180deg,#ffffff 0%, #f9fbfe 100%);
+  border: 1px solid #e6edf4;
+  border-radius: 20px;
+  padding: 22px 20px;
+  box-shadow: 0 10px 24px rgba(16,42,67,.06);
+  transition: box-shadow .25s ease, transform .18s ease, border-color .25s ease;
+}
+.req-box:hover{
+  box-shadow: 0 16px 36px rgba(16,42,67,.10);
+  transform: translateY(-2px);
+  border-color: #d8e7f5;
+}
+.req-box h3{
+  color: var(--deep);
+  margin: 0 0 .5rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* 2) Listado de requisitos — chips visuales y micro-interacciones */
+.req-list{
+  list-style: none; padding: 0; margin: 12px 0 0;
+  display: grid; gap: 12px;
+}
+.req-list li{
+  display: grid; grid-template-columns: 56px 1fr; gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  background: #fbfdff;
+  border: 1px solid #eaf1f7;
+  border-radius: 14px;
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+.req-list li:hover{
+  transform: translateY(-1px);
+  background: #f6fbff;
+  border-color: #dcecf8;
+  box-shadow: 0 8px 18px rgba(16,42,67,.08);
+}
+.req-list img{
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #0b3049; padding: 8px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14);
+}
+.req-list strong{ color: var(--deep); }
+
+/* 3) PROCESO — timeline vertical con badges */
+.proc-list{
+  list-style: none; padding: 8px 0 0; margin: 0;
+  display: grid; gap: 14px; position: relative;
+}
+.proc-list::before{
+  content:""; position: absolute; left: 28px; top: 0; bottom: 0;
+  width: 3px; border-radius: 3px;
+  background: linear-gradient(180deg, var(--calm) 0%, rgba(43,122,165,.15) 100%);
+  opacity: .25;
+}
+
+.proc-list li{
+  position: relative;
+  display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center;
+  padding: 12px 14px 12px 12px;
+  background: #fbfdff;
+  border: 1px solid #eaf1f7;
+  border-radius: 14px;
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+  animation: req-fade-in .45s ease both;
+}
+.proc-list li:hover{
+  transform: translateY(-1px);
+  background: #f6fbff;
+  border-color: #dcecf8;
+  box-shadow: 0 8px 18px rgba(16,42,67,.08);
+}
+
+/* punto de la línea temporal */
+.proc-list li::before{
+  content:""; position: absolute; left: 22px; top: 50%; transform: translate(-50%,-50%);
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--calm);
+  box-shadow: 0 0 0 3px rgba(43,122,165,.16);
+}
+/* badge numérico más visible (sustituye al 01. del texto si quieres) */
+.proc-list li div strong{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width: 34px; height: 26px; padding: 0 8px; margin-right: 6px;
+  font-weight: 800; color:#fff; background: var(--calm);
+  border-radius: 999px;
+  box-shadow: 0 6px 12px rgba(43,122,165,.28);
+}
+
+/* iconos */
+.proc-list img{
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #0b3049; padding: 8px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14);
+}
+
+/* 4) Animaciones de entrada (suaves) */
+@keyframes req-fade-in{
+  from{ opacity:0; transform: translateY(6px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* 5) Estados de accesibilidad: foco visible */
+.req-list li:focus-within,
+.proc-list li:focus-within{
+  outline: 3px solid #9fd4ff; outline-offset: 2px;
+}
+
+/* 6) Responsive */
+@media (max-width:1024px){
+  .req-grid{ grid-template-columns: 1fr; }
+  .proc-list::before{ left: 28px; }
+}
+@media (max-width:680px){
+  .req-list li, .proc-list li{ grid-template-columns: 48px 1fr; }
+  .req-list img, .proc-list img{ width:48px; height:48px; }
+}
+
+/* 7) Respeto Reduce Motion */
+@media (prefers-reduced-motion: reduce){
+  .req-box, .req-list li, .proc-list li{ transition:none !important; animation:none !important; }
+}
+
+
+/*preguntas seccion*/
+
+/* =========================
+   FAQ — versión con recuadros coloreados al abrir
+   ========================= */
+
+/* Fondo general */
+.faq{
+  background:
+    radial-gradient(900px 520px at 85% 10%, rgba(43,122,165,.08) 0%, rgba(43,122,165,0) 60%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+}
+
+/* Título con degradado */
+.faq-left h2{
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #dff4ff 0%, #76b7e8 35%, #45a0df 60%, #dff4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: .5rem;
+}
+.faq-left p{ color:#5b6b7a; font-size:1.05rem; margin-bottom:1.2rem; }
+
+/* Imagen sin sombra */
+.faq-left .faq-img{
+  max-width: 420px;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* Cada tarjeta FAQ */
+.faq-right details{
+  background: #fff;
+  border: 1px solid #e6edf4;
+  border-radius: 16px;
+  transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease, background .3s ease;
+  overflow: hidden;
+}
+.faq-right details:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(16,42,67,.08);
+  border-color: #cfe2f0;
+}
+
+/* Cuando se abre: color de fondo con degradado */
+.faq-right details[open]{
+  background: linear-gradient(135deg, #e9f6fc 0%, #fafdff 100%);
+  border-color: #b9dcf2;
+  box-shadow: 0 14px 32px rgba(16,42,67,.12);
+}
+
+/* Cabecera */
+.faq-right summary{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  padding: 16px 18px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--deep);
+}
+.faq-right summary::-webkit-details-marker{ display:none; }
+
+/* Icono cuadrado animado */
+.faq-right summary::after{
+  content:"";
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  background: var(--calm);
+  flex-shrink: 0;
+  transition: transform .25s ease, background .25s ease;
+}
+.faq-right details[open] summary::after{
+  transform: rotate(90deg);
+  background: var(--deep);
+}
+
+/* Respuesta */
+.faq-right .answer{
+  padding: 0 18px 16px;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: #102a43;
+  border-top: 1px solid rgba(255,255,255,.4);
+  animation: faq-fade .35s ease;
+}
+@keyframes faq-fade{
+  from{opacity:0; transform: translateY(-4px);}
+  to{opacity:1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width:1024px){
+  .faq-grid{ grid-template-columns: 1fr; }
+  .faq-left{ text-align: center; }
+  .faq-left .faq-img{ margin: 0 auto; }
+}
+
+
+
+/* SECCION  LOGOS */
+
+
+/* =========================
+   Reguladores — sección full width
+   ========================= */
+.regulators{
+  width: 100%;
+  background: linear-gradient(135deg, var(--deep) 0%, var(--calm) 100%);
+  padding: 60px 0 50px;
+  text-align: center;
+  color: #fff;
+}
+
+/* contenedor interno centrado */
+.regulators .container{
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* logos */
+.reg-items{
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.reg-link{
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform .25s ease, filter .25s ease;
+}
+.reg-link img{
+  max-height: 75px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+}
+.reg-link:hover{ transform: scale(1.1); filter: brightness(1.2); }
+
+/* nota legal */
+.reg-note{
+  font-size: .95rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #e6f4ff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FINAL DE LA SECCION PONERLO, AJUSTE MOVIL*/
+
+/* =========================
+   FAQ — FIXES RESPONSIVE (MÓVIL)
+   ========================= */
+
+/* Evita scroll horizontal accidental en la sección */
+html, body, .faq { overflow-x: hidden; }
+
+/* Contenido 1 columna y paddings controlados */
+@media (max-width: 680px){
+  .faq .container{
+    width: 100%;
+    padding-inline: 16px;          /* respiro lateral seguro */
+  }
+
+  .faq-grid{
+    grid-template-columns: 1fr;     /* fuerza 1 columna */
+    gap: 16px;
+  }
+
+  /* Título degradado: tamaño seguro en móvil */
+  .faq-left{
+    text-align: center;
+  }
+  .faq-left h2{
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    margin: 0 auto .5rem;
+  }
+  .faq-left p{
+    font-size: .98rem;
+    max-width: 36ch;               /* línea agradable para lectura */
+    margin: 0 auto 1rem;
+  }
+
+  /* Imagen: que nunca se “tape” ni sobresalga */
+  .faq-left .faq-img{
+    display: block;
+    width: clamp(240px, 88vw, 420px); /* escala con el viewport */
+    max-width: 100%;
+    height: auto;
+    margin: 8px auto 12px;          /* centrada */
+    box-shadow: none;               /* por si algún estilo previo reaparece */
+    border-radius: 0;
+  }
+
+  /* Tarjetas: compactas y sin “empujar” los bordes */
+  .faq-right{ gap: 12px; }
+  .faq-right details{
+    border-radius: 14px;
+    transform: translateY(0);       /* evita sumar ancho por transform en algunos navegadores */
+  }
+  .faq-right summary{
+    padding: 14px 14px;             /* reduce padding lateral */
+  }
+  .faq-right summary::after{
+    width: 16px; height: 16px;      /* icono más acorde al tamaño */
+  }
+  .faq-right .answer{
+    padding: 0 14px 14px;           /* iguala padding con summary */
+  }
+}
+
