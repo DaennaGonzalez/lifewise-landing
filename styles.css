@@ -380,6 +380,19 @@ p{margin:.35rem 0 1rem;color:var(--white)} /*textos pequeños abajo del slide*/
 .legal-links{display:flex; flex-wrap:wrap; gap:14px}
 .legal-links a{color:#aee0ff; text-decoration:underline}
 
+/* Oculta el honeypot sin usar display:none (evita autocompletado y foco) */
+.hp-trap{
+  position:absolute !important;
+  left:-9999px !important;
+  top:auto !important;
+  width:1px !important;
+  height:1px !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  overflow:hidden !important;
+}
+
+
 /* ========= RESPONSIVE ========= */
 @media (max-width: 1180px){
   .slide.is-active{grid-template-columns:1fr 1fr}

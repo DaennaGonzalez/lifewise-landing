@@ -173,7 +173,7 @@ function setYear() {
       INSERT → rol anon → WITH CHECK: true
 */
 
-const SUPABASE_URL = "https://uqgioswtmkjdjuadonnc.supabase.co";
+const SUPABASE_URL = "https://uqgioswtmkjdjuadoncn.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZ2lvc3d0bWtqZGp1YWRvbmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwOTYzMTcsImV4cCI6MjA2NTY3MjMxN30.vCLNRGVseLkR1RclsFanDUWYJXkib_X9Xx4kMNSBudM";
 const SUPABASE_TABLE = "tabla_lifewise_contactos";
 
@@ -212,8 +212,6 @@ function initContactForm() {
       telefono: (fd.get("telefono") || "").toString().trim() || null,
       email: (fd.get("email") || "").toString().trim(),
       mensaje: (fd.get("mensaje") || "").toString().trim(),
-      user_agent: navigator.userAgent,
-      page_url: location.href
     };
 
     // Honeypot opcional (si exists <input name="website"> oculto)

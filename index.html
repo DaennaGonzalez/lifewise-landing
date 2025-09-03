@@ -9,6 +9,7 @@
   <!-- Tipografía solicitada: MONTSERRAT (fallback mientras no se use Gilroy) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp" />
 
   <!-- Colores de marca -->
   <meta name="theme-color" content="#003049" />
@@ -393,30 +394,48 @@
   </section>
 
   <!-- ========================= CONTACTO (form Supabase) ========================= -->
-  <section id="contacto" class="section contact">
-    <div class="container contact-grid">
-      <div class="contact-left">
-        <img src="imagenes/alcanza-tus-metas.webp" alt="Alcanza tus metas con nosotros" />
-        <p class="lead">Alcanza tus metas con nosotros, envíanos un mensaje →</p>
-      </div>
-
-      <form id="contacto-form" class="form" autocomplete="on" novalidate>
-        <h2>Contáctanos</h2>
-
-        <label>Nombre* <input name="nombre" required /></label>
-        <label>Apellidos <input name="apellidos" /></label>
-        <label>Teléfono <input name="telefono" inputmode="tel" /></label>
-        <label>Email* <input type="email" name="email" required /></label>
-        <label>Mensaje* <textarea name="mensaje" rows="5" required></textarea></label>
-
-        <!-- Honeypot anti-bots (no eliminar) -->
-        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-
-        <button type="submit" class="btn primary">Enviar información</button>
-        <p class="form-status" aria-live="polite"></p>
-      </form>
+<section id="contacto" class="section contact">
+  <div class="container contact-grid">
+    <div class="contact-left">
+      <img src="imagenes/alcanza-tus-metas.webp" alt="Alcanza tus metas con nosotros" />
+      <p class="lead">Alcanza tus metas con nosotros, envíanos un mensaje →</p>
     </div>
-  </section>
+
+    <form id="contacto-form" class="form" autocomplete="on" novalidate>
+      <h2>Contáctanos</h2>
+
+      <label for="c-nombre">Nombre*</label>
+      <input id="c-nombre" name="nombre" required autocomplete="name" />
+
+      <label for="c-apellidos">Apellidos</label>
+      <input id="c-apellidos" name="apellidos" autocomplete="family-name" />
+
+      <label for="c-telefono">Teléfono</label>
+      <input id="c-telefono" name="telefono" inputmode="tel" autocomplete="tel" />
+
+      <label for="c-email">Email*</label>
+      <input id="c-email" type="email" name="email" required autocomplete="email" />
+
+      <label for="c-mensaje">Mensaje*</label>
+      <textarea id="c-mensaje" name="mensaje" rows="5" required></textarea>
+
+      <!-- Honeypot anti-bots (oculto correctamente; no eliminar) -->
+      <input
+        type="text"
+        name="contact_ref"
+        id="contact_ref"
+        class="hp-trap"
+        tabindex="-1"
+        autocomplete="off"
+        inputmode="none"
+      />
+
+      <button type="submit" class="btn primary">Enviar información</button>
+      <p class="form-status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
 
   <!-- ========================= FOOTER ========================= -->
   <footer class="site-footer">
