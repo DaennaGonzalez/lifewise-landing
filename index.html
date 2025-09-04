@@ -159,7 +159,7 @@
       </div>
     </div>
 
-    <img class="about-stamp" src="imagenes/soluciones-flexibles.png" alt="Soluciones flexibles" />
+    <img class="about-stamp" src="imagenes/soluciones-flexibles.webp" alt="Soluciones flexibles" />
 
 
   </section>
@@ -377,6 +377,66 @@
     </div>
   </section>
 
+
+  <!-- ========================= COTIZADOR ========================= -->
+<section id="cotizador" class="section quote">
+  <div class="container quote-grid">
+    <!-- Lado izquierdo: título y copy -->
+    <div class="quote-left">
+      <h2>Calcula lo que pagarías con <span>nosotros</span></h2>
+      <p class="sub">
+        Ingresa el monto, la tasa anual y los plazos. Calculamos tu pago
+        <strong>quincenal</strong> y <strong>mensual</strong>. 
+        <br><small>Incluye IVA (16%) sobre intereses.</small>
+      </p>
+      <div class="pill-note">Cálculo informativo · Sin comisiones ni seguros</div>
+    </div>
+
+    <!-- Lado derecho: formulario + resultados -->
+    <form id="cotizador-form" class="quote-card" autocomplete="off" novalidate>
+      <div class="fields">
+        <label for="monto">Monto (MXN)</label>
+        <input id="monto" name="monto" inputmode="decimal" placeholder="Ej. 5,000" value="5000" />
+
+        <label for="tasa">Tasa anual (%)</label>
+<input id="tasa" name="tasa" value="60" readonly aria-readonly="true" />
+
+
+        <div class="two">
+          <div>
+            <label for="plazoQ">Plazo quincenal (quincenas)</label>
+            <input id="plazoQ" name="plazoQ" inputmode="numeric" value="12" />
+          </div>
+          <div>
+            <label for="plazoM">Plazo mensual (meses)</label>
+            <input id="plazoM" name="plazoM" inputmode="numeric" value="24" />
+          </div>
+        </div>
+      </div>
+
+      <div class="results">
+        <article class="result">
+          <h3>Pago Quincenal</h3>
+          <p class="amount" id="outQ">$0.00</p>
+          <p class="hint"><span id="sumQ">—</span> pagos quincenales</p>
+        </article>
+
+        <article class="result">
+          <h3>Pago Mensual</h3>
+          <p class="amount" id="outM">$0.00</p>
+          <p class="hint"><span id="sumM">—</span> pagos mensuales</p>
+        </article>
+      </div>
+
+      <p class="legal">
+        Los importes mostrados son ilustrativos y pueden variar por comisiones, seguros u otros conceptos.
+      </p>
+    </form>
+  </div>
+</section>
+
+
+
   <!-- ========================= MAPA ========================= -->
   <section class="section map">
     <div class="container">
@@ -464,10 +524,8 @@
     <div class="container footer-bottom">
       <p>© <span id="year"></span> Lifewise Capital | Todos los derechos reservados </p>
       <nav class="legal-links" aria-label="Enlaces legales">
-        <a href="avisoprivacidad.html" target="_blank">Consulta nuestro Aviso de Privacidad</a>
-        <a href="ueau.pdf" target="_blank">Unidad Especializada de Atención a Usuarios</a>
-        <a href="derechos-arco.pdf" target="_blank">Derechos ARCO</a>
-        <a href="solicitud-derechos-arco.pdf" target="_blank">Solicitud Derechos ARCO</a>
+        <a href="https://drive.google.com/drive/folders/1Z5KGABjt0wC_E2a0_di16n-8x0gD7Yaj?usp=sharing" target="_blank">Consulta nuestro Aviso de Privacidad</a>
+        
       </nav>
     </div>
   </footer>
@@ -485,6 +543,66 @@
     setTimeout(()=>btn.classList.remove('tapped'), 350);
   });
 </script>
+
+<script>
+(function(){
+  const $ = (sel, ctx=document) => ctx.querySelector(sel);
+
+  // Elementos
+  const form   = $('#cotizador-form');
+  const monto  = $('#monto');
+  const tasa   = $('#tasa');
+  const plazoQ = $('#plazoQ');
+  const plazoM = $('#plazoM');
+  const outQ   = $('#outQ');
+  const outM   = $('#outM');
+  const sumQ   = $('#sumQ');
+  const sumM   = $('#sumM');
+
+  const IVA = 0.16;           // IVA sobre intereses (16%)
+  const fmt = new Intl.NumberFormat('es-MX', { style:'currency', currency:'MXN', maximumFractionDigits:2 });
+
+  // Convierte string a número seguro
+  function num(v, def=0){
+    if (typeof v === 'string') v = v.replace(/[^\d.,-]/g,'').replace(',','.');
+    const n = parseFloat(v);
+    return Number.isFinite(n) ? n : def;
+  }
+
+  // Pago de renta (anualidad) con IVA aplicado al interés (r * 1.16)
+  function pagoFijo(P, tasaAnualPct, n, periodosPorAnio){
+    if (P <= 0 || tasaAnualPct <= 0 || n <= 0 || periodosPorAnio <= 0) return 0;
+    const rNominal = (tasaAnualPct/100) / periodosPorAnio; // tasa nominal por periodo
+    const rEfect   = rNominal * (1 + IVA);                 // interés con IVA sobre intereses
+    return P * rEfect / (1 - Math.pow(1 + rEfect, -n));
+  }
+
+  function calcular(){
+    const P     = num(monto.value, 0);
+    const T     = num(tasa.value, 0);
+    const nQ    = Math.max(1, Math.round(num(plazoQ.value, 1)));
+    const nM    = Math.max(1, Math.round(num(plazoM.value, 1)));
+
+    const pagoQ = pagoFijo(P, T, nQ, 24);   // 24 quincenas en el año
+    const pagoM = pagoFijo(P, T, nM, 12);   // 12 meses en el año
+
+    outQ.textContent = fmt.format(pagoQ || 0);
+    outM.textContent = fmt.format(pagoM || 0);
+    sumQ.textContent = `${nQ}`;
+    sumM.textContent = `${nM}`;
+  }
+
+  // Eventos: recalcula en tiempo real
+  [monto, tasa, plazoQ, plazoM].forEach(el=>{
+    el.addEventListener('input', calcular);
+    el.addEventListener('change', calcular);
+  });
+
+  // Inicial
+  calcular();
+})();
+</script>
+
 
 
 

@@ -346,7 +346,7 @@ p{margin:.35rem 0 1rem;color:var(--white)} /*textos pequeños abajo del slide*/
 /* ========= Contacto ========= */
 .contact{background:var(--soft)}
 .contact-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:24px; align-items:center}
-.contact-left img{border-radius:16px; box-shadow:var(--shadow)}
+
 .contact-left .lead{font-weight:700; color:var(--deep); margin:.8rem 0 0}
 
 .form{
@@ -488,7 +488,7 @@ p{margin:.35rem 0 1rem;color:var(--white)} /*textos pequeños abajo del slide*/
 
 /* Fondo claro de la sección y respiro */
 .about{
-  background: #cae1ee;           /* fondo color de soluciones flexibles */
+  background: #a8cce1;           /* fondo color de soluciones flexibles */
 }
 
 /* La tarjeta/slider */
@@ -735,7 +735,7 @@ p{margin:.35rem 0 1rem;color:var(--white)} /*textos pequeños abajo del slide*/
   left: 14%;
   bottom: 0;                    /* pegada al final de la sección */
   transform: translateX(20%);
-  width: min(1100px, 35%);      /* escala responsiva y centrada */
+  width: min(800px, 35%);      /* escala responsiva y centrada */
   height: auto;
   z-index: 5;                   /* por encima del contenido */
   pointer-events: none;         /* no bloquea clics del contenido */
@@ -819,6 +819,252 @@ html, body { overflow-x: hidden; }
 
 
 
+/* --- Sin sombra en la imagen (opcional, por si sigue apareciendo) --- */
+.contact-left img{
+  box-shadow: none;
+  filter: none;
+}
+
+/* =========================
+   CONTACTO (estilos exclusivos)
+   HTML esperado: <section id="contacto" class="section contact">… 
+   ========================= */
+
+/* --- Fondo exclusivo del apartado contacto --- */
+#contacto.section.contact{
+  /* alto mínimo para lucir el fondo */
+  min-height: 70vh;
+
+  /* capa 1: degradado para contraste
+     capa 2: imagen de fondo */
+  background:
+    linear-gradient(180deg, rgba(10,35,55,.55), rgba(10,35,55,.18) 40%, rgba(10,35,55,0)),
+    url("imagenes/fondo-finanzas.webp");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  /* espaciado vertical */
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(3rem, 5vh, 4rem);
+
+  /* no invadir otras secciones */
+  overflow: hidden;
+}
+
+/* --- Contenedor y grid --- */
+#contacto .container{
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 2.5vw, 2rem);
+}
+
+#contacto .contact-grid{
+  display: grid;
+  grid-template-columns: minmax(320px, 1.15fr) minmax(360px, 1fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: center;
+  position: relative;
+  isolation: isolate; /* evita que algo externo tape el form */
+  z-index: 1;
+}
+
+/* --- Columna izquierda: imagen + texto --- */
+#contacto .contact-left{ position: relative; }
+
+/* Imagen sin sombra y sin interceptar clics */
+#contacto .contact-left img{
+  display: block;
+  max-width: min(520px, 90%);
+  height: auto;
+  border-radius: 0;     /* sin esquinas si tu PNG/WebP no las necesita */
+  box-shadow: none;     /* sin sombra */
+  filter: none;
+  pointer-events: none; /* no bloquea clics del form */
+}
+
+/* Texto lead (desktop) */
+#contacto .contact-left .lead{
+  font-weight: 800;
+  color: #ffffff;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+  margin: .75rem 0 0;
+  text-wrap: balance;
+  text-shadow: 0 3px 12px rgba(0,0,0,.35);
+}
+
+/* --- Formulario: arriba de cualquier decoración --- */
+#contacto #contacto-form{
+  position: relative;
+  z-index: 50; /* asegura enfoque al primer clic */
+  background: #eef3f7;
+  border: 1px solid #e1e8f0;
+  border-radius: 20px;
+  padding: clamp(1rem, 2.2vw, 1.4rem);
+  box-shadow: 0 10px 28px rgba(10,35,55,.12);
+}
+
+#contacto #contacto-form h2{
+  margin: 0 0 .5rem;
+  color: #0b2d48;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+#contacto #contacto-form label{
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  color: #0d2a3c;
+  margin-top: .6rem;
+}
+
+#contacto #contacto-form input,
+#contacto #contacto-form textarea{
+  width: 100%;
+  padding: .85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #cfd9e3;
+  background: #fff;
+  color: #0a2337;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+#contacto #contacto-form textarea{
+  min-height: 140px;
+  resize: vertical;
+}
+
+#contacto #contacto-form input:focus,
+#contacto #contacto-form textarea:focus{
+  outline: 2px solid rgba(47,162,255,.35);
+  border-color: #98cdfa;
+  background: #fff;
+}
+
+/* Botón principal */
+#contacto #contacto-form .btn.primary{
+  display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(135deg, #0a56b5, #2a8df7);
+  box-shadow: 0 12px 34px rgba(43,145,255,.35), inset 0 -2px 0 rgba(255,255,255,.15);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+#contacto #contacto-form .btn.primary:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.06);
+  box-shadow: 0 16px 40px rgba(43,145,255,.44);
+}
+
+#contacto #contacto-form .form-status{
+  min-height: 1.2em;
+  margin-top: .35rem;
+  color: #1f6fd6;
+  font-weight: 600;
+}
+
+/* Honeypot oculto y accesible */
+#contacto #contact_ref.hp-trap{
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* =========================
+   Responsive (móvil)
+   ========================= */
+@media (max-width: 980px){
+  /* 1 sola columna */
+  #contacto .contact-grid{
+    grid-template-columns: 1fr;
+  }
+
+  /* En móvil usamos SOLO el fondo con imagen; ocultamos la <img> interna */
+  #contacto .contact-left img{
+    display: none;
+  }
+
+  /* Texto centrado y con contraste sobre el fondo */
+  #contacto .contact-left .lead{
+    text-align: center;
+    margin: clamp(.5rem, 3vh, 1.25rem) auto 1rem;
+    max-width: 32ch;
+    color: #fff;
+    font-weight: 900;
+    font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem);
+    text-shadow: 0 4px 16px rgba(0,0,0,.42);
+  }
+
+  /* Haz que la tarjeta respire sobre el fondo */
+  #contacto #contacto-form{
+    background: rgba(238,243,247,.95);
+    backdrop-filter: saturate(120%) blur(2px);
+  }
+}
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce){
+  #contacto #contacto-form .btn.primary{ transition: none; }
+}
+
+/* --- MÓVIL: texto centrado + fondo con imagen --- */
+@media (max-width: 980px){
+  /* Fondo con imagen + overlay para legibilidad */
+  .section.contact{
+    /* alto mínimo para lucir el fondo; ajusta si quieres */
+    min-height: 70vh;
+
+    /* capa 1: degradado (oscurece un poco abajo) 
+       capa 2: imagen de fondo */
+    background:
+      linear-gradient(180deg, rgba(10,35,55,.55), rgba(10,35,55,.15) 40%, rgba(10,35,55,0)),
+      url("imagenes/fondo-finanzas.webp");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+
+  /* 1 sola columna en móvil */
+  .contact-grid{
+    grid-template-columns: 1fr;
+  }
+
+  /* Oculta la <img> porque ya usamos fondo */
+  .contact-left img{
+    display: none;
+  }
+
+  /* Centra y realza el texto "Alcanza tus metas..." */
+  .contact-left .lead{
+    position: relative;
+    left: auto;
+    width: 100%;
+    max-width: 32ch;           /* línea cómoda */
+    margin: clamp(.5rem, 3vh, 1.25rem) auto 1rem;
+    padding: 0 .5rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem);
+    text-wrap: balance;
+    text-shadow: 0 3px 12px rgba(0,0,0,.35);
+  }
+
+  /* (Opcional) que la tarjeta respire sobre el fondo */
+  .form{
+    background: rgba(238,243,247,.92);
+    backdrop-filter: saturate(120%) blur(2px);
+  }
+}
 
 
 
@@ -1286,9 +1532,341 @@ html, body { overflow-x: hidden; }
 
 
 
+/* ===== MAPA con marco desvanecido azul (auto-ajustable) ===== */
+:root{
+  --brand:#003049;                 /* azul marca */
+  --ink:#0a2740;                   /* texto */
+  --sky-10:#f4f9ff;
+  --sky-40:#d9eaff;
+  --ring:rgba(0,102,204,.28);
+  --map-offset:0px;                /* alto de header fijo si aplica (p.ej. 72px) */
+}
+
+/* Sección */
+.section.map{
+  padding:clamp(1rem,2vw,2rem);
+  background:linear-gradient(180deg,var(--sky-10),#fff);
+}
+
+/* Card contenedora que ENVUELVE mapa + dirección con un marco difuminado */
+.section.map .container{
+  position:relative;
+  max-width:min(1200px, 92vw);     /* centrado y fluido en desktop */
+  margin-inline:auto;
+  padding:clamp(10px, 1.6vw, 16px);/* espacio para el “bisel” interior */
+  border-radius:22px;
+  background:linear-gradient(#fff,#fff) padding-box; /* fondo blanco dentro */
+  isolation:isolate;               /* para controlar z-index del glow */
+}
+
+/* Borde degradado (fino) usando máscara para que parezca un “marco” */
+.section.map .container::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:inherit;
+  padding:2px;                     /* grosor del borde */
+  background:conic-gradient(
+    from 140deg,
+    rgba(0,114,255,.85),
+    rgba(0,190,255,.85),
+    rgba(0,114,255,.85)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Resplandor azul suave (desvanecido) alrededor */
+.section.map .container::after{
+  content:"";
+  position:absolute; inset:-14px;
+  border-radius:calc(22px + 14px);
+  background:radial-gradient(40% 50% at 50% 100%,
+              rgba(0,140,255,.22), transparent 70%);
+  filter:blur(18px);
+  z-index:-1;
+}
+
+/* Todo el contenido por encima del glow/borde */
+.section.map .container > *{ position:relative; z-index:1; }
+
+/* ===== Mapa auto-ajustable ===== */
+.map-embed{
+  position:relative;
+  width:100%;
+  height:clamp(360px, 56vw, calc(100dvh - var(--map-offset)));
+  overflow:hidden;
+  border-radius:18px 18px 0 0;     /* esquinas superiores redondeadas */
+  background:linear-gradient(180deg,#e6f0ff,#f7fbff);
+  outline:1px solid var(--sky-40);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  transition:box-shadow .3s ease, transform .3s ease;
+}
+
+.map-embed iframe{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0;
+  filter:saturate(1.05) contrast(1.03);
+}
+
+.map-embed:hover{ transform:translateY(-1px); }
+.map-embed:focus-within{
+  box-shadow:0 0 0 4px var(--ring), 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* Franja de dirección (parte inferior del “card”) */
+.map-address{
+  margin:0;
+  padding:1rem clamp(1rem,2.5vw,2rem);
+  background:#fff;
+  border:1px solid var(--sky-40);
+  border-top:0;
+  border-radius:0 0 18px 18px;     /* esquinas inferiores redondeadas */
+  color:var(--ink);
+  text-align:center;
+  font-size:clamp(.95rem, .9rem + .2vw, 1.05rem);
+  line-height:1.5;
+}
+.map-address strong{
+  color:var(--brand);
+  font-weight:700;
+}
+
+/* Preferencias de movimiento */
+@media (prefers-reduced-motion:reduce){
+  .map-embed{ transition:none; }
+  .map-embed:hover{ transform:none; }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme:dark){
+  .section.map{ background:linear-gradient(180deg,#0b1320,#0f172a); }
+  .section.map .container{
+    background:linear-gradient(#0b1320,#0b1320) padding-box;
+  }
+  .map-embed{
+    background:linear-gradient(180deg,#0a2040,#081526);
+    outline-color:rgba(255,255,255,.08);
+    box-shadow:0 10px 30px rgba(0,0,0,.55);
+  }
+  .map-address{
+    background:#0b1320;
+    border-color:rgba(255,255,255,.08);
+    color:#dbeafe;
+  }
+  .map-address strong{ color:#7cc0ff; }
+}
+
+/* =========================
+   REQUISITOS — Cruce al hacer scroll (solo CSS)
+   Soporta Chrome/Edge 115+, Safari 17+. Fallback: sin efecto.
+   ========================= */
+
+/* 1) Ajuste fino del desplazamiento máximo (px) */
+:root{ --cross-shift: 120px; }   /* ↑ más/menos movimiento */
+
+/* 2) Activa el efecto solo si el navegador soporta timelines */
+@supports (animation-timeline: auto) {
+
+  /* Solo en desktop (evita mareo en móvil/tablet) */
+  @media (min-width: 1024px){
+
+    /* Usamos el propio #requisitos como "línea de tiempo de vista" */
+    #requisitos{
+      view-timeline-name: --req-tl;
+      view-timeline-axis: block;          /* vertical */
+    }
+
+    /* Ambas tarjetas se animan con esa timeline */
+    #requisitos .req-box{
+      animation-timeline: --req-tl;
+      animation-range: cover 0% 100%;     /* avanza de "entra a cubrir" a "termina de cubrir" la ventana */
+      animation-fill-mode: both;
+      will-change: transform;
+    }
+
+    /* Izquierda: arranca arriba -> centro -> abajo */
+    #requisitos .req-grid .req-box:first-of-type{
+      animation-name: req-cross-down;
+    }
+
+    /* Derecha: arranca abajo -> centro -> arriba (inverso) */
+    #requisitos .req-grid .req-box:last-of-type{
+      animation-name: req-cross-up;
+    }
+
+    /* Keyframes del cruce (usan variable global --cross-shift) */
+    @keyframes req-cross-down{
+      0%   { transform: translateY(calc(var(--cross-shift) * -1)); }
+      50%  { transform: translateY(0); }
+      100% { transform: translateY(var(--cross-shift)); }
+    }
+    @keyframes req-cross-up{
+      0%   { transform: translateY(var(--cross-shift)); }
+      50%  { transform: translateY(0); }
+      100% { transform: translateY(calc(var(--cross-shift) * -1)); }
+    }
+
+    /* Para que el hover no "pelee" con la animación,
+       mantenemos solo el cambio de sombra en desktop */
+    #requisitos .req-box:hover{
+      transform: none;                     /* la animación manda */
+      box-shadow: 0 16px 36px rgba(16,42,67,.10);
+      border-color: #dcecf8;
+    }
+  }
+}
+
+/* Fallback (navegadores sin timelines): se conserva tu hover original en móvil/desktop */
+@media (max-width: 1023px){
+  /* ya lo tienes, pero por claridad, sin transforms extra aquí */
+  .req-box:hover{ transform: translateY(-2px); }
+}
 
 
+/* ========================= COTIZADOR (look azul) ========================= */
+:root{
+  --q-blue-800:#2b7aa5;
+  --q-blue-700:#003049;
+  --q-blue-600:#5596db;
+  --q-ink:#0a2337;
+  --q-card:#fff;
+  --q-ring:rgba(47,162,255,.35);
+  --q-r-xl:22px; --q-r-lg:16px;
+  --q-shadow:0 18px 45px rgba(10,35,55,.14);
+  --q-shadow-sm:0 8px 20px rgba(10,35,55,.10);
+}
 
+#cotizador.section.quote{
+  padding:clamp(2rem,4vw,4rem) 0;
+  background:
+    radial-gradient(70% 100% at 0% 0%, rgba(255,255,255,.15), transparent 60%),
+    linear-gradient(135deg, var(--q-blue-700), var(--q-blue-600));
+  color:#fff;
+  overflow:hidden;
+}
+
+#cotizador .container{
+  max-width:1100px;
+  margin-inline:auto;
+  padding:0 clamp(1rem,2.5vw,2rem);
+}
+
+.quote-grid{
+  display:grid;
+  grid-template-columns:minmax(300px,1.15fr) minmax(360px,1fr);
+  gap:clamp(1rem,3vw,3rem);
+  align-items:start;
+}
+
+.quote-left h2{
+  margin:0 0 .5rem;
+  font-weight:900;
+  font-size:clamp(1.8rem,1.2rem + 2vw,2.6rem);
+  line-height:1.1;
+}
+.quote-left h2 span{
+  background:linear-gradient(180deg,#fff,#dff0ff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.quote-left .sub{
+  margin:.25rem 0 1rem;
+  font-size:clamp(1rem,.9rem + .4vw,1.15rem);
+  color:#f2f8ff;
+}
+.pill-note{
+  display:inline-block;
+  margin-top:.25rem;
+  padding:.45rem .8rem;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  font-weight:700; letter-spacing:.2px;
+  backdrop-filter:saturate(120%) blur(2px);
+}
+
+/* ----- Card del cotizador ----- */
+#cotizador .quote-card{
+  background:var(--q-card);
+  color:var(--q-ink);
+  border-radius:var(--q-r-xl);
+  padding:clamp(1rem,2vw,1.5rem);
+  box-shadow:var(--q-shadow);
+  border:1px solid rgba(13,53,84,.06);
+}
+
+#cotizador .fields label{
+  display:block;
+  font-weight:700;
+  color:#0b2d48;
+  margin:.6rem 0 .35rem;
+}
+#cotizador .fields input{
+  width:100%;
+  padding:.9rem 1rem;
+  border-radius:var(--q-r-lg);
+  border:1.5px solid #e0e9f3;
+  background:#fbfdff;
+  color:var(--q-ink);
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+#cotizador .fields input:focus{
+  outline:none;
+  border-color:#bfe0ff;
+  box-shadow:0 0 0 4px var(--q-ring);
+  background:#fff;
+}
+#cotizador .fields .two{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+
+/* Resultados */
+#cotizador .results{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:1rem;
+}
+#cotizador .result{
+  background:#f4f8fc;
+  border:1px solid #e4edf6;
+  border-radius:var(--q-r-lg);
+  padding:1rem;
+  box-shadow:var(--q-shadow-sm);
+}
+#cotizador .result h3{
+  margin:0 0 .35rem; color:#0b2d48; font-weight:800;
+}
+#cotizador .result .amount{
+  margin:.1rem 0 .25rem;
+  font-weight:900;
+  font-size:clamp(1.4rem,1rem + 1.2vw,2rem);
+  letter-spacing:.3px;
+  color:#0a2337;
+}
+#cotizador .result .hint{
+  margin:0; color:#456; font-size:.92rem;
+}
+
+/* Nota legal */
+#cotizador .legal{
+  margin:.8rem 0 0;
+  font-size:.85rem;
+  color:#4b6578;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .quote-grid{ grid-template-columns:1fr; }
+  #cotizador .fields .two,
+  #cotizador .results{ grid-template-columns:1fr; }
+}
 
 
 
@@ -1356,6 +1934,14 @@ html, body, .faq { overflow-x: hidden; }
     box-shadow: none;               /* por si algún estilo previo reaparece */
     border-radius: 0;
   }
+.field-static{
+  padding:.9rem 1rem;
+  border:1.5px solid #e0e9f3;
+  background:#f3f7fb;
+  border-radius:16px;
+  font-weight:800;
+  color:#0b2d48;
+}
 
   /* Tarjetas: compactas y sin “empujar” los bordes */
   .faq-right{ gap: 12px; }
