@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Lifewise Capital</title>
+  <meta name="description" content="Consejos financieros y recursos para profesionales, emprendedores y empresas." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ====== Blog (usa tus variables: --deep, --calm, etc.) ====== */
+    :root{
+      --blog-ink:#0a2740;
+      --blog-soft:#f5f8fb;
+      --blog-card:#ffffff;
+      --blog-line:#e6edf4;
+      --blog-shadow:0 12px 28px rgba(16,42,67,.12);
+      --blog-shadow-sm:0 8px 20px rgba(16,42,67,.10);
+    }
+
+    .hero-blog{
+      padding: clamp(56px, 8vw, 84px) 0 clamp(24px, 3vw, 32px);
+      background:
+        radial-gradient(900px 520px at 85% 10%, rgba(43,122,165,.18) 0%, rgba(43,122,165,0) 60%),
+        linear-gradient(135deg, var(--calm), var(--deep));
+      color:#fff;
+      text-align:center;
+    }
+    .hero-blog h1{
+      font-weight:900; line-height:1.05; color:#fff;
+      text-shadow:0 8px 30px rgba(0,0,0,.25);
+    }
+    .hero-blog p{
+      color:#eaf6ff; max-width: 64ch; margin: .35rem auto 0;
+    }
+
+    .blog-controls{
+      margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:.55rem .85rem; border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.25);
+      color:#fff; font-weight:700; cursor:pointer;
+      transition:transform .15s ease, filter .25s ease, background .25s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); filter:brightness(1.05); }
+    .chip[aria-pressed="true"]{ background:#ffffff; color:#0b2d48; }
+
+    .blog-list{
+      background:#fff;
+      padding: clamp(28px, 3vw, 36px) 0 clamp(56px, 6vw, 72px);
+    }
+    .blog-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(14px, 2.4vw, 22px);
+    }
+    @media (max-width: 1024px){ .blog-grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 680px){ .blog-grid{ grid-template-columns: 1fr; } }
+
+    .blog-card{
+      display:grid; grid-template-rows:auto 1fr auto;
+      background: var(--blog-card);
+      border:1px solid var(--blog-line);
+      border-radius:18px; overflow:hidden;
+      box-shadow: var(--blog-shadow-sm);
+      transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease;
+      will-change: transform;
+    }
+    .blog-card:hover{
+      transform: translateY(-3px);
+      border-color:#d7e6f4;
+      box-shadow: var(--blog-shadow);
+      filter: saturate(1.03);
+    }
+    .blog-thumb{
+      position:relative; aspect-ratio: 16/9; overflow:hidden; background:#eaf2f8;
+    }
+    .blog-thumb img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition: transform .6s ease;
+    }
+    .blog-card:hover .blog-thumb img{ transform: scale(1.04); }
+
+    .blog-content{
+      padding: 14px 16px 0 16px;
+    }
+    .blog-tag{
+      display:inline-block;
+      font-size:.78rem; font-weight:800; letter-spacing:.25px;
+      color:#0b2d48; background:#e9f6ff; border:1px solid #cfeafd;
+      padding:.25rem .55rem; border-radius:999px; margin-bottom:.4rem;
+    }
+    .blog-content h2{
+      font-weight:800; color:#0b2d48; line-height:1.15; margin:0 0 .35rem;
+      font-size: clamp(1.05rem, .9rem + .5vw, 1.25rem);
+    }
+    .blog-meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      font-size:.85rem; color:#5b6b7a; margin-bottom:.5rem;
+    }
+
+    .blog-actions{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 0 16px 14px 16px; gap:10px;
+    }
+    .btn.read{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--gradient); color:#fff; text-decoration:none;
+      padding:.7rem .95rem; border-radius:999px; font-weight:800;
+      box-shadow: var(--shadow-sm);
+      transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .btn.read:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .btn.read:active{ transform: translateY(0); }
+
+    /* “Rebote” al click */
+    .bounce{ animation: blog-bounce .38s ease; }
+    @keyframes blog-bounce{
+      0%{ transform: translateY(0) scale(1); }
+      35%{ transform: translateY(1px) scale(.985); }
+      65%{ transform: translateY(-2px) scale(1.015); }
+      100%{ transform: translateY(0) scale(1); }
+    }
+
+    /* paginación simple */
+    .pager{ display:flex; justify-content:center; gap:10px; margin-top:20px; }
+    .pager a{
+      display:inline-block; padding:.55rem .9rem; border-radius:10px;
+      background:#f1f6fb; border:1px solid #e4edf6; color:#0b2d48; font-weight:800; text-decoration:none;
+    }
+    .pager a[aria-current="page"]{
+      background: linear-gradient(135deg, var(--calm), var(--deep));
+      color:#fff; border-color: transparent;
+    }
+  </style>
+  <script defer>
+    // Rebote al hacer click en tarjetas y botones “Leer más”
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.blog-card');
+      if(card){
+        card.classList.remove('bounce');
+        void card.offsetWidth; // reflow para reiniciar animación
+        card.classList.add('bounce');
+      }
+      const btn = e.target.closest('.btn.read');
+      if(btn){
+        btn.classList.remove('bounce');
+        void btn.offsetWidth;
+        btn.classList.add('bounce');
+      }
+    });
+
+    // Filtro visual por chips (opcional, client-side)
+    document.addEventListener('click', (e)=>{
+      const chip = e.target.closest('.chip');
+      if(!chip) return;
+      const group = chip.parentElement.querySelectorAll('.chip');
+      group.forEach(c => c.setAttribute('aria-pressed','false'));
+      chip.setAttribute('aria-pressed','true');
+      const cat = chip.dataset.cat || 'all';
+      document.querySelectorAll('.blog-card').forEach(card=>{
+        const ok = (cat==='all') || card.dataset.cat?.split(',').includes(cat);
+        card.style.display = ok ? 'grid' : 'none';
+      });
+    });
+  </script>
+</head>
+<body class="theme-light">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img" />
+      </a>
+      <nav class="nav-links" aria-label="Menú principal">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#productos">Productos</a>
+        <a href="index.html#requisitos">Requisitos</a>
+        <a href="index.html#faq">Preguntas frecuentes</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <a class="btn cta" target="_blank"
+         href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">
+        ¡Hablemos de tus metas!
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-blog">
+    <div class="container">
+      <h1>Blog Lifewise Capital</h1>
+      <p>Consejos financieros, noticias y guías prácticas para hacer crecer tus ideas con inteligencia.</p>
+      <div class="blog-controls" role="toolbar" aria-label="Filtros de artículos">
+        <button class="chip" aria-pressed="true" data-cat="all">Todos</button>
+        <button class="chip" aria-pressed="false" data-cat="finanzas">Finanzas personales</button>
+        <button class="chip" aria-pressed="false" data-cat="prestamos">Préstamos</button>
+        <button class="chip" aria-pressed="false" data-cat="negocios">Negocios</button>
+        <button class="chip" aria-pressed="false" data-cat="educacion">Educación financiera</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTA DE ARTÍCULOS -->
+  <section class="blog-list">
+    <div class="container">
+      <div class="blog-grid">
+
+        <!-- CARD 1 -->
+        <article class="blog-card" data-cat="finanzas,educacion">
+          <a class="blog-thumb" href="blog-articulo-1.html">
+            <img src="imagenes/blog-1.webp" alt="Planificando un presupuesto mensual" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Finanzas</span>
+            <h2>5 consejos prácticos para mejorar tus finanzas personales</h2>
+            <div class="blog-meta">
+              <span>Lectura: 4 min</span> · <time datetime="2025-08-20">20 Ago 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Organiza ingresos, gastos y metas con un plan sencillo que sí se cumple.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-1.html" aria-label="Leer artículo: 5 consejos prácticos">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="blog-card" data-cat="prestamos,finanzas">
+          <a class="blog-thumb" href="blog-articulo-2.html">
+            <img src="imagenes/blog-2.webp" alt="Persona evaluando un préstamo" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Préstamos</span>
+            <h2>¿Cuándo conviene solicitar un préstamo personal?</h2>
+            <div class="blog-meta">
+              <span>Lectura: 5 min</span> · <time datetime="2025-07-30">30 Jul 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Señales claras para decidir si un crédito impulsa o complica tus finanzas.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-2.html" aria-label="Leer artículo: ¿Cuándo conviene solicitar un préstamo personal?">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="blog-card" data-cat="negocios,prestamos">
+          <a class="blog-thumb" href="blog-articulo-3.html">
+            <img src="imagenes/blog-3.webp" alt="Emprendedora creciendo su negocio" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Negocios</span>
+            <h2>Impulsa tu negocio con financiamiento adecuado</h2>
+            <div class="blog-meta">
+              <span>Lectura: 6 min</span> · <time datetime="2025-07-05">5 Jul 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Tipos de crédito, plazos e intereses para crecer sin perder control.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-3.html" aria-label="Leer artículo: Impulsa tu negocio">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="blog-card" data-cat="educacion,finanzas">
+          <a class="blog-thumb" href="blog-articulo-4.html">
+            <img src="imagenes/blog-4.webp" alt="Persona comparando tasas y CAT" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Educación</span>
+            <h2>CAT, tasa e intereses: cómo entenderlos sin enredos</h2>
+            <div class="blog-meta">
+              <span>Lectura: 5 min</span> · <time datetime="2025-06-22">22 Jun 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Guía express para comparar ofertas y elegir la más conveniente.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-4.html">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 5 -->
+        <article class="blog-card" data-cat="finanzas">
+          <a class="blog-thumb" href="blog-articulo-5.html">
+            <img src="imagenes/blog-5.webp" alt="Ahorro automático en app" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Finanzas</span>
+            <h2>Ahorro automático: el truco para cumplir metas</h2>
+            <div class="blog-meta">
+              <span>Lectura: 3 min</span> · <time datetime="2025-06-02">2 Jun 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Automatiza un porcentaje y olvídate de la fuerza de voluntad.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-5.html">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 6 -->
+        <article class="blog-card" data-cat="negocios,educacion">
+          <a class="blog-thumb" href="blog-articulo-6.html">
+            <img src="imagenes/blog-6.webp" alt="Flujo de caja en pizarra" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Negocios</span>
+            <h2>Flujo de caja: el indicador que tu negocio no debe ignorar</h2>
+            <div class="blog-meta">
+              <span>Lectura: 6 min</span> · <time datetime="2025-05-18">18 May 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Cómo leerlo, mejorarlo y usar crédito para estabilizar temporadas.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-6.html">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 7 -->
+        <article class="blog-card" data-cat="prestamos,finanzas">
+          <a class="blog-thumb" href="blog-articulo-7.html">
+            <img src="imagenes/blog-7.webp" alt="Empleado con crédito de nómina" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Préstamos</span>
+            <h2>Crédito de nómina: ventajas, requisitos y buenas prácticas</h2>
+            <div class="blog-meta">
+              <span>Lectura: 4 min</span> · <time datetime="2025-05-01">1 May 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Descuentos automáticos y orden en tus pagos, paso a paso.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-7.html">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 8 -->
+        <article class="blog-card" data-cat="educacion,finanzas">
+          <a class="blog-thumb" href="blog-articulo-8.html">
+            <img src="imagenes/blog-8.webp" alt="Metas SMART en libreta" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Educación</span>
+            <h2>Metas SMART para tus finanzas: así se aterrizan</h2>
+            <div class="blog-meta">
+              <span>Lectura: 4 min</span> · <time datetime="2025-04-14">14 Abr 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Conviértelas en acciones medibles y alcanzables mes a mes.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-8.html">Leer más</a>
+          </div>
+        </article>
+
+        <!-- CARD 9 -->
+        <article class="blog-card" data-cat="negocios,prestamos">
+          <a class="blog-thumb" href="blog-articulo-9.html">
+            <img src="imagenes/blog-9.webp" alt="Emprendedor revisando proyecciones" loading="lazy">
+          </a>
+          <div class="blog-content">
+            <span class="blog-tag">Negocios</span>
+            <h2>Crédito para emprender: errores comunes y cómo evitarlos</h2>
+            <div class="blog-meta">
+              <span>Lectura: 7 min</span> · <time datetime="2025-03-22">22 Mar 2025</time>
+            </div>
+            <p style="color:#425b6f;margin:.25rem 0 0;">
+              Desde el plan de pagos hasta el uso del capital, lo clave para empezar bien.
+            </p>
+          </div>
+          <div class="blog-actions">
+            <a class="btn read" href="blog-articulo-9.html">Leer más</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Paginación opcional (si luego sumas más) -->
+      <nav class="pager" aria-label="Paginación de blog">
+        <a href="#" aria-current="page">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- FOOTER (mismo look de tu sitio) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="footer-logo" /></div>
+      <div class="footer-col"><h4>Teléfono</h4><p>T. <a href="tel:+528131431192">81 45.28.00.99</a></p></div>
+      <div class="footer-col"><h4>Dirección</h4><p>Av. San Francisco 120, Des 21, Colonia Lomas de San Francisco, Monterrey, Nuevo León.</p></div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Lifewise Capital | Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
