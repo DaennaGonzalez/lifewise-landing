@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAT, tasa e intereses: guía para principiantes — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-blog.css">
+<style>
+  /* ====== HERO ====== */
+  .post-hero{background:linear-gradient(135deg,var(--calm),var(--deep)); color:#fff; padding:clamp(56px,8vw,84px) 0 26px}
+  .post-hero .container{max-width:920px}
+  .post-hero h1{margin:0; line-height:1.08; font-weight:900}
+  .post-hero .meta{color:#e6f2ff; opacity:.95}
+
+  /* ====== COVER ====== */
+  .post-cover{max-width:1040px; margin:16px auto; border-radius:18px; overflow:hidden; box-shadow:var(--shadow)}
+  .post-cover img{width:100%; height:auto; object-fit:cover; display:block}
+
+  /* ====== BODY ====== */
+  .post-body{
+    max-width:920px; margin:0 auto; padding:18px 18px 72px;
+    color:#0b2d48; font-size:clamp(1rem,.96rem + .25vw,1.08rem); line-height:1.75;
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+  .post-body h2{
+    margin:1.1rem 0 .4rem; font-weight:900; color:#0b2d48; line-height:1.22;
+    font-size:clamp(1.15rem,1rem + .9vw,1.55rem); position:relative; letter-spacing:.2px;
+  }
+  .post-body h2::after{
+    content:""; display:block; width:64px; height:4px; margin:.35rem 0 .2rem; border-radius:4px;
+    background:linear-gradient(135deg,var(--calm),var(--deep)); opacity:.28;
+  }
+  .post-body p{color:#12334a; margin:.25rem 0 1rem}
+
+  /* ====== INFO CARDS ====== */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:.25rem 0 1rem}
+  .card{
+    background:#fff; border:1px solid #e6edf4; border-radius:16px; padding:14px 16px;
+    box-shadow:var(--shadow-sm);
+  }
+  .card h3{margin:.1rem 0 .35rem; color:#0b2d48; font-weight:900; font-size:1.05rem}
+
+  /* ====== STEPS ====== */
+  .steps{display:grid; gap:14px; margin:10px 0 18px}
+  .step{
+    display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:flex-start;
+    background:#fff; border:1px solid #e6edf4; border-radius:16px; padding:14px 16px;
+    box-shadow:var(--shadow-sm);
+  }
+  .step-badge{
+    display:inline-grid; place-items:center; width:42px; height:42px; border-radius:50%;
+    background:linear-gradient(135deg,var(--calm),var(--deep)); color:#fff; font-weight:900;
+    box-shadow:0 8px 18px rgba(16,42,67,.22); flex-shrink:0;
+  }
+  .step h4{margin:.1rem 0 .25rem; font-size:clamp(1.02rem,.95rem + .5vw,1.2rem); color:#0b2d48; font-weight:900}
+
+  /* ====== TABLE (scroll en móvil) ====== */
+  .table-wrap{display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:14px; box-shadow:var(--shadow-sm); border:1px solid #e6edf4}
+  table.compare{width:100%; border-collapse:separate; border-spacing:0; min-width:760px; background:#fff}
+  table.compare th, table.compare td{padding:12px 14px; text-align:left; border-bottom:1px solid #eef3f8}
+  table.compare thead th{background:linear-gradient(135deg,#e9f6ff,#fafdff); color:#08324b; font-weight:800; border-bottom:1px solid #dbe9f6}
+
+  /* ====== TIP & CTA ====== */
+  .tip{margin:16px 0; padding:14px 16px; border-radius:14px; border:1px solid #cfe5fb; background:linear-gradient(0deg,#f1f8ff,#ffffff); box-shadow:var(--shadow-sm); color:#0b2d48}
+  .tip strong{display:inline-flex; align-items:center; gap:8px}
+  .tip strong::before{content:"💡"; font-size:1.05em}
+  .cta-note{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:14px 16px; border-radius:16px; background:#f4f9ff; border:1px solid #dbeaf8; color:#0b2d48}
+  .cta-note .btn{margin-left:auto}
+  .btn.primary{background:var(--gradient); color:#fff; box-shadow:var(--shadow-sm)}
+
+  /* ====== BACKLINK ====== */
+  .backline{display:flex; gap:10px; align-items:center; margin-top:12px}
+  .backline a{display:inline-flex; align-items:center; gap:8px; padding:.65rem .9rem; border-radius:999px; text-decoration:none; font-weight:800; background:var(--gradient); color:#fff; box-shadow:var(--shadow-sm)}
+
+  /* ====== MOBILE (≤680px) ====== */
+  @media (max-width:680px){
+    .post-hero{ padding:34px 0 16px; text-align:center }
+    .post-hero .container{ padding:0 14px }
+    .post-hero h1{ font-size:clamp(1.24rem,1.05rem + 3.2vw,1.7rem); line-height:1.18 }
+    .post-cover{ margin:10px 12px 6px; border-radius:14px; box-shadow:0 8px 20px rgba(16,42,67,.10) }
+    .post-body{ padding:12px 14px 48px; font-size:clamp(1.01rem,1rem + 1vw,1.1rem); line-height:1.78 }
+    .cards{ grid-template-columns:1fr; }
+    .step{ grid-template-columns:36px 1fr; gap:10px; padding:12px; border-radius:14px }
+    .step-badge{ width:32px; height:32px; font-size:.95rem }
+    .cta-note .btn{ width:100%; text-align:center; margin-left:0 }
+  }
+</style>
+</head>
+
+<body class="theme-light">
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Ir al inicio">
+      <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img">
+    </a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20comparar%20CAT%20y%20tasas">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Educación</span>
+    <h1>CAT, tasa e intereses: guía para principiantes</h1>
+    <p class="meta">Lectura: 6 min · <time datetime="2025-12-05">5 Dic 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-28.webp" alt="Tabla comparativa de créditos mostrando CAT y tasas">
+</figure>
+
+<article class="post-body container">
+  <p style="margin-top:.35rem">
+    Si estás por tomar un crédito, entender <b>CAT</b>, <b>tasa</b> e <b>intereses</b> te ahorra dinero y dolores de cabeza.
+    Aquí te explico lo esencial con ejemplos fáciles y una tabla comparativa.
+  </p>
+
+  <div class="cards" role="list">
+    <div class="card" role="listitem">
+      <h3>¿Qué es el CAT?</h3>
+      <p>Es el <b>Costo Anual Total</b>: resume el costo del crédito en un porcentaje anual,
+        incluyendo tasa, comisiones y algunos gastos obligatorios. Sirve para <b>comparar</b> ofertas.</p>
+    </div>
+    <div class="card" role="listitem">
+      <h3>¿Qué es la tasa?</h3>
+      <p>Es el precio del dinero que te prestan. Puede ser <b>fija</b> (no cambia) o <b>variable</b> (ligada a un índice).
+        Afecta directamente el interés que pagarás cada periodo.</p>
+    </div>
+    <div class="card" role="listitem">
+      <h3>Intereses y comisiones</h3>
+      <p>Hay interés <b>ordinario</b> (por usar el crédito) y <b>moratorio</b> (si te atrasas). Considera comisiones
+        (apertura, administración) y seguros, porque influyen en el CAT.</p>
+    </div>
+  </div>
+
+  <h2>Ejemplo rápido: ¿cuál conviene más?</h2>
+  <p>Supón que necesitas $50,000 a 24 meses. Dos ofertas:</p>
+  <div class="table-wrap" aria-label="Comparativa de ofertas por CAT y costos">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Oferta</th>
+          <th>Tasa anual</th>
+          <th>Comisión apertura</th>
+          <th>CAT aproximado</th>
+          <th>Pago mensual estimado</th>
+          <th>Costo total (24m)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Banco A</td>
+          <td>27% fija</td>
+          <td>0%</td>
+          <td>29.5%</td>
+          <td>$2,945</td>
+          <td>$70,680</td>
+        </tr>
+        <tr>
+          <td>Banco B</td>
+          <td>24% fija</td>
+          <td>3% ($1,500)</td>
+          <td>31.0%</td>
+          <td>$2,990</td>
+          <td>$72,260</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Conclusión:</b> aunque la tasa del Banco B es más baja, su CAT y costo total son mayores por la comisión.
+    <u>El CAT manda</u> al comparar.</p>
+
+  <h2>Cómo elegir bien en 4 pasos</h2>
+  <section class="steps">
+    <article class="step">
+      <div class="step-badge">1</div>
+      <div>
+        <h4>Compara por CAT</h4>
+        <p>Junta al menos 3 ofertas y ordénalas por CAT de menor a mayor. Valida condiciones (plazo, comisiones, seguros).</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">2</div>
+      <div>
+        <h4>Fija tu pago máximo</h4>
+        <p>No excedas el 30% de tu ingreso libre. Si el pago se acerca, elige más plazo o menor monto.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">3</div>
+      <div>
+        <h4>Revisa penalizaciones</h4>
+        <p>Pregunta por costo de prepago, interés moratorio y cargos por atraso. Evita sorpresas.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">4</div>
+      <div>
+        <h4>Simula escenarios</h4>
+        <p>¿Qué pasa si pagas 10% extra cada mes? Una simulación te muestra meses y intereses ahorrados.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="tip">
+    <strong>Tip:</strong> si dos ofertas tienen CAT parecido, elige la de <b>mejores condiciones</b> (sin penalización,
+    pago flexible, desembolso rápido) y con atención que te dé claridad por escrito.
+  </div>
+
+  <h2>Checklist antes de firmar</h2>
+  <ul>
+    <li>Confirma <b>CAT</b>, tasa, plazo y pago mensual por escrito.</li>
+    <li>Pregunta por <b>comisiones</b> (apertura, administración, evaluación, seguros).</li>
+    <li>Valida <b>penalizaciones</b> por prepago o liquidación anticipada.</li>
+    <li>Solicita el <b>calendario de pagos</b> y el costo total estimado.</li>
+    <li>Lee el contrato y guarda evidencia (correo, cotización).</li>
+  </ul>
+
+  <div class="cta-note">
+    <span>¿Quieres que comparemos ofertas y te digamos cuál te conviene?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20ayuda%20con%20CAT%20y%20tasas">
+      Comparar mi crédito
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body, toggle=$('.nav-toggle'), menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');};
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');};
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open();});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close();});
+    document.addEventListener('click',e=>{if(isOpen()&&!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close();});
+    window.matchMedia('(min-width:1025px)').addEventListener?.('change',mq=>{if(mq.matches)close();});
+  }
+  const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

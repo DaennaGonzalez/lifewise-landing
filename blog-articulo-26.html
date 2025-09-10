@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estrategias de ahorro y crédito para microempresas locales — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-blog.css">
+<style>
+  /* ====== HERO ====== */
+  .post-hero{background:linear-gradient(135deg,var(--calm),var(--deep)); color:#fff; padding:clamp(56px,8vw,84px) 0 26px}
+  .post-hero .container{max-width:920px}
+  .post-hero h1{margin:0; line-height:1.08; font-weight:900}
+  .post-hero .meta{color:#e6f2ff; opacity:.95}
+
+  /* ====== COVER ====== */
+  .post-cover{max-width:1040px; margin:16px auto; border-radius:18px; overflow:hidden; box-shadow:var(--shadow)}
+  .post-cover img{width:100%; height:auto; object-fit:cover; display:block}
+
+  /* ====== BODY ====== */
+  .post-body{
+    max-width:920px; margin:0 auto; padding:18px 18px 72px;
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:#0b2d48; font-size:clamp(1rem,.96rem + .25vw,1.08rem); line-height:1.75;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+  .post-body h2{
+    margin:1.1rem 0 .4rem; font-weight:900; color:#0b2d48; line-height:1.22;
+    font-size:clamp(1.15rem,1rem + .9vw,1.55rem); position:relative; letter-spacing:.2px;
+  }
+  .post-body h2::after{
+    content:""; display:block; width:64px; height:4px; margin:.35rem 0 .2rem; border-radius:4px;
+    background:linear-gradient(135deg,var(--calm),var(--deep)); opacity:.28;
+  }
+  .post-body p{color:#12334a; margin:.25rem 0 1rem}
+
+  /* ====== STEPS ====== */
+  .steps{display:grid; gap:14px; margin:10px 0 18px}
+  .step{
+    display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:flex-start;
+    background:#fff; border:1px solid #e6edf4; border-radius:16px; padding:14px 16px;
+    box-shadow:var(--shadow-sm); transition:transform .15s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .step:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(16,42,67,.12); border-color:#d7e6f4 }
+  .step-badge{
+    display:inline-grid; place-items:center; width:42px; height:42px; border-radius:50%;
+    background:linear-gradient(135deg,var(--calm),var(--deep)); color:#fff; font-weight:900; box-shadow:0 8px 18px rgba(16,42,67,.22);
+    flex-shrink:0;
+  }
+  .step h3{margin:.1rem 0 .25rem; font-size:clamp(1.05rem,.95rem + .6vw,1.25rem); line-height:1.25; color:#0b2d48; font-weight:900}
+  .step p{margin:0}
+
+  /* ====== GRID DOS BLOQUES ====== */
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:10px 0 18px}
+  .box{
+    background:#fff; border:1px solid #e6edf4; border-radius:16px; padding:14px 16px; box-shadow:var(--shadow-sm)
+  }
+  .box h3{margin:.1rem 0 .35rem; font-weight:900; color:#0b2d48}
+  .box ul{margin:.25rem 0 0; padding-left:18px; color:#12334a}
+  .box ul li{margin:.3rem 0}
+
+  /* ====== TABLA SIMPLE (desplazable en móvil) ====== */
+  .table-wrap{display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:14px; box-shadow:var(--shadow-sm); border:1px solid #e6edf4}
+  table.compare{width:100%; border-collapse:separate; border-spacing:0; min-width:620px; background:#fff}
+  table.compare th, table.compare td{padding:12px 14px; text-align:left; border-bottom:1px solid #eef3f8}
+  table.compare thead th{background:linear-gradient(135deg,#e9f6ff,#fafdff); color:#08324b; font-weight:800; border-bottom:1px solid #dbe9f6}
+
+  /* ====== TIP & CTA ====== */
+  .tip{margin:16px 0; padding:14px 16px; border-radius:14px; border:1px solid #cfe5fb; background:linear-gradient(0deg,#f1f8ff,#ffffff); box-shadow:var(--shadow-sm); color:#0b2d48}
+  .tip strong{display:inline-flex; align-items:center; gap:8px}
+  .tip strong::before{content:"💡"; font-size:1.05em}
+
+  .cta-note{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:14px 16px; border-radius:16px; background:#f4f9ff; border:1px solid #dbeaf8; color:#0b2d48}
+  .cta-note .btn{margin-left:auto}
+  .btn.primary{background:var(--gradient); color:#fff; box-shadow:var(--shadow-sm)}
+
+  /* ====== BACKLINK ====== */
+  .backline{display:flex; gap:10px; align-items:center; margin-top:12px}
+  .backline a{display:inline-flex; align-items:center; gap:8px; padding:.65rem .9rem; border-radius:999px; text-decoration:none; font-weight:800; background:var(--gradient); color:#fff; box-shadow:var(--shadow-sm)}
+  .backline a:active{animation: blog-bounce .38s ease}
+  @keyframes blog-bounce{0%{transform:translateY(0) scale(1)}35%{transform:translateY(1px) scale(.985)}65%{transform:translateY(-2px) scale(1.015)}100%{transform:translateY(0) scale(1)}}
+
+  /* ====== MOBILE (≤680px) ====== */
+  @media (max-width:680px){
+    .post-hero{ padding:34px 0 16px; text-align:center }
+    .post-hero .container{ padding:0 14px }
+    .post-hero h1{ font-size:clamp(1.26rem,1.05rem + 3.2vw,1.72rem); line-height:1.18 }
+    .post-cover{ margin:10px 12px 6px; border-radius:14px; box-shadow:0 8px 20px rgba(16,42,67,.10) }
+    .post-body{ padding:12px 14px 48px; font-size:clamp(1.01rem,1rem + 1vw,1.1rem); line-height:1.78 }
+    .post-body h2{ margin:1rem 0 .28rem; font-size:clamp(1.08rem,.95rem + 3vw,1.32rem) }
+    .post-body h2::after{ width:48px; height:3px; margin:.26rem 0 .08rem }
+    .steps{ gap:12px }
+    .step{ grid-template-columns:36px 1fr; gap:10px; padding:12px; border-radius:14px }
+    .step-badge{ width:32px; height:32px; font-size:.95rem }
+    .step h3{ font-size:clamp(1.02rem,.95rem + 2.4vw,1.16rem) }
+    .twocol{ grid-template-columns:1fr; }
+    .cta-note .btn{ width:100%; text-align:center; margin-left:0 }
+  }
+</style>
+</head>
+
+<body class="theme-light">
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Ir al inicio">
+      <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img">
+    </a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20busco%20estrategias%20para%20mi%20microempresa">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Negocios</span>
+    <h1>Estrategias de ahorro y crédito para microempresas locales</h1>
+    <p class="meta">Lectura: 6 min · <time datetime="2025-11-20">20 Nov 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-26.webp" alt="Dueña de microempresa optimizando gastos y financiamiento">
+</figure>
+
+<article class="post-body container">
+  <p style="margin-top:.35rem">
+    En una microempresa, cada peso cuenta. Con pequeñas mejoras de ahorro y un crédito bien usado,
+    puedes ganar liquidez sin frenar ventas ni servicio.
+  </p>
+
+  <h2>Movimientos de ahorro que sí se notan</h2>
+  <section class="steps">
+    <article class="step">
+      <div class="step-badge">1</div>
+      <div>
+        <h3>Separa cuentas desde el día uno</h3>
+        <p>Cuenta empresarial para cobros, pagos y nómina. Controla flujo y evita “hoyos” por gastos personales.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">2</div>
+      <div>
+        <h3>Negocia con datos</h3>
+        <p>Conoce tu ticket promedio, rotación de inventario y plazos de cobro. Úsalos para pedir descuentos por pronto pago o volumen.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">3</div>
+      <div>
+        <h3>Digitaliza gastos “hormiga” operativos</h3>
+        <p>Control en apps: servicios, viáticos y compras menores con tope y responsable; reduce fugas y duplicidades.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">4</div>
+      <div>
+        <h3>Protege tu caja</h3>
+        <p>Reserva del 5–10% de ventas semanales para imprevistos. Evita usar crédito para emergencias repetitivas.</p>
+      </div>
+    </article>
+  </section>
+
+  <h2>Crédito: cuándo, cuál y cómo</h2>
+  <div class="twocol">
+    <div class="box">
+      <h3>¿Cuándo usar crédito?</h3>
+      <ul>
+        <li>Para comprar inventario con alta rotación.</li>
+        <li>Para equipo que mejora productividad (y se paga solo).</li>
+        <li>Para cubrir estacionalidad con ventas comprobables.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Evítalo si es para…</h3>
+      <ul>
+        <li>Tapar pérdidas constantes o gastos fijos mal calibrados.</li>
+        <li>Inversiones que no generan flujo rápido.</li>
+        <li>Combinar deudas sin revisar CAT y comisiones.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-wrap" aria-label="Comparativa de líneas de crédito">
+    <table class="compare">
+      <thead>
+        <tr><th>Producto</th><th>Para</th><th>Ventaja</th><th>Ojo con</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Línea revolvente</td><td>Capital de trabajo</td><td>Flexibilidad: usas y pagas</td><td>Comisiones por disposición/inactividad</td></tr>
+        <tr><td>Crédito simple</td><td>Equipo / proyectos</td><td>Pagos fijos, plazo claro</td><td>Penalización por prepago en algunos contratos</td></tr>
+        <tr><td>Factoraje</td><td>Cuentas por cobrar</td><td>Liquidez inmediata</td><td>Costo por documento y notificaciones</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Checklist express para no ahorcar la caja</h2>
+  <section class="steps">
+    <article class="step">
+      <div class="step-badge">1</div>
+      <div>
+        <h3>Cuota mensual ≤ 30–35% de utilidad operativa</h3>
+        <p>Simula escenarios conservadores (venta -20%). Si no da, reduce monto o alarga plazo.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">2</div>
+      <div>
+        <h3>Destino etiquetado y medible</h3>
+        <p>“$120k para inventario X; meta: +18% ventas en 90 días”. Revisa avance semanalmente.</p>
+      </div>
+    </article>
+    <article class="step">
+      <div class="step-badge">3</div>
+      <div>
+        <h3>Pagos automatizados</h3>
+        <p>Evita moras. Alinea fecha de pago con tus flujos de cobranza.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="tip"><strong>Tip:</strong> documenta cada uso del crédito y su retorno. Si no cumple en 60–90 días, ajusta estrategia o detén compras.</div>
+
+  <div class="cta-note">
+    <span>¿Quieres que revisemos tu flujo y armemos la mejor mezcla de ahorro + crédito?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20estrategias%20para%20mi%20microempresa">
+      Solicitar diagnóstico sin costo
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body, toggle=$('.nav-toggle'), menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');};
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');};
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open();});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close();});
+    document.addEventListener('click',e=>{if(isOpen()&&!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close();});
+    window.matchMedia('(min-width:1025px)').addEventListener?.('change',mq=>{if(mq.matches)close();});
+  }
+  const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

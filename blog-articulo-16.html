@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aguinaldo inteligente: 6 formas de aprovecharlo en Monterrey — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles-blog.css">
+
+<style>
+  /* ======= HERO ======= */
+  .post-hero{
+    background:linear-gradient(135deg,var(--calm),var(--deep));
+    color:#fff; padding:clamp(56px,8vw,84px) 0 26px;
+  }
+  .post-hero .container{max-width:920px}
+  .post-hero h1{color:#fff;line-height:1.08;font-weight:900;letter-spacing:.2px;margin:0}
+  .post-hero .meta{color:#e6f2ff;opacity:.95}
+
+  /* ======= COVER ======= */
+  .post-cover{max-width:1040px;margin:16px auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .post-cover img{width:100%;height:auto;display:block;object-fit:cover}
+
+  /* ======= CUERPO ======= */
+  .post-body{
+    max-width:920px;margin:0 auto;padding:18px 18px 72px;color:#0b2d48;
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    font-size:clamp(1rem,.96rem + .25vw,1.08rem); line-height:1.75;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+  .post-body p{color:#12334a;margin:.25rem 0 1rem}
+  .post-body h2{
+    color:#0b2d48;margin:1.2rem 0 .35rem;line-height:1.25;
+    font-size:clamp(1.15rem,1rem + .9vw,1.55rem);position:relative;font-weight:900;letter-spacing:.2px;
+  }
+  .post-body h2::after{
+    content:"";display:block;width:64px;height:4px;border-radius:4px;margin:.35rem 0 .2rem;
+    background:linear-gradient(135deg,var(--calm),var(--deep));opacity:.28;
+  }
+
+  /* ======= PASOS ======= */
+  .steps{display:grid;gap:14px;margin:8px 0 18px}
+  .step{
+    display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:flex-start;background:#fff;
+    border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm);
+    transition:transform .15s ease,box-shadow .22s ease,border-color .22s ease;
+  }
+  .step:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(16,42,67,.12);border-color:#d7e6f4}
+  .step-badge{
+    display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg,var(--calm),var(--deep));color:#fff;font-weight:900;
+    box-shadow:0 8px 18px rgba(16,42,67,.22);flex-shrink:0;
+  }
+  .step h3{margin:.1rem 0 .25rem;font-size:clamp(1.05rem,.95rem + .6vw,1.25rem);line-height:1.25;color:#0b2d48;font-weight:900}
+  .step p{margin:0}
+
+  /* ======= TIP/CTA ======= */
+  .tip{margin:16px 0;padding:14px 16px;border-radius:14px;border:1px solid #cfe5fb;background:linear-gradient(0deg,#f1f8ff,#ffffff);box-shadow:var(--shadow-sm);color:#0b2d48}
+  .tip strong{display:inline-flex;align-items:center;gap:8px}
+  .tip strong::before{content:"💡";font-size:1.05em}
+
+  .backline{display:flex;gap:10px;align-items:center;margin-top:12px}
+  .backline a{display:inline-flex;align-items:center;gap:8px;padding:.65rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .backline a:active{animation:blog-bounce .38s ease}
+  @keyframes blog-bounce{0%{transform:translateY(0) scale(1)}35%{transform:translateY(1px) scale(.985)}65%{transform:translateY(-2px) scale(1.015)}100%{transform:translateY(0) scale(1)}}
+
+  .cta-note{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:#f4f9ff;border:1px solid #dbeaf8;color:#0b2d48}
+  .cta-note .btn{margin-left:auto}
+  .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+
+  /* ======= MOBILE ======= */
+  @media (max-width:680px){
+    .post-hero{padding:34px 0 16px;text-align:center}
+    .post-hero .container{padding:0 14px}
+    .post-hero h1{font-size:clamp(1.22rem,1rem + 3.2vw,1.68rem);line-height:1.18}
+    .post-cover{margin:10px 12px 6px;border-radius:14px;box-shadow:0 8px 20px rgba(16,42,67,.10)}
+    .post-body{padding:12px 14px 52px;font-size:1.02rem;line-height:1.78}
+
+    .steps{gap:12px}
+    .step{grid-template-columns:36px 1fr;gap:10px;padding:12px;border-radius:14px}
+    .step-badge{width:32px;height:32px;font-size:.95rem}
+    .step h3{font-size:clamp(1.02rem,.95rem + 2.4vw,1.16rem);margin:0 0 .2rem}
+
+    .cta-note .btn{width:100%;text-align:center;margin-left:0}
+  }
+</style>
+</head>
+
+<body class="theme-light">
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Ir al inicio">
+      <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img">
+    </a>
+
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">¡Hablemos de tus metas!</a>
+
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Finanzas personales</span>
+    <h1>Aguinaldo inteligente: 6 formas de aprovecharlo en Monterrey</h1>
+    <p class="meta">Lectura: 4 min · <time datetime="2025-12-05">5 Dic 2025</time></p>
+    <div class="backline"><a href="blog.html" aria-label="Volver al blog">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-16.webp" alt="Vista de Monterrey y una persona organizando su aguinaldo con una libreta y su celular">
+</figure>
+
+<article class="post-body container">
+  <p style="margin-top:.4rem">
+    El aguinaldo puede ser el **empujón financiero del año**. En Monterrey, donde los gastos de fin de año y el inicio de ciclo
+    (predial, tenencia, mantenimiento del auto y del clima) se sienten, conviene usarlo con estrategia.
+  </p>
+
+  <h2>6 formas de aprovechar tu aguinaldo</h2>
+  <section class="steps">
+    <article class="step">
+      <div class="step-badge">1</div>
+      <div>
+        <h3>Liquida primero deudas caras</h3>
+        <p>Prioriza tarjetas y créditos con CAT alto. Cada peso que deje de generar intereses es rendimiento inmediato.</p>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step-badge">2</div>
+      <div>
+        <h3>Refuerza tu fondo de emergencia</h3>
+        <p>Apunta a 1–3 meses de gastos (ideal 3–6). En NL los imprevistos de auto/clima son comunes: cúbrelos sin endeudarte.</p>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step-badge">3</div>
+      <div>
+        <h3>Anticípate a gastos de inicio de año</h3>
+        <p>Predial, tenencia, seguros, útiles o reinscripciones. Reserva ahora y evita desbalancearte en enero-febrero.</p>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step-badge">4</div>
+      <div>
+        <h3>Invierte una parte</h3>
+        <p>CETES, fondos de deuda o ahorro a plazo según tu horizonte. A mayor plazo y disciplina, mayor potencial.</p>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step-badge">5</div>
+      <div>
+        <h3>Mejoras útiles para la vida en Monterrey</h3>
+        <p>Mantenimiento del A/C, llantas o frenos para carretera, herramientas de trabajo/estudio. Prioriza lo que te ahorre futuros gastos.</p>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step-badge">6</div>
+      <div>
+        <h3>Disfruta… con tope</h3>
+        <p>Destina 10–20% a experiencias o regalos. El resto a metas. Así disfrutas hoy sin frenar tu avance financiero.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="tip"><strong>Tip:</strong> divide tu aguinaldo en “sobres” (deuda, ahorro, inversión, disfrute) y programa transferencias el mismo día de cobro.</div>
+
+  <div class="cta-note">
+    <span>¿Quieres un plan de distribución personalizado para tu aguinaldo?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20un%20plan%20para%20mi%20aguinaldo">
+      Solicitar asesoría
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<!-- ===== Menú móvil ===== -->
+<script>
+  (function(){
+    const $ = (s, c=document) => c.querySelector(s);
+    const body = document.body;
+    const toggle = $('.nav-toggle');
+    const menu = $('.nav-links');
+
+    if (toggle && menu) {
+      const openMenu = () => {
+        body.classList.add('nav-open');
+        toggle.setAttribute('aria-expanded','true');
+        const first = menu.querySelector('a'); first && first.focus({preventScroll:true});
+      };
+      const closeMenu = () => {
+        body.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.focus({preventScroll:true});
+      };
+      const isOpen = () => body.classList.contains('nav-open');
+
+      toggle.addEventListener('click', () => { isOpen() ? closeMenu() : openMenu(); });
+      menu.addEventListener('click', (e) => { const link = e.target.closest('a'); if (link && isOpen()) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) closeMenu(); });
+      document.addEventListener('click', (e) => {
+        if (!isOpen()) return;
+        const insideMenu = e.target.closest('.nav-links');
+        const onToggle = e.target.closest('.nav-toggle');
+        if (!insideMenu && !onToggle) closeMenu();
+      });
+      const mq = window.matchMedia('(min-width:1025px)');
+      mq.addEventListener?.('change', () => { if (mq.matches) closeMenu(); });
+    }
+
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

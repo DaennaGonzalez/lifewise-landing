@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ahorro automático: el truco para cumplir metas — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{
+    --deep:#003049; --calm:#2b7aa5; --ink:#0b2d48;
+    --gradient:linear-gradient(135deg,var(--calm),var(--deep));
+    --shadow:0 12px 28px rgba(16,42,67,.12);
+    --shadow-sm:0 8px 20px rgba(16,42,67,.10);
+    --ok:#0f9d58; --info:#0d6efd; --warn:#f4b400;
+  }
+  body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+
+  /* HERO */
+  .post-hero{background:var(--gradient);color:#fff;padding:clamp(56px,8vw,84px) 0 24px}
+  .post-hero .container{max-width:980px}
+  .post-hero h1{margin:0;font-weight:900;line-height:1.06}
+  .post-hero .meta{color:#e6f2ff}
+
+  /* COVER */
+  .post-cover{max-width:1100px;margin:16px auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .post-cover img{width:100%;display:block;object-fit:cover}
+
+  /* BODY */
+  .post-body{max-width:980px;margin:0 auto;padding:18px 18px 76px;font-size:clamp(1rem,.98rem+.25vw,1.08rem);line-height:1.75}
+  .post-body h2{margin:1.15rem 0 .4rem;font-weight:900;font-size:clamp(1.18rem,1rem+1vw,1.6rem);color:var(--ink)}
+  .post-body h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;margin:.35rem 0 .2rem;background:var(--gradient);opacity:.26}
+  .post-body p{margin:.25rem 0 1rem;color:#12334a}
+
+  .blog-tag{display:inline-block;font-weight:800;background:#e9f6ff;color:var(--ink);border:1px solid #cfeafd;padding:.28rem .6rem;border-radius:999px;margin-bottom:.35rem}
+
+  /* Steps/cards */
+  .steps{display:grid;gap:14px;margin:.5rem 0 1.2rem}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .badge{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--gradient);color:#fff;font-weight:900;box-shadow:0 8px 18px rgba(16,42,67,.22);flex-shrink:0}
+  .step h3{margin:.05rem 0 .25rem;font-size:clamp(1.05rem,.95rem+.6vw,1.25rem);font-weight:900;color:var(--ink)}
+  .muted{color:#5b6b7a}
+
+  /* Chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:.45rem .7rem;border-radius:999px;background:#f4f9ff;border:1px solid #dbeaf8;font-weight:700}
+
+  /* Example tracker (scrollable on mobile) */
+  .table-wrap{border:1px solid #e6edf4;border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;background:#fff;margin:.25rem 0 1rem}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:separate;min-width:680px}
+  th,td{padding:12px 14px;text-align:left;white-space:nowrap}
+  thead th{background:#f2f8ff;border-bottom:1px solid #dbe9f6;color:#08324b;font-weight:800}
+  tbody tr+tr td{border-top:1px solid #eef3f8}
+  tbody td:first-child{font-weight:800;color:var(--ink)}
+
+  /* Info/tip */
+  .info{border:1px solid #cfe5fb;background:linear-gradient(0deg,#f1f8ff,#fff);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .info strong{display:inline-flex;align-items:center;gap:8px}
+  .info strong::before{content:"💡"}
+
+  /* CTA + back */
+  .backline{margin-top:12px}
+  .backline a{display:inline-flex;align-items:center;gap:8px;padding:.65rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:#f4f9ff;border:1px solid #dbeaf8}
+  .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note .btn{margin-left:auto}
+
+  /* Mobile */
+  @media(max-width:680px){
+    .post-hero{text-align:center;padding:36px 0 16px}
+    .post-hero h1{font-size:clamp(1.22rem,1rem+3.2vw,1.7rem)}
+    .post-cover{margin:10px 14px;border-radius:14px}
+    .post-body{padding:12px 14px 60px;font-size:1.02rem;line-height:1.78}
+    .step{grid-template-columns:36px 1fr;padding:12px;border-radius:14px}
+    .badge{width:32px;height:32px;font-size:.95rem}
+    .cta-note{gap:8px;padding:12px 14px;border-radius:14px}
+    .cta-note .btn{width:100%;margin-left:0;text-align:center}
+    .table-wrap{border-radius:12px}
+    th,td{padding:10px 12px}
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img"></a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a><a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a><a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a><a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Finanzas</span>
+    <h1>Ahorro automático: el truco para cumplir metas</h1>
+    <p class="meta">Lectura: 3 min · <time datetime="2025-06-02">2 Jun 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-5.webp" alt="Ahorro automático en app">
+</figure>
+
+<article class="post-body container">
+  <p>El ahorro constante no depende de la fuerza de voluntad; depende del <strong>sistema</strong>. Automatizar un porcentaje de tus ingresos convierte el ahorro en el primer “gasto” del mes y te acerca a tus metas sin fricción.</p>
+
+  <h2>¿Por qué funciona?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="badge">1</div>
+      <div>
+        <h3>Evita el “mejor luego”</h3>
+        <p>Cuando el dinero se aparta solo, no compite con otros gastos del día a día.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">2</div>
+      <div>
+        <h3>Te protege de impulsos</h3>
+        <p>Reducir el saldo visible disminuye compras impulsivas. <span class="muted">Si no lo ves, no lo gastas.</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">3</div>
+      <div>
+        <h3>Construye hábito</h3>
+        <p>La repetición mensual crea tracción. Al tercer mes ya se siente natural.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Cómo configurarlo en 5 pasos</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="badge">1</div>
+      <div>
+        <h3>Define tu meta</h3>
+        <p>Fondo de emergencia, enganche, viaje o retiro. Ponle monto y fecha objetivo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">2</div>
+      <div>
+        <h3>Elige el porcentaje</h3>
+        <p>Arranca con <strong>10%–15%</strong> de tus ingresos. Si hoy no puedes, empieza con 5% e incrementa cada 2–3 meses.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">3</div>
+      <div>
+        <h3>Fecha estratégica</h3>
+        <p>Programa la transferencia el <strong>mismo día de tu nómina</strong>. Prioriza ahorrar antes de gastar.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">4</div>
+      <div>
+        <h3>Cuenta separada</h3>
+        <p>Usa una cuenta de ahorro o inversión distinta a tu cuenta de uso diario. Ideal con <em>apartados</em> o “sobres”.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">5</div>
+      <div>
+        <h3>Escala automático</h3>
+        <p>Activa un <strong>aumento automático</strong> de +1–2 pts. cada trimestre hasta alcanzar tu meta de ahorro.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Porcentajes sugeridos según meta</h2>
+  <div class="chips" aria-label="Sugerencias rápidas">
+    <span class="chip">Fondo de emergencia: 10–20%</span>
+    <span class="chip">Enganche: 15–25%</span>
+    <span class="chip">Viaje/Meta corta: 5–10%</span>
+    <span class="chip">Retiro (extra): 5–10%</span>
+  </div>
+
+  <h2>Ejemplo de “apartados” por objetivo</h2>
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table aria-label="Ejemplo de apartados de ahorro">
+        <thead>
+          <tr><th>Objetivo</th><th>% del ingreso</th><th>Cuenta/“Sobre”</th><th>Fecha de cargo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fondo de emergencia</td><td>12%</td><td>Ahorro • Emergencias</td><td>Día de nómina</td></tr>
+          <tr><td>Enganche auto</td><td>8%</td><td>Ahorro • Enganche</td><td>Día de nómina + 2</td></tr>
+          <tr><td>Viaje</td><td>5%</td><td>Ahorro • Viaje</td><td>Día 5 de cada mes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Tips rápidos</h2>
+  <ul class="steps" style="list-style:none;padding:0;margin:.4rem 0 1rem">
+    <li class="step"><div class="badge">✓</div><div><h3>Bonos y extras → 50% al ahorro</h3><p>Cuando recibas ingresos no recurrentes, destina al menos la mitad a tus metas.</p></div></li>
+    <li class="step"><div class="badge">✓</div><div><h3>“No toques” los apartados</h3><p>Si necesitas uso de emergencia, repónlo en cuanto puedas. Mantén un registro breve del porqué.</p></div></li>
+    <li class="step"><div class="badge">✓</div><div><h3>Revisión trimestral</h3><p>Ajusta porcentajes y fechas según cambios en ingresos o gastos.</p></div></li>
+  </ul>
+
+  <div class="info">
+    <strong>Atajo:</strong> si hoy te cuesta apartar un porcentaje, activa un cargo fijo pequeño (ej. $300 semanales). La constancia vence a la cantidad.
+  </div>
+
+  <div class="cta-note">
+    <span>¿Quieres que armemos tus reglas de ahorro automático y el plan por metas?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20activar%20mi%20ahorro%20autom%C3%A1tico">
+      Activar mi ahorro automático
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body,toggle=$('.nav-toggle'),menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');menu.querySelector('a')?.focus({preventScroll:true});}
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');toggle.focus({preventScroll:true});}
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open()});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close()});
+    document.addEventListener('click',e=>{if(!isOpen())return;if(!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close()});
+    const mq=window.matchMedia('(min-width:1025px)'); mq.addEventListener?.('change',()=>{if(mq.matches)close()});
+  }
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

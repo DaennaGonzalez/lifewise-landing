@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impulsa tu negocio con financiamiento adecuado — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{
+    --deep:#003049; --calm:#2b7aa5; --ink:#0b2d48;
+    --gradient:linear-gradient(135deg,var(--calm),var(--deep));
+    --shadow:0 12px 28px rgba(16,42,67,.12);
+    --shadow-sm:0 8px 20px rgba(16,42,67,.10);
+    --ok:#0f9d58; --warn:#f4b400; --risk:#d93025;
+  }
+  body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+
+  /* HERO */
+  .post-hero{background:var(--gradient);color:#fff;padding:clamp(56px,8vw,84px) 0 24px}
+  .post-hero .container{max-width:980px}
+  .post-hero h1{margin:0;font-weight:900;line-height:1.06}
+  .post-hero .meta{color:#e6f2ff}
+
+  /* COVER */
+  .post-cover{max-width:1100px;margin:16px auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .post-cover img{width:100%;display:block;object-fit:cover}
+
+  /* BODY */
+  .post-body{max-width:980px;margin:0 auto;padding:18px 18px 72px;font-size:clamp(1rem,.98rem+.25vw,1.08rem);line-height:1.75}
+  .post-body h2{margin:1.15rem 0 .4rem;font-weight:900;font-size:clamp(1.18rem,1rem+1vw,1.6rem);color:var(--ink)}
+  .post-body h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;margin:.35rem 0 .2rem;background:var(--gradient);opacity:.26}
+  .post-body p{margin:.25rem 0 1rem;color:#12334a}
+
+  .blog-tag{display:inline-block;font-weight:800;background:#e9f6ff;color:var(--ink);border:1px solid #cfeafd;padding:.28rem .6rem;border-radius:999px;margin-bottom:.35rem}
+
+  /* Tarjetas */
+  .grid{display:grid;gap:14px}
+  .card{background:#fff;border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .card h3{margin:.1rem 0 .25rem;font-weight:900;color:var(--ink);font-size:clamp(1.02rem,.95rem+.6vw,1.22rem)}
+
+  /* Listas */
+  .checklist{list-style:none;padding:0;display:grid;gap:8px}
+  .checklist li{position:relative;padding-left:28px}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:.05rem;width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:var(--ok);color:#fff;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.12)}
+
+  /* Tabla scrollable */
+  .table-wrap{border:1px solid #e6edf4;border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;background:#fff}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:separate;min-width:720px}
+  th,td{padding:12px 14px;text-align:left}
+  thead th{background:#f2f8ff;border-bottom:1px solid #dbe9f6;color:#08324b;font-weight:800}
+  tbody tr+tr td{border-top:1px solid #eef3f8}
+  tbody td:first-child{font-weight:800;color:var(--ink)}
+
+  .backline{margin-top:12px}
+  .backline a{display:inline-flex;align-items:center;gap:8px;padding:.65rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+
+  .cta-note{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:#f4f9ff;border:1px solid #dbeaf8}
+  .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note .btn{margin-left:auto}
+
+  @media(max-width:680px){
+    .post-hero{text-align:center;padding:36px 0 16px}
+    .post-hero h1{font-size:clamp(1.22rem,1rem+3.2vw,1.7rem)}
+    .post-cover{margin:10px 14px;border-radius:14px}
+    .post-body{padding:12px 14px 56px;font-size:1.02rem;line-height:1.78}
+    .table-wrap{border-radius:12px}
+    th,td{padding:10px 12px;white-space:nowrap}
+    .cta-note{gap:8px;padding:12px 14px;border-radius:14px}
+    .cta-note .btn{width:100%;margin-left:0;text-align:center}
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img"></a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a><a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a><a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a><a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Negocios</span>
+    <h1>Impulsa tu negocio con financiamiento adecuado</h1>
+    <p class="meta">Lectura: 6 min · <time datetime="2025-07-05">5 Jul 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-3.webp" alt="Emprendedora creciendo su negocio">
+</figure>
+
+<article class="post-body container">
+  <p>El financiamiento puede ser la clave para crecer, siempre que se elija bien. No se trata solo de conseguir capital, sino de hacerlo en condiciones que fortalezcan tu negocio.</p>
+
+  <h2>Opciones comunes de financiamiento</h2>
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Tipo</th><th>Plazo</th><th>Ventajas</th><th>Riesgos</th></tr></thead>
+        <tbody>
+          <tr><td>Crédito simple</td><td>12–60 meses</td><td>Montos altos, pagos fijos</td><td>Deuda de largo plazo</td></tr>
+          <tr><td>Línea de crédito</td><td>Revolvente</td><td>Flexibilidad, pagas lo usado</td><td>Tasas más altas</td></tr>
+          <tr><td>Arrendamiento</td><td>36–60 meses</td><td>Adquieres equipo sin descapitalizarte</td><td>No eres dueño inmediato</td></tr>
+          <tr><td>Factoraje</td><td>Corto plazo</td><td>Convierte cuentas por cobrar en liquidez</td><td>Costo de comisión</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Checklist antes de solicitar crédito</h2>
+  <ul class="checklist">
+    <li>Tener estados financieros actualizados.</li>
+    <li>Definir el uso del crédito (expansión, capital de trabajo, equipo).</li>
+    <li>Calcular la capacidad de pago con escenarios conservadores.</li>
+    <li>Comparar al menos 3 opciones de instituciones financieras.</li>
+  </ul>
+
+  <h2>Errores frecuentes</h2>
+  <ul class="checklist">
+    <li>Pedir más dinero del que realmente se necesita.</li>
+    <li>No revisar el CAT y enfocarse solo en la tasa.</li>
+    <li>Descuidar el flujo de caja al proyectar pagos.</li>
+    <li>No prever imprevistos o temporadas bajas.</li>
+  </ul>
+
+  <div class="cta-note">
+    <span>¿Quieres evaluar cuál es el financiamiento más adecuado para tu negocio?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20financiamiento%20para%20mi%20negocio">Solicitar asesoría</a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body,toggle=$('.nav-toggle'),menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');menu.querySelector('a')?.focus({preventScroll:true});}
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');toggle.focus({preventScroll:true});}
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open()});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close()});
+    document.addEventListener('click',e=>{if(!isOpen())return; if(!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close()});
+    const mq=window.matchMedia('(min-width:1025px)'); mq.addEventListener?.('change',()=>{if(mq.matches)close()});
+  }
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

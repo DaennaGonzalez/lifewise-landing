@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flujo de caja: el indicador que tu negocio no debe ignorar — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{
+    --deep:#003049; --calm:#2b7aa5; --ink:#0b2d48; --muted:#5b6b7a;
+    --gradient:linear-gradient(135deg,var(--calm),var(--deep));
+    --shadow:0 12px 28px rgba(16,42,67,.12);
+    --shadow-sm:0 8px 20px rgba(16,42,67,.10);
+    --ok:#0f9d58; --warn:#f4b400; --risk:#d93025; --info:#0d6efd;
+  }
+  body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+
+  /* HERO */
+  .post-hero{background:var(--gradient);color:#fff;padding:clamp(56px,8vw,84px) 0 24px}
+  .post-hero .container{max-width:1020px}
+  .post-hero h1{margin:0;font-weight:900;line-height:1.06}
+  .post-hero .meta{color:#e6f2ff}
+
+  /* COVER */
+  .post-cover{max-width:1120px;margin:16px auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .post-cover img{width:100%;display:block;object-fit:cover}
+
+  /* BODY */
+  .post-body{max-width:1020px;margin:0 auto;padding:18px 18px 78px;font-size:clamp(1rem,.98rem + .25vw,1.08rem);line-height:1.75}
+  .post-body h2{margin:1.15rem 0 .4rem;font-weight:900;font-size:clamp(1.18rem,1rem + 1vw,1.6rem);color:var(--ink)}
+  .post-body h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;margin:.35rem 0 .2rem;background:var(--gradient);opacity:.26}
+  .post-body p{margin:.25rem 0 1rem;color:#12334a}
+  .blog-tag{display:inline-block;font-weight:800;background:#e9f6ff;color:var(--ink);border:1px solid #cfeafd;padding:.28rem .6rem;border-radius:999px;margin-bottom:.35rem}
+
+  /* KPI cards */
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:.25rem 0 1rem}
+  .kpi{background:#fff;border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .kpi b{display:block;font-size:clamp(1.05rem,.95rem + .5vw,1.25rem);color:var(--ink)}
+  .kpi small{color:var(--muted)}
+  .kpi .pos{color:var(--ok);font-weight:800}
+  .kpi .neg{color:var(--risk);font-weight:800}
+
+  /* Steps as cards */
+  .steps{display:grid;gap:14px;margin:.4rem 0 1.2rem}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .badge{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--gradient);color:#fff;font-weight:900;box-shadow:0 8px 18px rgba(16,42,67,.22);flex-shrink:0}
+  .step h3{margin:.05rem 0 .25rem;font-size:clamp(1.05rem,.95rem + .6vw,1.25rem);font-weight:900;color:var(--ink)}
+  .muted{color:var(--muted)}
+
+  /* Chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:.45rem .7rem;border-radius:999px;background:#f4f9ff;border:1px solid #dbeaf8;font-weight:700}
+
+  /* Scrollable table */
+  .table-wrap{border:1px solid #e6edf4;border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;background:#fff;margin:.25rem 0 1rem}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:separate;min-width:760px}
+  th,td{padding:12px 14px;text-align:left;white-space:nowrap}
+  thead th{background:#f2f8ff;border-bottom:1px solid #dbe9f6;color:#08324b;font-weight:800}
+  tbody tr+tr td{border-top:1px solid #eef3f8}
+  tbody td:first-child{font-weight:800;color:var(--ink)}
+
+  /* Callouts */
+  .note{border:1px solid #cfe5fb;background:linear-gradient(0deg,#f1f8ff,#fff);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .note strong{display:inline-flex;align-items:center;gap:8px}
+  .note strong::before{content:"💡"}
+  .warn{border-color:#fde6b0;background:linear-gradient(0deg,#fff8e6,#fff)}
+  .warn strong::before{content:"⚠️"}
+
+  /* Back + CTA */
+  .backline{margin-top:12px}
+  .backline a{display:inline-flex;align-items:center;gap:8px;padding:.65rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:#f4f9ff;border:1px solid #dbeaf8}
+  .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note .btn{margin-left:auto}
+
+  /* Mobile */
+  @media(max-width:880px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:680px){
+    .post-hero{text-align:center;padding:36px 0 16px}
+    .post-hero h1{font-size:clamp(1.22rem,1rem + 3.2vw,1.7rem)}
+    .post-cover{margin:10px 14px;border-radius:14px}
+    .post-body{padding:12px 14px 64px;font-size:1.02rem;line-height:1.78}
+    .steps{gap:12px}
+    .step{grid-template-columns:36px 1fr;padding:12px;border-radius:14px}
+    .badge{width:32px;height:32px;font-size:.95rem}
+    .cta-note{gap:8px;padding:12px 14px;border-radius:14px}
+    .cta-note .btn{width:100%;margin-left:0;text-align:center}
+    .kpis{grid-template-columns:1fr}
+    .table-wrap{border-radius:12px}
+    th,td{padding:10px 12px}
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img"></a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a><a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a><a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a><a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Negocios</span>
+    <h1>Flujo de caja: el indicador que tu negocio no debe ignorar</h1>
+    <p class="meta">Lectura: 6 min · <time datetime="2025-05-18">18 May 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-6.webp" alt="Flujo de caja en pizarra">
+</figure>
+
+<article class="post-body container">
+  <p>La utilidad no paga nómina: <strong>el flujo de caja</strong> sí. Vigilar el efectivo que entra y sale cada semana te permite anticipar faltantes, negociar con proveedores y decidir cuándo usar financiamiento sin poner en riesgo la operación.</p>
+
+  <h2>Flujo de caja en una línea</h2>
+  <div class="kpis">
+    <div class="kpi">
+      <small>Fórmula</small>
+      <b>Ingresos de efectivo – Egresos de efectivo</b>
+      <small class="muted">Periodo: día, semana o mes</small>
+    </div>
+    <div class="kpi">
+      <small>Meta</small>
+      <b class="pos">Positivo y predecible</b>
+      <small class="muted">Cubre gastos fijos + variable</small>
+    </div>
+    <div class="kpi">
+      <small>Alerta</small>
+      <b class="neg">Negativo ≥ 2 periodos</b>
+      <small class="muted">Toma acciones inmediatas</small>
+    </div>
+  </div>
+
+  <h2>Cómo leer tu flujo de caja (paso a paso)</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="badge">1</div>
+      <div>
+        <h3>Define periodo y fuentes</h3>
+        <p>Semanal es ideal para pymes con cobros frecuentes. Lista todas las entradas y salidas de <em>efectivo</em> (no solo facturas).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">2</div>
+      <div>
+        <h3>Separa operaciones, inversión y financiamiento</h3>
+        <p>Operación (ventas, proveedores), inversión (equipo) y financiamiento (créditos). Así ves qué presiona el flujo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">3</div>
+      <div>
+        <h3>Proyecta 8–12 semanas</h3>
+        <p>Anticipa picos de pagos (IMSS, impuestos) y temporadas bajas. Ajusta cada semana contra lo real.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">4</div>
+      <div>
+        <h3>Calcula tu “punto de caja”</h3>
+        <p>¿Cuánto necesitas de ingresos semanales para cubrir <strong>todo</strong> lo que sale? Ese es tu piso operativo.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Ejemplo de proyección semanal (simplificado)</h2>
+  <div class="table-wrap" role="region" aria-label="Tabla de flujo de caja semanal" tabindex="0">
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Semana</th><th>Entradas</th><th>Salidas (Op.)</th><th>Salidas (Fijas)</th><th>Saldo neto</th><th>Saldo acumulado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>W1</td><td>$180,000</td><td>$95,000</td><td>$40,000</td><td class="pos">$45,000</td><td>$45,000</td></tr>
+          <tr><td>W2</td><td>$120,000</td><td>$105,000</td><td>$40,000</td><td class="neg">-$25,000</td><td>$20,000</td></tr>
+          <tr><td>W3</td><td>$200,000</td><td>$110,000</td><td>$40,000</td><td class="pos">$50,000</td><td>$70,000</td></tr>
+          <tr><td>W4</td><td>$140,000</td><td>$120,000</td><td>$40,000</td><td class="neg">-$20,000</td><td>$50,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Palancas para mejorar el flujo</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="badge">A</div>
+      <div>
+        <h3>Cobra más rápido</h3>
+        <p>Anticipos del 30–50%, descuentos por pronto pago, recordatorios automáticos y múltiples métodos de cobro.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">B</div>
+      <div>
+        <h3>Compra mejor</h3>
+        <p>Negocia plazos con proveedores, consolida pedidos y evita inventario muerto con reposición por ventas.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">C</div>
+      <div>
+        <h3>Escalona egresos fijos</h3>
+        <p>Pacta fechas distintas para renta, nómina y servicios. Suaviza picos dentro del mes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="badge">D</div>
+      <div>
+        <h3>Ajusta precios/márgenes</h3>
+        <p>Revisa costos y rentabilidad por línea. Un 3–5% de precio puede equilibrar semanas críticas.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>¿Cuándo usar financiamiento para estabilizar?</h2>
+  <p>El crédito puede ser una herramienta para cubrir brechas **temporales** o financiar crecimiento. Úsalo si:</p>
+  <ul class="chips" aria-label="Criterios de uso de crédito">
+    <li class="chip">Flujo negativo < 8 semanas</li>
+    <li class="chip">Destino claro y con retorno</li>
+    <li class="chip">Capacidad de pago demostrable</li>
+    <li class="chip">Tasa/plazo mejoran tu perfil</li>
+  </ul>
+
+  <div class="note">
+    <strong>Regla práctica:</strong> usa crédito de corto plazo para capital de trabajo (inventario, órdenes firmes) y de mediano plazo para activos (equipo).
+  </div>
+
+  <div class="warn" style="margin-top:12px">
+    <strong>Evita:</strong> pagar gastos fijos permanentes con créditos rotativos por más de 3 meses seguidos. Señal de modelo que necesita ajustes.
+  </div>
+
+  <h2>Errores comunes</h2>
+  <div class="steps">
+    <div class="step"><div class="badge">1</div><div><h3>Confundir utilidad con caja</h3><p>Vendes, facturas… pero si no cobras, no hay efectivo.</p></div></div>
+    <div class="step"><div class="badge">2</div><div><h3>No separar cuentas</h3><p>Mezclar finanzas personales con las del negocio distorsiona la realidad.</p></div></div>
+    <div class="step"><div class="badge">3</div><div><h3>Ignorar estacionalidad</h3><p>Planifica meses flojos con colchón o líneas de crédito preaprobadas.</p></div></div>
+  </div>
+
+  <div class="cta-note">
+    <span>¿Quieres revisar tu flujo y elegir el financiamiento adecuado para tu negocio?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20optimizar%20mi%20flujo%20de%20caja">
+      Diagnóstico de flujo de caja
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body,toggle=$('.nav-toggle'),menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');menu.querySelector('a')?.focus({preventScroll:true});}
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');toggle.focus({preventScroll:true});}
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open()});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close()});
+    document.addEventListener('click',e=>{if(!isOpen())return;if(!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close()});
+    const mq=window.matchMedia('(min-width:1025px)'); mq.addEventListener?.('change',()=>{if(mq.matches)close()});
+  }
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

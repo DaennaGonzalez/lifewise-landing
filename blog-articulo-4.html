@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAT, tasa e intereses: cómo entenderlos sin enredos — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{
+    --deep:#003049; --calm:#2b7aa5; --ink:#0b2d48;
+    --gradient:linear-gradient(135deg,var(--calm),var(--deep));
+    --shadow:0 12px 28px rgba(16,42,67,.12);
+    --shadow-sm:0 8px 20px rgba(16,42,67,.10);
+    --ok:#0f9d58; --warn:#f4b400; --risk:#d93025;
+  }
+  body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+
+  /* HERO */
+  .post-hero{background:var(--gradient);color:#fff;padding:clamp(56px,8vw,84px) 0 24px}
+  .post-hero .container{max-width:980px}
+  .post-hero h1{margin:0;font-weight:900;line-height:1.06}
+  .post-hero .meta{color:#e6f2ff}
+
+  /* COVER */
+  .post-cover{max-width:1100px;margin:16px auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .post-cover img{width:100%;display:block;object-fit:cover}
+
+  /* BODY */
+  .post-body{max-width:980px;margin:0 auto;padding:18px 18px 76px;font-size:clamp(1rem,.98rem+.25vw,1.08rem);line-height:1.75}
+  .post-body h2{margin:1.15rem 0 .4rem;font-weight:900;font-size:clamp(1.18rem,1rem+1vw,1.6rem);color:var(--ink)}
+  .post-body h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;margin:.35rem 0 .2rem;background:var(--gradient);opacity:.26}
+  .post-body p{margin:.25rem 0 1rem;color:#12334a}
+
+  .blog-tag{display:inline-block;font-weight:800;background:#e9f6ff;color:var(--ink);border:1px solid #cfeafd;padding:.28rem .6rem;border-radius:999px;margin-bottom:.35rem}
+
+  /* Cards */
+  .grid{display:grid;gap:14px}
+  .card{background:#fff;border:1px solid #e6edf4;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .card h3{margin:.1rem 0 .25rem;font-weight:900;color:var(--ink);font-size:clamp(1.02rem,.95rem+.6vw,1.22rem)}
+  .muted{color:#5b6b7a}
+
+  /* Definition chips */
+  .def{display:grid;grid-template-columns:1fr;gap:10px}
+  .def .item{background:#fbfdff;border:1px solid #e6edf4;border-radius:14px;padding:12px 14px}
+  .def .item strong{display:block;color:var(--deep);margin-bottom:.15rem}
+
+  /* Table (scrollable on mobile) */
+  .table-wrap{border:1px solid #e6edf4;border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;background:#fff;margin:.25rem 0 1rem}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:separate;min-width:720px}
+  th,td{padding:12px 14px;text-align:left}
+  thead th{background:#f2f8ff;border-bottom:1px solid #dbe9f6;color:#08324b;font-weight:800}
+  tbody tr+tr td{border-top:1px solid #eef3f8}
+  tbody td:first-child{font-weight:800;color:var(--ink)}
+  .good{color:var(--ok);font-weight:800}
+  .warn{color:var(--warn);font-weight:800}
+  .bad{color:var(--risk);font-weight:800}
+
+  /* Lists */
+  .checklist{list-style:none;padding:0;display:grid;gap:8px}
+  .checklist li{position:relative;padding-left:28px}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:.05rem;width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:var(--ok);color:#fff;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.12)}
+
+  /* Back + CTA */
+  .backline{margin-top:12px}
+  .backline a{display:inline-flex;align-items:center;gap:8px;padding:.65rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:#f4f9ff;border:1px solid #dbeaf8}
+  .btn.primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+  .cta-note .btn{margin-left:auto}
+
+  /* Mobile */
+  @media(max-width:680px){
+    .post-hero{text-align:center;padding:36px 0 16px}
+    .post-hero h1{font-size:clamp(1.22rem,1rem+3.2vw,1.7rem)}
+    .post-cover{margin:10px 14px;border-radius:14px}
+    .post-body{padding:12px 14px 60px;font-size:1.02rem;line-height:1.78}
+    .table-wrap{border-radius:12px}
+    th,td{padding:10px 12px;white-space:nowrap}
+    .cta-note{gap:8px;padding:12px 14px;border-radius:14px}
+    .cta-note .btn{width:100%;margin-left:0;text-align:center}
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img"></a>
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a><a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a><a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a><a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a class="btn cta" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">¡Hablemos de tus metas!</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Educación</span>
+    <h1>CAT, tasa e intereses: cómo entenderlos sin enredos</h1>
+    <p class="meta">Lectura: 5 min · <time datetime="2025-06-22">22 Jun 2025</time></p>
+    <div class="backline"><a href="blog.html">← Volver al blog</a></div>
+  </div>
+</section>
+
+<figure class="post-cover">
+  <img src="imagenes/blog-4.webp" alt="Persona comparando tasas y CAT">
+</figure>
+
+<article class="post-body container">
+  <p>Al comparar créditos no basta con ver la tasa de interés. El <strong>CAT</strong> resume en un solo indicador el costo anual del financiamiento incluyendo intereses, comisiones y otros cargos. Aquí te explico lo esencial y cómo usarlo para elegir mejor.</p>
+
+  <h2>Glosario express</h2>
+  <div class="def">
+    <div class="item"><strong>Tasa nominal</strong><span class="muted">Interés pactado. Puede ser mensual, anual o variable (referenciada a TIIE).</span></div>
+    <div class="item"><strong>Tasa anual equivalente (TAE)</strong><span class="muted">Homologa a términos anuales la tasa y capitalización. Ayuda a comparar.</span></div>
+    <div class="item"><strong>CAT (Costo Anual Total)</strong><span class="muted">Indicador anual que integra intereses + comisiones + seguros + IVA. Es la comparación justa entre ofertas.</span></div>
+    <div class="item"><strong>Comisiones</strong><span class="muted">Apertura, administración, anualidad, etc. Elevan el costo real aunque la tasa sea baja.</span></div>
+  </div>
+
+  <h2>Cómo comparar ofertas con el CAT</h2>
+  <p>Entre dos créditos, en condiciones de plazo y monto similares, elige el <strong>CAT más bajo</strong>. Revisa también si la tasa es fija o variable y si hay penalizaciones por prepago.</p>
+
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table aria-label="Comparativa de ofertas por CAT">
+        <thead>
+          <tr><th>Concepto</th><th>Oferta A</th><th>Oferta B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monto</td><td>$100,000</td><td>$100,000</td></tr>
+          <tr><td>Plazo</td><td>24 meses</td><td>24 meses</td></tr>
+          <tr><td>Tasa</td><td>28% fija anual</td><td>24% fija anual</td></tr>
+          <tr><td>Comisión apertura</td><td>0%</td><td>3.0% ($3,000)</td></tr>
+          <tr><td>Seguro</td><td>Incluido</td><td>$110/mes</td></tr>
+          <tr><td>CAT aprox.</td><td><span class="good">~32–34%</span></td><td><span class="warn">~35–38%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="muted">Nota: los CAT mostrados son estimaciones para fines educativos; el cálculo oficial puede variar por condiciones específicas.</p>
+
+  <h2>Señales de alerta</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>CAT muy por encima del mercado <span class="bad">(riesgo)</span></h3>
+      <p>Si no tienes historial o tu score es bajo, el CAT puede elevarse mucho. Busca alternativas o mejora tu perfil primero.</p>
+    </div>
+    <div class="card">
+      <h3>“Tasa baja” con muchas comisiones</h3>
+      <p>Una tasa atractiva puede esconder costos de apertura, administración o seguros obligatorios. Revisa el CAT y el contrato.</p>
+    </div>
+    <div class="card">
+      <h3>Penalización por prepago</h3>
+      <p>Si planeas adelantar pagos, verifica que no exista penalización o que sea mínima.</p>
+    </div>
+  </div>
+
+  <h2>Checklist para elegir mejor</h2>
+  <ul class="checklist">
+    <li>Compara <strong>CAT, plazo y pagos</strong> en al menos 3 instituciones.</li>
+    <li>Verifica si la tasa es <strong>fija o variable</strong> y la frecuencia de revisión.</li>
+    <li>Pregunta por <strong>comisiones</strong> (apertura, administración, anualidad) y <strong>seguros</strong> obligatorios.</li>
+    <li>Confirma si hay <strong>penalización por prepago</strong> o adelantos.</li>
+    <li>Simula tu pago mensual con un escenario conservador de ingresos.</li>
+  </ul>
+
+  <div class="cta-note">
+    <span>¿Necesitas ayuda para comparar ofertas y entender el CAT real que pagarías?</span>
+    <a class="btn primary" target="_blank" href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20comparar%20CAT%20y%20tasas">Comparar mi crédito</a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s);
+  const body=document.body,toggle=$('.nav-toggle'),menu=$('.nav-links');
+  if(toggle&&menu){
+    const open=()=>{body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');menu.querySelector('a')?.focus({preventScroll:true});}
+    const close=()=>{body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');toggle.focus({preventScroll:true});}
+    const isOpen=()=>body.classList.contains('nav-open');
+    toggle.addEventListener('click',()=>{isOpen()?close():open()});
+    menu.addEventListener('click',e=>{if(e.target.closest('a')&&isOpen())close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())close()});
+    document.addEventListener('click',e=>{if(!isOpen())return; if(!e.target.closest('.nav-links')&&!e.target.closest('.nav-toggle'))close()});
+    const mq=window.matchMedia('(min-width:1025px)'); mq.addEventListener?.('change',()=>{if(mq.matches)close()});
+  }
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

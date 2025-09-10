@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>¿Cuándo conviene solicitar un préstamo personal? — Lifewise Capital</title>
+<link rel="icon" type="image/webp" href="imagenes/logo-individual-azul.webp">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ====== Tokens locales ====== */
+  :root{
+    --deep:#003049;
+    --calm:#2b7aa5;
+    --ink:#0b2d48;
+    --muted:#456079;
+    --gradient: linear-gradient(135deg, var(--calm), var(--deep));
+    --shadow: 0 12px 28px rgba(16,42,67,.12);
+    --shadow-sm: 0 8px 20px rgba(16,42,67,.10);
+    --ok:#0f9d58;
+    --warn:#f4b400;
+    --risk:#d93025;
+    --chip:#e9f6ff;
+  }
+  body{ font-family:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--ink); }
+
+  /* ===== HERO ===== */
+  .post-hero{
+    background:linear-gradient(135deg,var(--calm),var(--deep));
+    color:#fff; padding: clamp(56px,8vw,84px) 0 24px;
+  }
+  .post-hero .container{max-width: 980px;}
+  .post-hero h1{margin:0; font-weight:900; line-height:1.06; letter-spacing:.2px}
+  .post-hero .meta{color:#e6f2ff}
+
+  /* ===== COVER ===== */
+  .post-cover{max-width: 1100px; margin: 16px auto; border-radius: 18px; overflow:hidden; box-shadow: var(--shadow);}
+  .post-cover img{width:100%; height:auto; display:block; object-fit:cover}
+
+  /* ===== BODY ===== */
+  .post-body{
+    max-width: 980px; margin: 0 auto;
+    padding-block: 18px 72px; padding-inline: 18px;
+    font-size: clamp(1rem, .98rem + .25vw, 1.08rem);
+    line-height: 1.75;
+    overflow-wrap:anywhere; word-break: break-word;
+  }
+  .post-body p{ color:#12334a; margin:.25rem 0 1rem }
+  .post-body h2{
+    margin:1.15rem 0 .4rem; font-weight:900; line-height:1.18;
+    font-size: clamp(1.18rem,1rem + 1vw,1.6rem); color:var(--ink);
+    position:relative;
+  }
+  .post-body h2::after{
+    content:""; display:block; width:64px; height:4px; border-radius:4px; margin:.35rem 0 .2rem;
+    background:var(--gradient); opacity:.26;
+  }
+
+  /* ===== Chips / Tag ===== */
+  .blog-tag{
+    display:inline-block; font-weight:800; letter-spacing:.25px;
+    background:#e9f6ff; color:#0b2d48; border:1px solid #cfeafd;
+    padding:.28rem .6rem; border-radius:999px; margin-bottom:.35rem;
+  }
+
+  /* ===== Secciones tipo tarjetas ===== */
+  .grid{
+    display:grid; gap:14px;
+  }
+  .card{
+    background:#fff; border:1px solid #e6edf4; border-radius:16px;
+    padding:14px 16px; box-shadow: var(--shadow-sm);
+  }
+  .card h3{ margin:.1rem 0 .25rem; font-weight:900; color:#0b2d48; font-size: clamp(1.02rem,.95rem + .6vw,1.22rem) }
+
+  /* Listas con iconos */
+  .list{ list-style:none; padding:0; margin:.25rem 0 0; display:grid; gap:8px; }
+  .list li{ display:grid; grid-template-columns:24px 1fr; gap:10px; align-items:start; }
+  .list .i{ width:24px; height:24px; border-radius:50%; display:inline-grid; place-items:center; color:#fff; font-weight:900; font-size:.9rem; box-shadow:0 6px 14px rgba(0,0,0,.12) }
+  .i.ok{ background:var(--ok) } .i.warn{ background:var(--warn) } .i.risk{ background:var(--risk) }
+
+  /* Checklist */
+  .checklist{ list-style:none; padding:0; margin:.2rem 0 0; display:grid; gap:8px; }
+  .checklist li{ position:relative; padding-left:28px; }
+  .checklist li::before{
+    content:"✓"; position:absolute; left:0; top:.05rem; width:20px; height:20px;
+    border-radius:50%; display:inline-grid; place-items:center; font-weight:900; color:#fff; background:var(--ok);
+    box-shadow:0 6px 14px rgba(0,0,0,.12);
+  }
+
+  /* Tabla comparativa / scrollable en móvil */
+  .table-wrap{
+    border:1px solid #e6edf4; border-radius:14px; box-shadow: var(--shadow-sm);
+    overflow:hidden; background:#fff;
+  }
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table{ width:100%; border-collapse:separate; border-spacing:0; min-width:720px; }
+  th,td{ padding:12px 14px; text-align:left; }
+  thead th{ background:#f2f8ff; border-bottom:1px solid #dbe9f6; color:#08324b; font-weight:800 }
+  tbody tr + tr td{ border-top:1px solid #eef3f8; }
+  tbody td:first-child{ font-weight:800; color:#0b2d48 }
+
+  /* Nota/alerta */
+  .note{
+    margin: 12px 0; padding: 12px 14px; border-radius: 14px;
+    background: linear-gradient(0deg,#fff8e1,#ffffff);
+    border:1px solid #fde7a9; color:#6b5500;
+  }
+
+  /* Volver al blog */
+  .backline{display:flex; gap:10px; align-items:center; margin-top:12px}
+  .backline a{
+    display:inline-flex; align-items:center; gap:8px; padding:.65rem .9rem; border-radius:999px; text-decoration:none; font-weight:800;
+    background:var(--gradient); color:#fff; box-shadow: var(--shadow-sm);
+  }
+
+  /* CTA final */
+  .cta-note{
+    margin-top: 18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    padding:14px 16px; border-radius:16px; background:#f4f9ff; border:1px solid #dbeaf8; color:#0b2d48;
+  }
+  .btn.primary{ background: var(--gradient); color:#fff; box-shadow: var(--shadow-sm); }
+  .cta-note .btn{ margin-left:auto; }
+
+  /* ===== Móvil ===== */
+  @media (max-width: 680px){
+    .post-hero{ padding: 36px 0 16px; text-align:center; }
+    .post-hero .container{ padding-inline: clamp(14px,4vw,20px); }
+    .post-hero h1{ font-size: clamp(1.22rem, 1rem + 3.2vw, 1.7rem); line-height:1.18; }
+    .post-cover{ margin: 10px clamp(12px,4vw,16px) 6px; border-radius: 14px; }
+
+    .post-body{ padding-block: 12px 56px; padding-inline: clamp(14px,4vw,20px); font-size:1.02rem; line-height:1.78; }
+    .grid{ gap:12px }
+    .card{ padding:12px 14px; border-radius:14px }
+    .table-wrap{ border-radius:12px }
+    th,td{ padding:10px 12px; white-space:nowrap }
+    .cta-note{ gap:8px; padding:12px 14px; border-radius:14px }
+    .cta-note .btn{ width:100%; text-align:center; margin-left:0 }
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Ir al inicio">
+      <img src="imagenes/logo-blanco.webp" alt="Lifewise Capital" class="logo-img">
+    </a>
+
+    <nav class="nav-links" aria-label="Menú principal">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#requisitos">Requisitos</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+
+    <a class="btn cta" target="_blank"
+       href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20informaci%C3%B3n">
+      ¡Hablemos de tus metas!
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="post-hero">
+  <div class="container">
+    <span class="blog-tag">Préstamos</span>
+    <h1>¿Cuándo conviene solicitar un préstamo personal?</h1>
+    <p class="meta">Lectura: 5 min · <time datetime="2025-07-30">30 Jul 2025</time></p>
+    <div class="backline"><a href="blog.html" aria-label="Volver al blog">← Volver al blog</a></div>
+  </div>
+</section>
+
+<!-- ===== COVER ===== -->
+<figure class="post-cover">
+  <img src="imagenes/blog-2.webp" alt="Persona evaluando un préstamo">
+</figure>
+
+<!-- ===== CONTENIDO ===== -->
+<article class="post-body container">
+
+  <p>Un préstamo personal puede ser una herramienta útil para resolver necesidades puntuales o impulsar proyectos. La clave es saber **cuándo sí** usarlo, **cuándo no** y **cómo elegir** la mejor opción.</p>
+
+  <!-- CUANDO SÍ / CUANDO NO -->
+  <section class="grid">
+    <article class="card">
+      <h3>Señales de que SÍ conviene</h3>
+      <ul class="list">
+        <li><span class="i ok">+</span><div><strong>Consolidar deudas caras</strong> en una sola mensualidad con menor CAT y plazo claro.</div></li>
+        <li><span class="i ok">+</span><div><strong>Gasto médico o emergencia</strong> que no puede esperar y te ofrece descuento por pago inmediato.</div></li>
+        <li><span class="i ok">+</span><div><strong>Inversión que genera ingresos</strong> (equipo, certificación, capital de trabajo) con retorno estimable.</div></li>
+        <li><span class="i ok">+</span><div><strong>Falta de liquidez temporal</strong> pero con flujo futuro cierto para pagarlo sin ahogos.</div></li>
+        <li><span class="i ok">+</span><div><strong>Construir historial crediticio</strong> con un monto pequeño, pagos puntuales y sin comisiones sorpresa.</div></li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Señales de que NO conviene</h3>
+      <ul class="list">
+        <li><span class="i risk">!</span><div>Para <strong>gastos fijos recurrentes</strong> (renta, súper) sin una solución de fondo.</div></li>
+        <li><span class="i risk">!</span><div><strong>Compras impulsivas</strong> o devaluables que perderán valor antes de terminar de pagarlas.</div></li>
+        <li><span class="i warn">!</span><div><strong>Refinanciar</strong> otra deuda sin plan: podrías alargar plazo y pagar más intereses.</div></li>
+        <li><span class="i risk">!</span><div><strong>CAT y comisiones altas</strong> respecto a tu banco/alternativas.</div></li>
+        <li><span class="i warn">!</span><div><strong>Ingresos inestables</strong> que pondrían en riesgo tu capacidad de pago.</div></li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="card" style="margin-top:12px;">
+    <h3>Checklist rápido antes de decidir</h3>
+    <ul class="checklist">
+      <li>Tengo un uso claro y de valor (necesidad o inversión).</li>
+      <li>Puedo pagar la mensualidad sin exceder el <strong>35%</strong> de mis ingresos netos.</li>
+      <li>Comparé al menos 3 ofertas por <strong>CAT</strong>, plazo y comisiones.</li>
+      <li>No hay penalización por pagos anticipados (o es mínima).</li>
+      <li>Conozco el <strong>total a pagar</strong> y sé cómo se distribuye capital/intereses.</li>
+    </ul>
+  </section>
+
+  <!-- COMO ELEGIR -->
+  <h2>Cómo elegir un buen préstamo personal</h2>
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table aria-label="Factores para comparar">
+        <thead>
+          <tr><th>Factor</th><th>Qué revisar</th><th>Por qué importa</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CAT</td>
+            <td>Incluye tasa + comisiones + seguros</td>
+            <td>Permite comparar ofertas reales, no solo la tasa.</td>
+          </tr>
+          <tr>
+            <td>Tasa</td>
+            <td>Fija vs. variable</td>
+            <td>La fija da certeza en mensualidades; la variable puede subir.</td>
+          </tr>
+          <tr>
+            <td>Plazo</td>
+            <td>12–60 meses según el caso</td>
+            <td>Más plazo = pago menor pero más intereses totales.</td>
+          </tr>
+          <tr>
+            <td>Comisiones</td>
+            <td>Apertura, administración, prepago</td>
+            <td>Pueden encarecer el crédito si no se consideran.</td>
+          </tr>
+          <tr>
+            <td>Flexibilidad</td>
+            <td>Pagos anticipados sin penalización</td>
+            <td>Te permite liquidar antes y ahorrar intereses.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EJEMPLO NUMÉRICO -->
+  <h2>Ejemplo comparativo</h2>
+  <p>Supón que necesitas <strong>$60,000</strong> y comparas dos opciones:</p>
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table aria-label="Ejemplo comparativo">
+        <thead><tr><th>Opción</th><th>CAT aprox.</th><th>Plazo</th><th>Mensualidad</th><th>Total aprox.</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>32%</td><td>24 meses</td><td>$3,400</td><td>$81,600</td><td>Tasa fija, sin penalización de prepago.</td></tr>
+          <tr><td>B</td><td>26%</td><td>36 meses</td><td>$2,550</td><td>$91,800</td><td>Pago más cómodo, pero pagas más intereses totales.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p><em>Conclusión:</em> si tu flujo lo permite, la Opción A ahorra intereses; si necesitas una mensualidad menor, la Opción B da más aire.</p>
+
+  <!-- ANTES DE FIRMAR -->
+  <h2>Antes de firmar, confirma</h2>
+  <ul class="checklist">
+    <li>Calendario de pagos, fecha de corte y métodos de pago.</li>
+    <li>Si el seguro es opcional u obligatorio, y cuánto cuesta.</li>
+    <li>Comisión por prepago o liquidación anticipada.</li>
+    <li>Contactos de soporte y proceso para aclaraciones.</li>
+  </ul>
+
+  <div class="note"><strong>Importante:</strong> evita caer en “créditos milagro”. Nadie legítimo pide anticipos para “liberar” un préstamo.</div>
+
+  <!-- CONSEJOS PARA PAGARLO MEJOR -->
+  <h2>Consejos para pagarlo sin estrés</h2>
+  <ul class="checklist">
+    <li>Usa domiciliación para no atrasarte.</li>
+    <li>Destina <strong>ingresos extra</strong> (bonos, utilidades) a prepagos.</li>
+    <li>Si tu presupuesto aprieta, busca <strong>reperfilar plazo</strong> antes de atrasarte.</li>
+    <li>Evita contratar nuevas deudas hasta liquidar la actual.</li>
+  </ul>
+
+  <!-- CTA -->
+  <div class="cta-note">
+    <span>¿Quieres comparar opciones con números reales para tu caso?</span>
+    <a class="btn primary" target="_blank"
+       href="https://wa.me/528188002297?text=Hola%20Lifewise%20Capital%2C%20quiero%20comparar%20opciones%20de%20pr%C3%A9stamo%20personal">
+      Cotizar y comparar ahora
+    </a>
+  </div>
+</article>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-bottom"><p>© <span id="year"></span> Lifewise Capital</p></div>
+</footer>
+
+<!-- ===== Menú móvil (igual al landing) ===== -->
+<script>
+  (function(){
+    const $ = (s, c=document) => c.querySelector(s);
+    const body = document.body;
+    const toggle = $('.nav-toggle');
+    const menu = $('.nav-links');
+
+    if (toggle && menu) {
+      const openMenu = () => {
+        body.classList.add('nav-open');
+        toggle.setAttribute('aria-expanded','true');
+        const first = menu.querySelector('a');
+        first && first.focus({preventScroll:true});
+      };
+      const closeMenu = () => {
+        body.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.focus({preventScroll:true});
+      };
+      const isOpen = () => body.classList.contains('nav-open');
+
+      toggle.addEventListener('click', () => { isOpen() ? closeMenu() : openMenu(); });
+      menu.addEventListener('click', (e) => { const link = e.target.closest('a'); if (link && isOpen()) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) closeMenu(); });
+      document.addEventListener('click', (e) => {
+        if (!isOpen()) return;
+        const insideMenu = e.target.closest('.nav-links');
+        const onToggle = e.target.closest('.nav-toggle');
+        if (!insideMenu && !onToggle) closeMenu();
+      });
+      const mq = window.matchMedia('(min-width:1025px)');
+      mq.addEventListener?.('change', () => { if (mq.matches) closeMenu(); });
+    }
+
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+</script>
+
+</body>
+</html>

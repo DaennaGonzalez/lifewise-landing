@@ -1,0 +1,237 @@
+/* =========================================================
+   Lifewise Capital — styles-blog.css (LISTA + ARTÍCULOS)
+   Fuente: Montserrat (cargada en el HTML)
+   ========================================================= */
+
+:root{
+  --deep:#003049; --calm:#2b7aa5; --white:#fff;
+  --ink:#0a2740; --muted:#5b6b7a;
+
+  --blog-line:#e6edf4;
+  --blog-shadow:0 12px 28px rgba(16,42,67,.12);
+  --blog-shadow-sm:0 8px 20px rgba(16,42,67,.10);
+
+  --gradient: linear-gradient(135deg, var(--calm), var(--deep));
+}
+
+*{ box-sizing:border-box; }
+html, body{ height:100%; overflow-x:hidden; }
+body{
+  margin:0;
+  font-family:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; height:auto; display:block; }
+.container{ width:min(1160px,92%); margin-inline:auto; }
+
+/* ====== HEADER / NAV (igual a landing) ====== */
+.site-header{ position:sticky; top:0; z-index:50; background:var(--deep); color:#e9f4ff; border-bottom:3px solid rgba(255,255,255,.06); }
+.nav{ display:flex; align-items:center; gap:18px; padding:.85rem 0; }
+.logo-img{ height: clamp(36px,5vw,64px); width:auto; }
+.nav-links{ display:flex; gap:22px; margin-left:auto; }
+.nav-links a{ color:#cfe7f7; text-decoration:none; font-weight:600; padding:.35rem .25rem; border-radius:10px; }
+.nav-links a:hover, .nav-links a.active{ color:#fff; }
+.nav-toggle{ display:none; margin-left:8px; background:transparent; border:0; padding:4px; cursor:pointer; }
+.nav-toggle span{ display:block; width:26px; height:3px; border-radius:3px; background:#cfe7f7; margin:5px 0; }
+.btn{ display:inline-block; padding:.7rem 1rem; border-radius:999px; font-weight:700; text-decoration:none; }
+.btn.cta{ background:#83caed; color:#00263b; box-shadow:var(--blog-shadow-sm); }
+
+/* Menú móvil */
+@media (max-width:1024px){
+  .nav-links{ display:none; }
+  .nav-toggle{ display:block; }
+  body.nav-open{ overflow:hidden; }
+  body.nav-open .nav-links{
+    display:flex; flex-direction:column; gap:10px;
+    position:fixed; inset:64px 0 auto 0; background:var(--deep);
+    padding:14px 20px 20px; border-bottom:1px solid rgba(255,255,255,.1);
+  }
+}
+@media (max-width:680px){
+  .nav{ gap:10px; }
+  .btn.cta{ font-size:.85rem; padding:.55rem .85rem; max-width:70vw; }
+}
+
+/* ====== HERO ARTÍCULO ====== */
+.post-hero{
+  background:var(--gradient); color:#fff;
+  padding: clamp(48px,7vw,84px) 0 24px;
+}
+.post-hero .container{ max-width:920px; padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right)); }
+.post-hero h1{ font-weight:900; line-height:1.08; margin:0; }
+.post-hero .meta{ color:#e6f2ff; opacity:.95; }
+.blog-tag{
+  display:inline-block; font-size:.8rem; font-weight:800; letter-spacing:.25px;
+  color:#0b2d48; background:#e9f6ff; border:1px solid #cfeafd; padding:.25rem .55rem; border-radius:999px; margin-bottom:.5rem; background-clip:padding-box;
+}
+
+/* ====== COVER ====== */
+.post-cover{ max-width:1040px; margin:16px auto; border-radius:18px; overflow:hidden; box-shadow:var(--blog-shadow); }
+.post-cover img{ width:100%; height:auto; object-fit:cover; }
+
+/* ====== CUERPO ====== */
+.post-body{
+  max-width:920px; margin:0 auto;
+  padding:18px max(16px, env(safe-area-inset-left)) 72px max(16px, env(safe-area-inset-right));
+  font-size: clamp(1rem, .96rem + .25vw, 1.08rem);
+  line-height:1.75;
+  word-break: break-word; overflow-wrap:anywhere;
+}
+.post-body p{ color:#12334a; margin:.25rem 0 1rem; }
+.post-body h2{
+  color:#0b2d48; margin:1.2rem 0 .35rem; line-height:1.25;
+  font-size: clamp(1.15rem,1rem + .9vw,1.55rem); font-weight:900; letter-spacing:.2px;
+}
+.post-body h2::after{
+  content:""; display:block; width:64px; height:4px; border-radius:4px; margin:.35rem 0 .2rem;
+  background:var(--gradient); opacity:.28;
+}
+
+/* ====== PASOS COMO TARJETAS ====== */
+.steps{ display:grid; gap:14px; margin:8px 0 18px; }
+.step{
+  /* 2 columnas: badge + contenido */
+  display:grid; grid-template-columns: auto 1fr; gap:12px; align-items:flex-start;
+  background:#fff; border:1px solid var(--blog-line); border-radius:16px;
+  padding:14px 16px; box-shadow:var(--blog-shadow-sm);
+  transition: transform .15s ease, box-shadow .22s ease, border-color .22s ease;
+  max-width:100%;
+}
+.step:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(16,42,67,.12); border-color:#d7e6f4; }
+.step-badge{
+  display:inline-grid; place-items:center; flex-shrink:0;
+  width:42px; height:42px; border-radius:50%;
+  background:var(--gradient); color:#fff; font-weight:900; box-shadow:0 8px 18px rgba(16,42,67,.22);
+}
+.step h3{ margin:.1rem 0 .25rem; font-size: clamp(1.05rem, .95rem + .6vw, 1.25rem); line-height:1.25; color:#0b2d48; font-weight:900; }
+.step p{ margin:0; }
+
+/* ====== TIP / CTA ====== */
+.tip{
+  margin:16px 0; padding:14px 16px; border-radius:14px;
+  border:1px solid #cfe5fb; background:linear-gradient(0deg,#f1f8ff,#ffffff);
+  box-shadow:var(--blog-shadow-sm); color:#0b2d48;
+}
+.tip strong{ display:inline-flex; align-items:center; gap:8px; }
+.tip strong::before{ content:"💡"; }
+
+.cta-note{
+  margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  padding:14px 16px; border-radius:16px; background:#f4f9ff; border:1px solid #dbeaf8; color:#0b2d48;
+}
+.btn.primary{ background:var(--gradient); color:#fff; box-shadow:var(--blog-shadow-sm); border:0; }
+
+/* ====== TABLA Y SCROLL HORIZONTAL SOLO EN TABLAS ====== */
+.table-scroll{
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border-radius:14px; box-shadow:var(--blog-shadow-sm);
+  border:1px solid var(--blog-line);
+  background:#fff;
+}
+.table-scroll:focus{ outline:2px solid #9fd4ff; }
+.rule{
+  width:100%; border-collapse:separate; border-spacing:0;
+  min-width:520px; /* fuerza scroll en móviles si falta espacio */
+}
+.rule th, .rule td{ padding:12px 14px; text-align:left; white-space:nowrap; }
+.rule thead th{
+  background:linear-gradient(135deg,#e9f6ff,#fafdff);
+  color:#08324b; font-weight:800; border-bottom:1px solid #dbe9f6;
+}
+.rule tbody tr + tr td{ border-top:1px solid #eef3f8; }
+.rule tbody td:first-child{ font-weight:800; color:#0b2d48; }
+
+/* ====== BACK TO BLOG ====== */
+.backline{ display:flex; gap:10px; align-items:center; margin-top:12px; }
+.backline a{
+  display:inline-flex; align-items:center; gap:8px; padding:.65rem .9rem;
+  border-radius:999px; text-decoration:none; font-weight:800;
+  background:var(--gradient); color:#fff; box-shadow:var(--blog-shadow-sm);
+}
+
+/* ==== FIX global para que el contenido del grid pueda encoger ==== */
+.step { grid-template-columns: auto minmax(0, 1fr); } /* la 2ª columna puede reducirse */
+.step > div { min-width: 0; }                         /* permite wraps correctos */
+.step h3, .step p { overflow-wrap: anywhere; word-break: break-word; }
+
+/* ====== AJUSTES MÓVIL ====== */
+@media (max-width: 680px){
+  .post-hero{
+    padding: 34px 0 16px;
+    text-align: center;
+  }
+  .post-hero .container{
+    /* usa safe areas y padding lógico (inline) */
+    padding-inline: clamp(14px, 4vw, 20px);
+  }
+  .post-hero h1{
+    font-size: clamp(1.28rem, 1.05rem + 3.2vw, 1.75rem);
+    line-height: 1.18;
+  }
+
+  .post-cover{
+    /* margen lateral fluido; evita tocar los bordes del viewport */
+    margin: 10px clamp(12px, 4vw, 16px) 6px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(16,42,67,.10);
+  }
+
+  .post-body{
+    /* OJO: padding-inline (no TRBL) para que no se invierta izq/der */
+    padding-block: 12px 48px;
+    padding-inline: clamp(14px, 4vw, 20px);
+    font-size: 1.02rem;
+    line-height: 1.78;
+  }
+  .post-body h2{
+    margin: 1rem 0 .28rem;
+    font-size: clamp(1.08rem, .95rem + 3vw, 1.32rem);
+  }
+  .post-body h2::after{
+    width: 48px; height: 3px; margin: .26rem 0 .08rem;
+  }
+  .post-body p{ margin: .15rem 0 .85rem; }
+
+  .steps{ gap: 12px; }
+
+  /* badge + texto: nada se corta */
+  .step{
+    grid-template-columns: 32px minmax(0,1fr); /* badge fijo + contenido flexible */
+    gap: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    max-width: 100%;
+  }
+  .step-badge{
+    width: 32px; height: 32px; font-size: .95rem; flex: 0 0 32px;
+  }
+  .step h3{
+    font-size: clamp(1.02rem, .95rem + 2.4vw, 1.16rem);
+    margin: 0 0 .2rem;
+  }
+
+  .tip{
+    margin: 12px 0; padding: 12px 14px; border-radius: 12px;
+  }
+
+  .cta-note{
+    margin-top: 12px; padding: 12px 14px; border-radius: 14px; gap: 8px;
+  }
+  .cta-note .btn{ width: 100%; text-align: center; }
+
+  /* Tabla: scroll horizontal solo en la tabla */
+  .table-scroll{
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+  }
+  .rule th, .rule td{
+    padding: 10px 12px;
+    white-space: nowrap;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px){
+  .blog-actions .btn{ width:100%; justify-content:center; }
+}
