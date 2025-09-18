@@ -2152,3 +2152,197 @@ html, body, .faq { overflow-x: hidden; }
       linear-gradient(90deg, #163047 25%, #0f263a 37%, #163047 63%);
   }
 }
+
+/* =========================================================
+   Lifewise Capital — SECCIÓN VIDEOS (portadas que enlazan)
+   Portadas verticales 1080x1920: ¡sin recorte!
+   ========================================================= */
+
+/* ---------- Contenedor de la sección ---------- */
+.section.videos{
+  background:
+    radial-gradient(90% 120% at 0% 0%, rgba(107,182,229,.08), transparent 60%),
+    linear-gradient(180deg, #f7fbff, #eef6ff);
+  padding: clamp(2.2rem, 3vw, 4rem) 1rem;
+  text-align: center;
+}
+
+/* Título/subtítulo */
+.section.videos .section-head h2{
+  margin: 0 0 .5rem;
+  font-weight: 800;
+}
+.section.videos .section-head .accent{
+  background: linear-gradient(135deg, #6bb6e5 0%, #2b7aa5 45%, #003049 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.section.videos .section-head p{
+  color: #5b6b7a;
+  margin: 0 auto;
+  max-width: 68ch;
+}
+
+/* ---------- Grid ---------- */
+.video-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+  margin-top: clamp(1rem, 2vw, 2rem);
+}
+
+/* ---------- Tarjeta ---------- */
+.video-card{
+  background: #fff;
+  border: 1px solid #e8eef5;
+  border-radius: 14px;
+  padding: clamp(.75rem, 1.4vw, 1rem);
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(16,42,67,.08);
+  transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease;
+}
+.video-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(16,42,67,.12);
+  border-color: #d9e7f4;
+  filter: saturate(1.02);
+}
+.video-card:focus-within{
+  outline: 3px solid #9fd4ff;
+  outline-offset: 4px;
+}
+
+/* ---------- Enlace/clicable ---------- */
+.video-link{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+}
+
+/* ---------- Media (portada) ---------- */
+/* El contenedor define la relación de aspecto y el fondo de las “barras” */
+.video-media{
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio, 16/9);     /* 16:9 por defecto; cambia con clase o variable */
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 120% at 10% 90%, rgba(43,122,165,.18), transparent 60%),
+    linear-gradient(145deg, #2b7aa5 0%, #1d628a 45%, #003049 100%); /* “letterbox” bonito */
+  box-shadow: 0 6px 16px rgba(0,0,0,.06) inset;
+}
+
+/* La imagen SIEMPRE completa, sin recorte */
+.video-media img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain !important;       /* << clave: no recortar */
+  object-position: center !important;
+  border-radius: inherit;
+  /* Sombra sutil para despegue si quedan barras */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.12));
+}
+
+/* (Opcional) brillo suave al pasar el mouse */
+.video-link:hover .video-media::after{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(80% 60% at 50% 50%, rgba(255,255,255,.12), transparent 60%);
+  pointer-events:none;
+}
+
+/* ---------- Meta (título + chip) ---------- */
+.video-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: .75rem;
+}
+.video-meta h3{
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--deep, #003049);
+  line-height: 1.3;
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #2b7aa5, #003049);
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(16,42,67,.14);
+}
+
+/* ---------- Acciones (Mostrar más / Fin) ---------- */
+.videos-actions{
+  margin-top: clamp(1rem, 2.6vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+}
+.btn.show-more{
+  min-width: 240px;
+  box-shadow: var(--shadow, 0 10px 28px rgba(16,42,67,.12));
+}
+.videos-done{
+  margin: .1rem 0 0;
+  color: #365166;
+  font-weight: 700;
+}
+
+/* ---------- Relaciones de aspecto útiles ---------- */
+/* Usa cualquiera de estas clases en <article class="video-card ..."> o en el wrapper .video-media
+   para ajustar el alto sin recortar la portada */
+.ratio-16x9 .video-media{ --ratio: 16/9; }
+.ratio-9x16 .video-media{ --ratio: 9/16; }  /* vertical (recomendado para 1080x1920) */
+.ratio-4x5  .video-media{ --ratio: 4/5;  }
+.ratio-1x1  .video-media{ --ratio: 1/1;  }
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .video-grid{ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+@media (max-width:680px){
+  .video-grid{ grid-template-columns: 1fr; gap: 1rem; }
+  .video-meta h3{ font-size: 1rem; }
+  .btn.show-more{ width: 100%; }
+}
+
+/* ---------- Reduce Motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .video-card, .video-link:hover .video-media::after{
+    transition: none !important;
+  }
+}
+
+/* ---------- Dark Mode ---------- */
+@media (prefers-color-scheme: dark){
+  .section.videos{
+    background:
+      radial-gradient(90% 120% at 0% 0%, rgba(107,182,229,.06), transparent 60%),
+      linear-gradient(180deg, #0b1320, #0f172a);
+  }
+  .video-card{
+    background: #0c1a29;
+    border-color: rgba(255,255,255,.08);
+    box-shadow: 0 12px 28px rgba(0,0,0,.45);
+  }
+  .video-meta h3{ color: #e6f2ff; }
+  .videos-done{ color: #cfe2ff; }
+  .video-media{
+    background:
+      radial-gradient(120% 120% at 10% 90%, rgba(64,144,196,.22), transparent 60%),
+      linear-gradient(145deg, #0b2a3e 0%, #0a3a57 45%, #062838 100%);
+    box-shadow: 0 6px 20px rgba(0,0,0,.25) inset;
+  }
+}
