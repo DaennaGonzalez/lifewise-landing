@@ -571,36 +571,61 @@
 </section>
 
 <!-- JS (mostrar 5 en 5) -->
+<!-- JS (mostrar en lotes responsivos: 2 en móvil, 5 en desktop) -->
 <script>
 (function(){
-  const BATCH = 5;
   const grid = document.getElementById('video-grid');
   const btn  = document.getElementById('btn-mostrar-mas');
   const done = document.getElementById('videos-fin');
   if(!grid || !btn) return;
 
+  // Ordena por data-index para asegurar el orden correcto
   const cards = Array.from(grid.querySelectorAll('.video-card'))
     .sort((a,b)=> (+a.dataset.index) - (+b.dataset.index));
 
-  // Seguridad: oculta >5 por si el HTML no trajo hidden
-  cards.forEach(c => { if(+c.dataset.index > BATCH) c.hidden = true; });
+  // Lote dinámico: 2 en móvil (<=680px), 5 en pantallas mayores
+  const mq = window.matchMedia('(max-width: 680px)');
+  const getBatch = () => (mq.matches ? 2 : 5);
 
-  let cursor = BATCH;
+  let cursor = 0; // cuántas tarjetas están visibles
 
+  // Oculta todas y muestra el primer lote según el viewport actual
+  function showFirstBatch(){
+    cards.forEach(c => c.hidden = true);
+    cursor = 0;
+    const first = cards.slice(0, getBatch());
+    first.forEach(c => c.hidden = false);
+    cursor = first.length;
+    btn.hidden  = (cursor >= cards.length);
+    done.hidden = (cursor <  cards.length);
+  }
+
+  // Muestra el siguiente lote (2 o 5 dependiendo del viewport actual)
   function showNext(){
-    const next = cards.slice(cursor, cursor + BATCH);
+    const batch = getBatch();
+    const next  = cards.slice(cursor, cursor + batch);
     next.forEach(card => { card.hidden = false; });
     cursor += next.length;
-
     if(cursor >= cards.length){
-      btn.hidden = true;
+      btn.hidden  = true;
       done.hidden = false;
     }
   }
 
+  // Eventos
   btn.addEventListener('click', showNext);
+
+  // Si cambia el tamaño/orientación, recalcula el primer lote
+  // (Si prefieres NO reiniciar al rotar, comenta las dos líneas de abajo)
+  mq.addEventListener ? mq.addEventListener('change', showFirstBatch)
+                      : mq.addListener(showFirstBatch); // fallback Safari viejo
+  window.addEventListener('orientationchange', showFirstBatch);
+
+  // Inicial
+  showFirstBatch();
 })();
 </script>
+
 
 
 
