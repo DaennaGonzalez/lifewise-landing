@@ -235,3 +235,5 @@ img{ max-width:100%; height:auto; display:block; }
 @media (max-width: 1024px){
   .blog-actions .btn{ width:100%; justify-content:center; }
 }
+
+
