@@ -1889,6 +1889,8 @@ html, body { overflow-x: hidden; }
 
 
 
+
+
 /*FINAL DE LA SECCION PONERLO, AJUSTE MOVIL*/
 
 /* =========================
@@ -1960,3 +1962,193 @@ html, body, .faq { overflow-x: hidden; }
   }
 }
 
+
+
+/* =========================================================
+   Lifewise Capital — SECCIÓN VIDEOS
+   Estructura esperada en HTML:
+   <section id="videos" class="section videos"> … </section>
+   Usa tokens de color y sombras ya definidos en tu hoja
+   ========================================================= */
+
+/* ---------- Contenedor de la sección ---------- */
+.section.videos{
+  background:#f8f9fa;                  /* fondo suave */
+  padding:clamp(2.2rem,3vw,4rem) 1rem; /* respiración vertical */
+  text-align:center;
+}
+
+/* Título y subtítulo */
+.section.videos .section-head h2{
+  margin:0 0 .5rem;
+  font-weight:800;
+}
+.section.videos .section-head .accent{
+  /* mantiene tu look degradado si lo usas en títulos */
+  background: linear-gradient(135deg, #6bb6e5 0%, #2b7aa5 45%, #003049 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.section.videos .section-head p{
+  color:#5b6b7a;
+  margin:0 auto;
+  max-width:68ch;                      /* ancho legible */
+}
+
+/* ---------- Grid de tarjetas ---------- */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+  gap:clamp(1rem,2.2vw,2rem);
+  margin-top:clamp(1rem,2vw,2rem);
+}
+
+/* ---------- Tarjeta de video ---------- */
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  padding:clamp(.75rem,1.4vw,1rem);
+  border:1px solid #e8eef5;
+  box-shadow:0 10px 24px rgba(16,42,67,.08);
+  text-align:left;
+  transition:
+    transform .18s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    filter .25s ease;
+}
+.video-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 36px rgba(16,42,67,.12);
+  border-color:#d9e7f4;
+  filter:saturate(1.02);
+}
+
+/* Accesibilidad: foco claro si se navega con teclado */
+.video-card:focus-within{
+  outline:3px solid #9fd4ff;
+  outline-offset:4px;
+}
+
+/* ---------- Media (iframe) ---------- */
+.video-media{
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+/* “Esqueleto” simple mientras carga el player */
+.video-media::before{
+  content:"";
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  background:
+    linear-gradient(90deg, #e9eef5 25%, #f4f7fb 37%, #e9eef5 63%);
+  background-size:400% 100%;
+  animation:video-skeleton 1.1s ease-in-out infinite;
+  border-radius:10px;
+}
+
+/* El iframe reemplaza al esqueleto al ocupar el mismo espacio */
+.video-media iframe{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0;
+  display:block;
+  background:#000;        /* evita destello blanco */
+  border-radius:10px;
+}
+@keyframes video-skeleton{
+  0%{ background-position:100% 50% }
+  100%{ background-position:0% 50% }
+}
+
+/* ---------- Meta (título + chip proveedor) ---------- */
+.video-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:.75rem;
+}
+.video-meta h3{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:800;
+  color:var(--deep, #003049);
+  line-height:1.3;
+}
+
+/* Chip proveedor (Vimeo / YouTube) */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.25rem .55rem;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:800;
+  color:#fff;
+  background:var(--gradient, linear-gradient(135deg, #2b7aa5, #003049));
+  white-space:nowrap;
+  box-shadow:0 6px 14px rgba(16,42,67,.14);
+}
+
+/* ---------- Acciones (Mostrar más / Fin de lista) ---------- */
+.videos-actions{
+  margin-top:clamp(1rem,2.6vw,2rem);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6rem;
+}
+
+/* Reusa .btn.primary de tu hoja; aquí solo ajustes mínimos */
+.btn.show-more{
+  min-width:240px;
+  box-shadow:var(--shadow, 0 10px 28px rgba(16,42,67,.12));
+}
+
+/* Mensaje “sin más videos” */
+.videos-done{
+  margin:.1rem 0 0;
+  color:#365166;
+  font-weight:700;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .video-grid{ grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); }
+}
+@media (max-width:680px){
+  .video-grid{ grid-template-columns:1fr; gap:1rem; }
+  .video-meta h3{ font-size:1rem; }
+  .btn.show-more{ width:100%; }
+}
+
+/* ---------- Reduce Motion (respeta preferencias del usuario) ---------- */
+@media (prefers-reduced-motion:reduce){
+  .video-card,
+  .video-media::before{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+
+/* ---------- Dark Mode opcional (si el sistema lo prefiere) ---------- */
+@media (prefers-color-scheme:dark){
+  .section.videos{
+    background:linear-gradient(180deg, #0b1320, #0f172a);
+  }
+  .video-card{
+    background:#0c1a29;
+    border-color:rgba(255,255,255,.08);
+    box-shadow:0 12px 28px rgba(0,0,0,.45);
+  }
+  .video-meta h3{ color:#e6f2ff; }
+  .videos-done{ color:#cfe2ff; }
+  .video-media::before{
+    background:
+      linear-gradient(90deg, #163047 25%, #0f263a 37%, #163047 63%);
+  }
+}
